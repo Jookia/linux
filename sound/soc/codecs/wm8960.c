@@ -1357,9 +1357,17 @@ static int wm8960_probe(struct snd_soc_component *component)
 	return 0;
 }
 
+static int wm8960_of_xlate_dai_id(struct snd_soc_component *component,
+                                   struct device_node *endpoint)
+{
+	/* return dai id 0, whatever the endpoint index */
+	return 0;
+}
+
 static const struct snd_soc_component_driver soc_component_dev_wm8960 = {
 	.probe			= wm8960_probe,
 	.set_bias_level		= wm8960_set_bias_level,
+	.of_xlate_dai_id	= wm8960_of_xlate_dai_id,
 	.suspend_bias_off	= 1,
 	.idle_bias_on		= 1,
 	.use_pmdown_time	= 1,
