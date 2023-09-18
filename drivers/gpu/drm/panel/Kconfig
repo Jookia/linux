@@ -144,6 +144,15 @@ config DRM_PANEL_ELIDA_KD35T133
 	  KD35T133 controller for 320x480 LCD panels with MIPI-DSI
 	  system interfaces.
 
+config DRM_PANEL_FASCONTEK_FS028VG047
+	tristate "Fascontek FS028VG047 panel"
+	depends on OF && SPI
+	depends on BACKLIGHT_CLASS_DEVICE
+	select DRM_MIPI_DBI
+	help
+	  Say Y here if you want to enable support for the Fascontek FS028VG047
+	  panel. This ST7701s panel uses 9-bit SPI for its commands.
+
 config DRM_PANEL_FEIXIN_K101_IM2BA02
 	tristate "Feixin K101 IM2BA02 panel"
 	depends on OF
