@@ -236,7 +236,6 @@ unlock_mutex:
 static const struct pwm_ops sun20i_pwm_ops = {
 	.get_state = sun20i_pwm_get_state,
 	.apply = sun20i_pwm_apply,
-	.owner = THIS_MODULE,
 };
 
 static const struct of_device_id sun20i_pwm_dt_ids[] = {
