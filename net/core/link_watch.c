@@ -192,6 +192,8 @@ static void __linkwatch_run_queue(int urgent_only)
 #define MAX_DO_DEV_PER_LOOP	100
 
 	int do_dev = MAX_DO_DEV_PER_LOOP;
+	struct net_device *dev;
+	LIST_HEAD(wrk);
 
 	/* Give urgent case more budget */
 	if (urgent_only)
@@ -213,11 +215,11 @@ static void __linkwatch_run_queue(int urgent_only)
 	clear_bit(LW_URGENT, &linkwatch_flags);
 
 	spin_lock_irq(&lweventlist_lock);
-	while (!list_empty(&lweventlist) && do_dev > 0) {
-		struct net_device *dev;
+	list_splice_init(&lweventlist, &wrk);
 
-		dev = list_first_entry(&lweventlist, struct net_device,
-				       link_watch_list);
+	while (!list_empty(&wrk) && do_dev > 0) {
+
+		dev = list_first_entry(&wrk, struct net_device, link_watch_list);
 		list_del_init(&dev->link_watch_list);
 
 		if (!netif_device_present(dev) ||
@@ -234,6 +236,9 @@ static void __linkwatch_run_queue(int urgent_only)
 		do_dev--;
 		spin_lock_irq(&lweventlist_lock);
 	}
+
+	/* Add the remaining work back to lweventlist */
+	list_splice_init(&wrk, &lweventlist);
 
 	if (!list_empty(&lweventlist))
 		linkwatch_schedule_work(0);
