@@ -5,13 +5,13 @@
 set -e
 set -x
 TODAY="$(date +"%Y%m%d")"
-FILE=linux-jookia-$TODAY.tar.bz2
+MERGEBASE="$(git describe --exact-match "$(git merge-base HEAD master)")"
 sed -i "s/\(PATCHESVERSION = \).*/\1-jookia$TODAY/g" Makefile
 git commit -m "Bump PATCHESVERSION to -jookia$TODAY" -s -S Makefile
 git tag -s -m "Release $TODAY" jookia/$TODAY
 mkdir -p release/
-git archive --format=tar --prefix=linux-jookia-$TODAY/ HEAD | \
-	bzip2 > release/$FILE
+FILE=linux-$MERGEBASE-jookia-$TODAY.patch
+git diff $MERGEBASE jookia/$TODAY > release/$FILE
 cp jookia/allowed_signers release
 ssh-keygen -Y sign -f ~/.ssh/id_ed25519_sk_solo.pub -n file release/$FILE
 (cd release; sha256sum * > sha256sums)
