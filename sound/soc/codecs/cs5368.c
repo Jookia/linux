@@ -435,14 +435,19 @@ static int cs5368_pm_runtime_resume(struct device *dev)
 		return rc;
 	}
 
-	gpiod_set_value_cansleep(priv->reset_gpio, 0);
-
-	regcache_cache_only(priv->regmap, false);
-	regcache_mark_dirty(priv->regmap);
-	rc = regcache_sync(priv->regmap);
-	if (rc != 0) {
-		dev_err(dev, "regcache_sync failed: %d\n", rc);
-		return rc;
+	// ESD can temporarily knock the chip out, give it a few tries at resuming
+	for (int i = 0; i < 5; ++i) {
+		gpiod_set_value_cansleep(priv->reset_gpio, 0);
+		regcache_cache_only(priv->regmap, false);
+		regcache_mark_dirty(priv->regmap);
+		rc = regcache_sync(priv->regmap);
+		if (rc != 0) {
+			dev_err(dev, "regcache_sync failed: %d\n", rc);
+			gpiod_set_value_cansleep(priv->reset_gpio, 1);
+			usleep_range(1000, 10000);
+		} else {
+			break;
+		}
 	}
 
 	return 0;
