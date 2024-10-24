@@ -410,6 +410,7 @@ static int cs5368_pm_runtime_suspend(struct device *dev)
 	struct cs5368_priv *priv = dev_get_drvdata(dev);
 	int rc;
 
+	regcache_cache_only(priv->regmap, true);
 	gpiod_set_value_cansleep(priv->reset_gpio, 1);
 
 	rc = regulator_bulk_disable(ARRAY_SIZE(priv->regulators),
