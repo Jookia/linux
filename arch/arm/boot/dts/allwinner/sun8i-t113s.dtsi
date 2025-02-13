@@ -6,6 +6,7 @@
 #include <dt-bindings/interrupt-controller/arm-gic.h>
 #include <riscv/allwinner/sunxi-d1s-t113.dtsi>
 #include <riscv/allwinner/sunxi-d1-t113.dtsi>
+#include <dt-bindings/thermal/thermal.h>
 
 / {
 	interrupt-parent = <&gic>;
@@ -55,5 +56,20 @@
 		interrupts = <GIC_SPI 172 IRQ_TYPE_LEVEL_HIGH>,
 			     <GIC_SPI 173 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-affinity = <&cpu0>, <&cpu1>;
+	};
+
+	thermal-zones {
+		cpu-thermal {
+			thermal-sensors = <&ths>;
+
+			trips {
+				cpu_crit: cpu-crit {
+					/* milliCelsius */
+					temperature = <100000>;
+					hysteresis = <2000>;
+					type = "critical";
+				};
+			};
+		};
 	};
 };
