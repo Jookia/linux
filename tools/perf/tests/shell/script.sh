@@ -1,97 +1,99 @@
-#!/bin/bash
-# perf record LBR tests
+#!/bin/sh
+# perf script tests
 # SPDX-License-Identifier: GPL-2.0
 
 set -e
 
-if [ ! -f /sys/devices/cpu/caps/branches ] && [ ! -f /sys/devices/cpu_core/caps/branches ]
-then
-  echo "Skip: only x86 CPUs support LBR"
-  exit 2
-fi
+temp_dir=$(mktemp -d /tmp/perf-test-script.XXXXXXXXXX)
+
+perfdatafile="${temp_dir}/perf.data"
+db_test="${temp_dir}/db_test.py"
 
 err=0
-perfdata=$(mktemp /tmp/__perf_test.perf.data.XXXXX)
 
-cleanup() {
-  rm -rf "${perfdata}"
-  rm -rf "${perfdata}".old
-  rm -rf "${perfdata}".txt
-
-  trap - EXIT TERM INT
+cleanup()
+{
+	trap - EXIT TERM INT
+	sane=$(echo "${temp_dir}" | cut -b 1-21)
+	if [ "${sane}" = "/tmp/perf-test-script" ] ; then
+		echo "--- Cleaning up ---"
+		rm -rf "${temp_dir:?}/"*
+		rmdir "${temp_dir}"
+	fi
 }
 
-trap_cleanup() {
-  cleanup
-  exit 1
+trap_cleanup()
+{
+	cleanup
+	exit 1
 }
+
 trap trap_cleanup EXIT TERM INT
 
 
-lbr_callgraph_test() {
-  test="LBR callgraph"
+test_db()
+{
+	echo "DB test"
 
-  echo "$test"
-  if ! perf record -e cycles --call-graph lbr -o "${perfdata}" perf test -w thloop
-  then
-    echo "$test [Failed support missing]"
-    if [ $err -eq 0 ]
-    then
-      err=2
-    fi
-    return
-  fi
+	# Check if python script is supported
+        if perf version --build-options | grep python | grep -q OFF ; then
+		echo "SKIP: python scripting is not supported"
+		err=2
+		return
+	fi
 
-  if ! perf report --stitch-lbr -i "${perfdata}" > "${perfdata}".txt
-  then
-    cat "${perfdata}".txt
-    echo "$test [Failed in perf report]"
-    err=1
-    return
-  fi
+	cat << "_end_of_file_" > "${db_test}"
+perf_db_export_mode = True
+perf_db_export_calls = False
+perf_db_export_callchains = True
 
-  echo "$test [Success]"
+def sample_table(*args):
+    print(f'sample_table({args})')
+
+def call_path_table(*args):
+    print(f'call_path_table({args}')
+_end_of_file_
+	case $(uname -m)
+	in s390x)
+		cmd_flags="--call-graph dwarf -e cpu-clock";;
+	*)
+		cmd_flags="-g";;
+	esac
+
+	perf record $cmd_flags -o "${perfdatafile}" true
+	# Disable lsan to avoid warnings about python memory leaks.
+	export ASAN_OPTIONS=detect_leaks=0
+	perf script -i "${perfdatafile}" -s "${db_test}"
+	export ASAN_OPTIONS=
+	echo "DB test [Success]"
 }
 
-lbr_test() {
-  local branch_flags=$1
-  local test="LBR $2 test"
-  local threshold=$3
-  local out
-  local sam_nr
-  local bs_nr
-  local zero_nr
-  local r
+test_parallel_perf()
+{
+	echo "parallel-perf test"
+	if ! python3 --version >/dev/null 2>&1 ; then
+		echo "SKIP: no python3"
+		err=2
+		return
+	fi
+	pp=$(dirname "$0")/../../scripts/python/parallel-perf.py
+	if [ ! -f "${pp}" ] ; then
+		echo "SKIP: parallel-perf.py script not found "
+		err=2
+		return
+	fi
+	perf_data="${temp_dir}/pp-perf.data"
+	output1_dir="${temp_dir}/output1"
+	output2_dir="${temp_dir}/output2"
+	perf record -o "${perf_data}" --sample-cpu uname
+	python3 "${pp}" -o "${output1_dir}" --jobs 4 --verbose -- perf script -i "${perf_data}"
+	python3 "${pp}" -o "${output2_dir}" --jobs 4 --verbose --per-cpu -- perf script -i "${perf_data}"
+	echo "parallel-perf test [Success]"
+}
 
-  echo "$test"
-  if ! perf record -e cycles $branch_flags -o "${perfdata}" perf test -w thloop
-  then
-    echo "$test [Failed support missing]"
-    perf record -e cycles $branch_flags -o "${perfdata}" perf test -w thloop || true
-    if [ $err -eq 0 ]
-    then
-      err=2
-    fi
-    return
-  fi
+test_db
+test_parallel_perf
 
-  out=$(perf report -D -i "${perfdata}" 2> /dev/null | grep -A1 'PERF_RECORD_SAMPLE')
-  sam_nr=$(echo "$out" | grep -c 'PERF_RECORD_SAMPLE' || true)
-  if [ $sam_nr -eq 0 ]
-  then
-    echo "$test [Failed no samples captured]"
-    err=1
-    return
-  fi
-  echo "$test: $sam_nr samples"
+cleanup
 
-  bs_nr=$(echo "$out" | grep -c 'branch stack: nr:' || true)
-  if [ $sam_nr -ne $bs_nr ]
-  then
-    echo "$test [Failed samples missing branch stacks]"
-    err=1
-    return
-  fi
-
-  zero_nr=$(echo "$out" | grep -c 'branch stack: nr:0' || true)
-  r=$(($zero_nr * 100 / $bs_nr))
+exit $err
