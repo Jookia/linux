@@ -6,7 +6,6 @@ This is my fork of Linux with out of tree features I use or have developed:
 Audio features:
 
 - CS5368 sound codec support
-- audio-graph-card2 probe fix
 - sound-card-test continous rate support
 
 Allwinner D1/T113 features:
