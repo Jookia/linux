@@ -39,7 +39,7 @@ properties:
   resets:
     maxItems: 1
 
-  allwinner,pwm-channels:
+  allwinner,npwms:
     $ref: /schemas/types.yaml#/definitions/uint32
     description: The number of PWM channels configured for this instance
     enum: [6, 9]
@@ -55,7 +55,7 @@ allOf:
 
     then:
       required:
-        - allwinner,pwm-channels
+        - allwinner,npwms
 
 unevaluatedProperties: false
 
