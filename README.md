@@ -15,11 +15,11 @@ Allwinner D1/T113 features:
 - I2S multiple DIN pins support
 - LCD tint or green display fix
 
-This branch tracks mainline Linux. To see a list of commits from this branch
+This branch tracks Linux v6.12. To see a list of commits from this branch
 only use this command:
 
 ```
-git log --left-only --oneline jookia_main...master
+git log --left-only --oneline jookia_main...v6.12
 ```
 
 I regularly sign my Git commits with my hardware SSH key, if you would like to
