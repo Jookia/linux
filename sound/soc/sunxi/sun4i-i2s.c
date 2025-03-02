@@ -218,8 +218,8 @@ struct sun4i_i2s {
 	unsigned int	mclk_freq;
 	unsigned int	slots;
 	unsigned int	slot_width;
-	u8	channel_dins[16];
-	u8	channel_slots[16];
+	u32	channel_dins[16];
+	u32	channel_slots[16];
 
 	struct snd_dmaengine_dai_dma_data	capture_dma_data;
 	struct snd_dmaengine_dai_dma_data	playback_dma_data;
@@ -249,7 +249,7 @@ static int sun4i_i2s_read_channel_dins(struct device *dev, struct sun4i_i2s *i2s
 	if (!np)
 		return 0;
 
-	ret = of_property_read_variable_u8_array(np, "allwinner,channel-dins",
+	ret = of_property_read_variable_u32_array(np, "allwinner,channel-dins",
 						 i2s->channel_dins,
 						 1, max_channels);
 
@@ -260,7 +260,7 @@ static int sun4i_i2s_read_channel_dins(struct device *dev, struct sun4i_i2s *i2s
 		return ret;
 
 	for (int i = 0; i < ret; ++i) {
-		u8 din = i2s->channel_dins[i];
+		u32 din = i2s->channel_dins[i];
 
 		if (din >= i2s->variant->num_din_pins)
 			return -EINVAL;
@@ -283,7 +283,7 @@ static int sun4i_i2s_read_channel_slots(struct device *dev, struct sun4i_i2s *i2
 	if (!np)
 		return 0;
 
-	ret = of_property_read_variable_u8_array(np, "allwinner,channel-slots",
+	ret = of_property_read_variable_u32_array(np, "allwinner,channel-slots",
 						 i2s->channel_slots,
 						 1, max_channels);
 
@@ -609,8 +609,8 @@ static void sun50i_h6_write_channel_map(const struct sun4i_i2s *i2s,
 	/* Loop backwards so we can shift values in */
 	for (int i = 3; i >= 0; i--) {
 		int channel = channel_start + i;
-		u8 din = i2s->channel_dins[channel];
-		u8 slot = i2s->channel_slots[channel];
+		u8 din = (u8)i2s->channel_dins[channel];
+		u8 slot = (u8)i2s->channel_slots[channel];
 
 		reg_value <<= 8;
 		reg_value |= (din << 4) | slot;

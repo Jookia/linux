@@ -53,7 +53,7 @@ properties:
       - const: mod
 
   allwinner,channel-dins:
-    $ref: /schemas/types.yaml#/definitions/uint8-array
+    $ref: /schemas/types.yaml#/definitions/uint32-array
     description:
       This is a list of DIN pin numbers, each used for a receiving I2S
       channel. Pins are mapped to channels based on array index.
@@ -61,7 +61,7 @@ properties:
       The maximum channel number is limited by the hardware's support.
 
   allwinner,channel-slots:
-    $ref: /schemas/types.yaml#/definitions/uint8-array
+    $ref: /schemas/types.yaml#/definitions/uint32-array
     description:
       This is a list of channel I2S TDM slot numbers. Slots are mapped
       to channels based on array index.
