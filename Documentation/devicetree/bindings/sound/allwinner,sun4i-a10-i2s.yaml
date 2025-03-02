@@ -52,19 +52,21 @@ properties:
       - const: apb
       - const: mod
 
-  channel-dins:
+  allwinner,channel-dins:
     $ref: /schemas/types.yaml#/definitions/uint8-array
     description:
       This is a list of DIN pin numbers, each used for a receiving I2S
       channel. Pins are mapped to channels based on array index.
       Channel 0 is the first number, then channel 1, and so on.
+      The maximum channel number is limited by the hardware's support.
 
-  channel-slots:
+  allwinner,channel-slots:
     $ref: /schemas/types.yaml#/definitions/uint8-array
     description:
       This is a list of channel I2S TDM slot numbers. Slots are mapped
       to channels based on array index.
       Channel 0 is the first number, then channel 1, and so on.
+      The maximum channel number is limited by the hardware's support.
 
   # Even though it only applies to subschemas under the conditionals,
   # not listing them here will trigger a warning because of the
@@ -156,22 +158,6 @@ examples:
         clock-names = "apb", "mod";
         dmas = <&dma 0 3>, <&dma 0 3>;
         dma-names = "rx", "tx";
-    };
-
-  - |
-    i2s0_d1: i2s@2032000 {
-            #sound-dai-cells = <0>;
-            compatible = "allwinner,sun20i-d1-i2s",
-                         "allwinner,sun50i-r329-i2s";
-            reg = <0x2032000 0x1000>;
-            interrupts = <0 26 0>;
-            clocks = <&ccu 86>, <&ccu 82>;
-            clock-names = "apb", "mod";
-            resets = <&ccu 34>;
-            dmas = <&dma 3>, <&dma 3>;
-            dma-names = "rx", "tx";
-            channel-dins = /bits/ 8 <0 0 1 1 2 2>;
-            channel-slots = /bits/ 8 <0 1 0 1 0 1>;
     };
 
 ...

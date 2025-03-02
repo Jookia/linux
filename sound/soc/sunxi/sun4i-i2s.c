@@ -249,7 +249,7 @@ static int sun4i_i2s_read_channel_dins(struct device *dev, struct sun4i_i2s *i2s
 	if (!np)
 		return 0;
 
-	ret = of_property_read_variable_u8_array(np, "channel-dins",
+	ret = of_property_read_variable_u8_array(np, "allwinner,channel-dins",
 						 i2s->channel_dins,
 						 1, max_channels);
 
@@ -283,7 +283,7 @@ static int sun4i_i2s_read_channel_slots(struct device *dev, struct sun4i_i2s *i2
 	if (!np)
 		return 0;
 
-	ret = of_property_read_variable_u8_array(np, "channel-slots",
+	ret = of_property_read_variable_u8_array(np, "allwinner,channel-slots",
 						 i2s->channel_slots,
 						 1, max_channels);
 
