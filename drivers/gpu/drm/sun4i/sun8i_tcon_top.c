@@ -129,6 +129,7 @@ static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
 	struct sun8i_tcon_top *tcon_top;
 	const struct sun8i_tcon_top_quirks *quirks;
 	void __iomem *regs;
+	u32 port_sel_reg;
 	int ret, i;
 
 	quirks = of_device_get_match_data(&pdev->dev);
@@ -176,10 +177,21 @@ static int sun8i_tcon_top_bind(struct device *dev, struct device *master,
 	}
 
 	/*
-	 * At least on H6, some registers have some bits set by default
-	 * which may cause issues. Clear them here.
+	 * Set DE0 and DE1 to LC0 and TV1 mixer outputs.
+	 * Previously we set both DE0 and DE1 to LCD0. The datasheet said
+	 * this would cause DE0 to be used as the source. However on the T113
+	 * this can cause a conflict and tint the display or replace it with
 	 */
-	writel(0x20, regs + TCON_TOP_PORT_SEL_REG);
+	port_sel_reg = 0;
+	port_sel_reg |= FIELD_PREP(TCON_TOP_PORT_DE0_MSK, 0);
+	port_sel_reg |= FIELD_PREP(TCON_TOP_PORT_DE1_MSK, 2);
+	writel(port_sel_reg, regs + TCON_TOP_PORT_SEL_REG);
+
+	/*
+	 * Disable the HDMI source and gate all clocks by default.
+	 * On the H6 this register and the PORT_SEL register may have bits
+	 * set already which may cause issues.
+	 */
 	writel(0, regs + TCON_TOP_GATE_SRC_REG);
 
 	/*
