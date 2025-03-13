@@ -14,6 +14,7 @@ Allwinner D1/T113 features:
 - PWM support (by Aleksandr Shubin)
 - I2S multiple DIN pins support
 - LCD tint or green display fix
+- Watchdog persists after boot (by Regis Dargent)
 
 This branch tracks Linux v6.12. To see a list of commits from this branch
 only use this command:
