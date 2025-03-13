@@ -11,7 +11,7 @@ Audio features:
 Allwinner D1/T113 features:
 
 - Thermal sensor enabled
-- PWM support
+- PWM support (by Aleksandr Shubin)
 - I2S multiple DIN pins support
 - LCD tint or green display fix
 
