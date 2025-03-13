@@ -1379,7 +1379,7 @@ sub top_of_kernel_tree {
 
 	my @tree_check = (
 		"COPYING", "CREDITS", "Kbuild", "MAINTAINERS", "Makefile",
-		"README.md", "Documentation", "arch", "include", "drivers",
+		"README", "Documentation", "arch", "include", "drivers",
 		"fs", "init", "ipc", "kernel", "lib", "scripts",
 	);
 
