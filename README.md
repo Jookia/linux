@@ -35,6 +35,25 @@ My key fingerprint is ```SHA256:/gEvgms/9HpbgpcH+K7O4GYXmqkP7siJx9zHeEWRZTg```.
 
 Please verify it by comparing it to my website: https://www.jookia.org/wiki/Keys
 
+Testing notes
+-------------
+
+I try to test my custom features with each release, but this isn't always
+feasible. Here's a list of features I've tested and which commit I tested.
+
+Audio features:
+
+- CS5368 sound codec: d607727261d85442 on 2025-03-22
+- sound-card-test continous rate support: Not tested recently
+
+Allwinner D1/T113 features:
+
+- T113 thermal sensor: d607727261d85442 on 2025-03-23
+- T113 PWM: d607727261d85442 on 2025-03-20
+- I2S multiple DIN pins: Not tested recently
+- LCD tint or green display fix: d607727261d85442 on 2025-03-20
+- Watchdog persists after boot: d607727261d85442 on 2025-03-13
+
 Mainline README
 ---------------
 
