@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
-// Copyright 2024 John Watts <contact@jookia.org>
+// Copyright 2025 John Watts <contact@jookia.org>
 
 #include <linux/gpio/consumer.h>
 #include <linux/i2c.h>
@@ -12,7 +12,6 @@
 #include <sound/soc.h>
 
 /* TODO:
- * - Check if LRCK switches channel numbers in TDM
  * - SPI support
  * - Non-TDM mode
  * - LRCK generation
@@ -27,6 +26,8 @@
  *   but you can keep LRCK low and use the DSP_A format.
  * - You don't have to clock out all bits, clocking out just 2 or 4 slots
  *   out of 8 works well.
+ * - LRCK doesn't do anything in TDM mode, clocking out 2 slots then toggling
+ *   LRCK will not skip slots.
  * - The data sheet says the TDM format is left justified, but it's
  *   actually standard I2S format. Figure 12 seems to confirm this.
  * - All SDOUT pins do not remain active during TDM mode.
