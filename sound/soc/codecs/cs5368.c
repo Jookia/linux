@@ -127,7 +127,31 @@ struct cs5368_priv {
 	bool tdm;
 	bool powered;
 	enum snd_soc_bias_level current_bias_level;
+	bool standby_power;
 };
+
+static int cs5368_update_power_level(struct device *dev);
+
+static int cs5368_get_standby_power(struct snd_kcontrol *kcontrol,
+	struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+	struct cs5368_priv *priv = snd_soc_component_get_drvdata(component);
+
+	return priv->standby_power;
+}
+
+static int cs5368_set_standby_power(struct snd_kcontrol *kcontrol,
+	struct snd_ctl_elem_value *ucontrol)
+{
+	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
+	struct cs5368_priv *priv = snd_soc_component_get_drvdata(component);
+	struct device *dev = component->dev;
+
+	priv->standby_power = ucontrol->value.integer.value[0];
+
+	return cs5368_update_power_level(dev);
+}
 
 static const struct snd_kcontrol_new cs5368_snd_controls[] = {
 	SOC_SINGLE("AIN1 High-Pass Filter Switch", REG_HPF, 0, 1, 1),
@@ -138,6 +162,8 @@ static const struct snd_kcontrol_new cs5368_snd_controls[] = {
 	SOC_SINGLE("AIN6 High-Pass Filter Switch", REG_HPF, 5, 1, 1),
 	SOC_SINGLE("AIN7 High-Pass Filter Switch", REG_HPF, 6, 1, 1),
 	SOC_SINGLE("AIN8 High-Pass Filter Switch", REG_HPF, 7, 1, 1),
+	SOC_SINGLE_EXT("Standby Power Switch", SND_SOC_NOPM, 0, 1, 0,
+		cs5368_get_standby_power, cs5368_set_standby_power),
 };
 
 static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain[] = {
@@ -388,6 +414,10 @@ static int cs5368_update_power_level(struct device *dev)
 	enum snd_soc_bias_level level = priv->current_bias_level;
 
 	if (level == SND_SOC_BIAS_PREPARE || level == SND_SOC_BIAS_ON)
+		return cs5368_resume(dev);
+	else if (level == SND_SOC_BIAS_OFF)
+		return cs5368_suspend(dev);
+	else if (priv->standby_power)
 		return cs5368_resume(dev);
 	else
 		return cs5368_suspend(dev);
