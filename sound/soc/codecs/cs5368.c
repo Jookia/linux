@@ -138,7 +138,9 @@ static int cs5368_get_standby_power(struct snd_kcontrol *kcontrol,
 	struct snd_soc_component *component = snd_soc_kcontrol_component(kcontrol);
 	struct cs5368_priv *priv = snd_soc_component_get_drvdata(component);
 
-	return priv->standby_power;
+	ucontrol->value.integer.value[0] = priv->standby_power;
+
+	return 0;
 }
 
 static int cs5368_set_standby_power(struct snd_kcontrol *kcontrol,
@@ -177,6 +179,43 @@ static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain[] = {
 	SOC_DAPM_SINGLE("Switch", REG_MUTE, 7, 1, 1),
 };
 
+static int cs5368_mute_event(struct snd_soc_dapm_widget *w,
+	struct snd_kcontrol *kcontrol, int event)
+{
+	struct snd_soc_component *component = snd_soc_dapm_to_component(w->dapm);
+	struct cs5368_priv *priv = snd_soc_component_get_drvdata(component);
+	struct device *dev = component->dev;
+	int unmuted_channels = 0;
+	int mute_reg = 0;
+	int pdn_reg = 0;
+	int rc = 0;
+
+	rc = regmap_read(priv->regmap, REG_MUTE, &mute_reg);
+	if (rc != 0) {
+		dev_err(dev, "reading mute register failed: %d\n", rc);
+		return rc;
+	}
+
+	unmuted_channels = ~mute_reg;
+
+	if ((unmuted_channels & 0b11) == 0) // AIN1 and AIN2
+		pdn_reg |= 0b1;
+	if ((unmuted_channels & 0b1100) == 0) // AIN3 and AIN4
+		pdn_reg |= 0b10;
+	if ((unmuted_channels & 0b110000) == 0) // AIN5 and AIN6
+		pdn_reg |= 0b100;
+	if ((unmuted_channels & 0b11000000) == 0) // AIN7 and AIN8
+		pdn_reg |= 0b1000;
+
+	rc = regmap_write(priv->regmap, REG_PDN, pdn_reg);
+	if (rc != 0) {
+		dev_err(dev, "writing power down register failed: %d\n", rc);
+		return rc;
+	}
+
+	return 0;
+}
+
 static const struct snd_soc_dapm_widget cs5368_dapm_widgets[] = {
 	SND_SOC_DAPM_INPUT("AIN1"),
 	SND_SOC_DAPM_INPUT("AIN2"),
@@ -186,26 +225,34 @@ static const struct snd_soc_dapm_widget cs5368_dapm_widgets[] = {
 	SND_SOC_DAPM_INPUT("AIN6"),
 	SND_SOC_DAPM_INPUT("AIN7"),
 	SND_SOC_DAPM_INPUT("AIN8"),
-	SND_SOC_DAPM_ADC("AIN12", NULL, 0x6, 0, 1),
-	SND_SOC_DAPM_ADC("AIN34", NULL, 0x6, 1, 1),
-	SND_SOC_DAPM_ADC("AIN56", NULL, 0x6, 2, 1),
-	SND_SOC_DAPM_ADC("AIN78", NULL, 0x6, 3, 1),
-	SND_SOC_DAPM_SWITCH("AIN1 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[0]),
-	SND_SOC_DAPM_SWITCH("AIN2 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[1]),
-	SND_SOC_DAPM_SWITCH("AIN3 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[2]),
-	SND_SOC_DAPM_SWITCH("AIN4 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[3]),
-	SND_SOC_DAPM_SWITCH("AIN5 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[4]),
-	SND_SOC_DAPM_SWITCH("AIN6 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[5]),
-	SND_SOC_DAPM_SWITCH("AIN7 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[6]),
-	SND_SOC_DAPM_SWITCH("AIN8 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain[7]),
+	SND_SOC_DAPM_ADC("AIN12", NULL, SND_SOC_NOPM, 0, 0),
+	SND_SOC_DAPM_ADC("AIN34", NULL, SND_SOC_NOPM, 0, 0),
+	SND_SOC_DAPM_ADC("AIN56", NULL, SND_SOC_NOPM, 0, 0),
+	SND_SOC_DAPM_ADC("AIN78", NULL, SND_SOC_NOPM, 0, 0),
+	SND_SOC_DAPM_SWITCH_E("AIN1 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[0],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN2 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[1],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN3 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[2],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN4 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[3],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN5 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[4],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN6 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[5],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN7 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[6],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
+	SND_SOC_DAPM_SWITCH_E("AIN8 Capture", SND_SOC_NOPM, 0, 0,
+			    &cs5368_snd_controls_mute_ain[7],
+			    cs5368_mute_event, SND_SOC_DAPM_POST_REG),
 	SND_SOC_DAPM_AIF_OUT("TDM1", "Capture", 0, SND_SOC_NOPM, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("TDM2", "Capture", 1, SND_SOC_NOPM, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("TDM3", "Capture", 2, SND_SOC_NOPM, 0, 0),
