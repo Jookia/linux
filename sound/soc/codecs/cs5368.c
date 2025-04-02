@@ -5,7 +5,6 @@
 #include <linux/i2c.h>
 #include <linux/module.h>
 #include <linux/of.h>
-#include <linux/pm_runtime.h>
 #include <linux/regmap.h>
 #include <linux/regulator/consumer.h>
 #include <sound/pcm_params.h>
@@ -126,6 +125,8 @@ struct cs5368_priv {
 	struct regmap *regmap;
 	unsigned int mclk_freq;
 	bool tdm;
+	bool powered;
+	enum snd_soc_bias_level current_bias_level;
 };
 
 static const struct snd_kcontrol_new cs5368_snd_controls[] = {
@@ -323,6 +324,86 @@ static int cs5368_codec_set_sysclk(struct snd_soc_component *comp, int clk_id,
 	return 0;
 }
 
+static int cs5368_suspend(struct device *dev)
+{
+	struct cs5368_priv *priv = dev_get_drvdata(dev);
+	int rc;
+
+	if (!priv->powered)
+		return 0;
+
+	regcache_cache_only(priv->regmap, true);
+	gpiod_set_value_cansleep(priv->reset_gpio, 1);
+
+	rc = regulator_bulk_disable(ARRAY_SIZE(priv->regulators),
+				    priv->regulators);
+	if (rc != 0) {
+		dev_err(dev, "regulator_bulk_disable failed: %d\n", rc);
+		return rc;
+	}
+
+	priv->powered = false;
+
+	return 0;
+}
+
+static int cs5368_resume(struct device *dev)
+{
+	struct cs5368_priv *priv = dev_get_drvdata(dev);
+	int rc;
+
+	if (priv->powered)
+		return 0;
+
+	rc = regulator_bulk_enable(ARRAY_SIZE(priv->regulators),
+				   priv->regulators);
+	if (rc != 0) {
+		dev_err(dev, "regulator_bulk_enable failed: %d\n", rc);
+		return rc;
+	}
+
+	// ESD can temporarily knock the chip out, give it a few tries at resuming
+	for (int i = 0; i < 5; ++i) {
+		gpiod_set_value_cansleep(priv->reset_gpio, 0);
+		regcache_cache_only(priv->regmap, false);
+		regcache_mark_dirty(priv->regmap);
+		rc = regcache_sync(priv->regmap);
+		if (rc != 0) {
+			dev_err(dev, "regcache_sync failed: %d\n", rc);
+			gpiod_set_value_cansleep(priv->reset_gpio, 1);
+			usleep_range(1000, 10000);
+		} else {
+			break;
+		}
+	}
+
+	priv->powered = (rc == 0);
+
+	return rc;
+}
+
+static int cs5368_update_power_level(struct device *dev)
+{
+	struct cs5368_priv *priv = dev_get_drvdata(dev);
+	enum snd_soc_bias_level level = priv->current_bias_level;
+
+	if (level == SND_SOC_BIAS_PREPARE || level == SND_SOC_BIAS_ON)
+		return cs5368_resume(dev);
+	else
+		return cs5368_suspend(dev);
+}
+
+static int cs5368_set_bias_level(struct snd_soc_component *component,
+				 enum snd_soc_bias_level level)
+{
+	struct cs5368_priv *priv = snd_soc_component_get_drvdata(component);
+	struct device *dev = component->dev;
+
+	priv->current_bias_level = level;
+
+	return cs5368_update_power_level(dev);
+}
+
 struct snd_soc_dai_driver soc_dai_cs5368 = {
 	.capture = {
 		.channels_max = 8,
@@ -339,6 +420,7 @@ struct snd_soc_dai_driver soc_dai_cs5368 = {
 };
 
 static const struct snd_soc_component_driver soc_component_dev_cs5368 = {
+	.set_bias_level	= cs5368_set_bias_level,
 	.controls = cs5368_snd_controls,
 	.dapm_routes = cs5368_dapm_routes,
 	.dapm_widgets = cs5368_dapm_widgets,
@@ -347,6 +429,8 @@ static const struct snd_soc_component_driver soc_component_dev_cs5368 = {
 	.num_dapm_routes = ARRAY_SIZE(cs5368_dapm_routes),
 	.num_dapm_widgets = ARRAY_SIZE(cs5368_dapm_widgets),
 	.set_sysclk = cs5368_codec_set_sysclk,
+	.idle_bias_on = 1,
+	.suspend_bias_off = 1,
 };
 
 static int cs5368_i2c_probe(struct i2c_client *client)
@@ -391,62 +475,10 @@ static int cs5368_i2c_probe(struct i2c_client *client)
 		return rc;
 	}
 
-	rc = devm_pm_runtime_enable(dev);
-	if (rc != 0) {
-		dev_err(dev, "devm_pm_runtime_enable failed: %d\n", rc);
-		return rc;
-	}
+	priv->current_bias_level = SND_SOC_BIAS_STANDBY;
 
 	return devm_snd_soc_register_component(
 		&client->dev, &soc_component_dev_cs5368, &soc_dai_cs5368, 1);
-}
-
-static int cs5368_pm_runtime_suspend(struct device *dev)
-{
-	struct cs5368_priv *priv = dev_get_drvdata(dev);
-	int rc;
-
-	regcache_cache_only(priv->regmap, true);
-	gpiod_set_value_cansleep(priv->reset_gpio, 1);
-
-	rc = regulator_bulk_disable(ARRAY_SIZE(priv->regulators),
-				    priv->regulators);
-	if (rc != 0) {
-		dev_err(dev, "regulator_bulk_disable failed: %d\n", rc);
-		return rc;
-	}
-
-	return 0;
-}
-
-static int cs5368_pm_runtime_resume(struct device *dev)
-{
-	struct cs5368_priv *priv = dev_get_drvdata(dev);
-	int rc;
-
-	rc = regulator_bulk_enable(ARRAY_SIZE(priv->regulators),
-				   priv->regulators);
-	if (rc != 0) {
-		dev_err(dev, "regulator_bulk_enable failed: %d\n", rc);
-		return rc;
-	}
-
-	// ESD can temporarily knock the chip out, give it a few tries at resuming
-	for (int i = 0; i < 5; ++i) {
-		gpiod_set_value_cansleep(priv->reset_gpio, 0);
-		regcache_cache_only(priv->regmap, false);
-		regcache_mark_dirty(priv->regmap);
-		rc = regcache_sync(priv->regmap);
-		if (rc != 0) {
-			dev_err(dev, "regcache_sync failed: %d\n", rc);
-			gpiod_set_value_cansleep(priv->reset_gpio, 1);
-			usleep_range(1000, 10000);
-		} else {
-			break;
-		}
-	}
-
-	return 0;
 }
 
 static const struct of_device_id cs5368_of_match[] = {
@@ -461,14 +493,10 @@ static const struct i2c_device_id cs5368_i2c_id[] = {
 };
 MODULE_DEVICE_TABLE(i2c, cs5368_i2c_id);
 
-DEFINE_RUNTIME_DEV_PM_OPS(cs5368_pm_ops, cs5368_pm_runtime_suspend,
-			  cs5368_pm_runtime_resume, NULL);
-
 static struct i2c_driver cs5368_codec_driver = {
 	.driver = {
 		.name = "cs5368",
 		.of_match_table = cs5368_of_match,
-		.pm = pm_ptr(&cs5368_pm_ops),
 	},
 	.id_table = cs5368_i2c_id,
 	.probe = cs5368_i2c_probe,
