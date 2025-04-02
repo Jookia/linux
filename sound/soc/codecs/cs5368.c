@@ -129,25 +129,25 @@ struct cs5368_priv {
 };
 
 static const struct snd_kcontrol_new cs5368_snd_controls[] = {
-	SOC_SINGLE("AIN1 High-Pass Filter Switch", 0x4, 0, 1, 1),
-	SOC_SINGLE("AIN2 High-Pass Filter Switch", 0x4, 1, 1, 1),
-	SOC_SINGLE("AIN3 High-Pass Filter Switch", 0x4, 2, 1, 1),
-	SOC_SINGLE("AIN4 High-Pass Filter Switch", 0x4, 3, 1, 1),
-	SOC_SINGLE("AIN5 High-Pass Filter Switch", 0x4, 4, 1, 1),
-	SOC_SINGLE("AIN6 High-Pass Filter Switch", 0x4, 5, 1, 1),
-	SOC_SINGLE("AIN7 High-Pass Filter Switch", 0x4, 6, 1, 1),
-	SOC_SINGLE("AIN8 High-Pass Filter Switch", 0x4, 7, 1, 1),
+	SOC_SINGLE("AIN1 High-Pass Filter Switch", REG_HPF, 0, 1, 1),
+	SOC_SINGLE("AIN2 High-Pass Filter Switch", REG_HPF, 1, 1, 1),
+	SOC_SINGLE("AIN3 High-Pass Filter Switch", REG_HPF, 2, 1, 1),
+	SOC_SINGLE("AIN4 High-Pass Filter Switch", REG_HPF, 3, 1, 1),
+	SOC_SINGLE("AIN5 High-Pass Filter Switch", REG_HPF, 4, 1, 1),
+	SOC_SINGLE("AIN6 High-Pass Filter Switch", REG_HPF, 5, 1, 1),
+	SOC_SINGLE("AIN7 High-Pass Filter Switch", REG_HPF, 6, 1, 1),
+	SOC_SINGLE("AIN8 High-Pass Filter Switch", REG_HPF, 7, 1, 1),
 };
 
 static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain[] = {
-	SOC_DAPM_SINGLE("Switch", 0x8, 0, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 1, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 2, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 3, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 4, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 5, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 6, 1, 1),
-	SOC_DAPM_SINGLE("Switch", 0x8, 7, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 0, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 1, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 2, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 3, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 4, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 5, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 6, 1, 1),
+	SOC_DAPM_SINGLE("Switch", REG_MUTE, 7, 1, 1),
 };
 
 static const struct snd_soc_dapm_widget cs5368_dapm_widgets[] = {
