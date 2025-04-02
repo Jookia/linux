@@ -19,6 +19,7 @@
  * - DAPM power down unused ADC channels
  * - SDEN pin selection in device tree
  * - Overflow checking
+ * - Specific regulator handling
  */
 
 /* NOTES:
@@ -138,22 +139,16 @@ static const struct snd_kcontrol_new cs5368_snd_controls[] = {
 	SOC_SINGLE("AIN8 High-Pass Filter Switch", 0x4, 7, 1, 1),
 };
 
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain1 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 0, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain2 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 1, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain3 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 2, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain4 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 3, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain5 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 4, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain6 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 5, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain7 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 6, 1, 1);
-static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain8 =
-	SOC_DAPM_SINGLE("Switch", 0x8, 7, 1, 1);
+static const struct snd_kcontrol_new cs5368_snd_controls_mute_ain[] = {
+	SOC_DAPM_SINGLE("Switch", 0x8, 0, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 1, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 2, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 3, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 4, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 5, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 6, 1, 1),
+	SOC_DAPM_SINGLE("Switch", 0x8, 7, 1, 1),
+};
 
 static const struct snd_soc_dapm_widget cs5368_dapm_widgets[] = {
 	SND_SOC_DAPM_INPUT("AIN1"),
@@ -169,21 +164,21 @@ static const struct snd_soc_dapm_widget cs5368_dapm_widgets[] = {
 	SND_SOC_DAPM_ADC("AIN56", NULL, 0x6, 2, 1),
 	SND_SOC_DAPM_ADC("AIN78", NULL, 0x6, 3, 1),
 	SND_SOC_DAPM_SWITCH("AIN1 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain1),
+			    &cs5368_snd_controls_mute_ain[0]),
 	SND_SOC_DAPM_SWITCH("AIN2 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain2),
+			    &cs5368_snd_controls_mute_ain[1]),
 	SND_SOC_DAPM_SWITCH("AIN3 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain3),
+			    &cs5368_snd_controls_mute_ain[2]),
 	SND_SOC_DAPM_SWITCH("AIN4 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain4),
+			    &cs5368_snd_controls_mute_ain[3]),
 	SND_SOC_DAPM_SWITCH("AIN5 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain5),
+			    &cs5368_snd_controls_mute_ain[4]),
 	SND_SOC_DAPM_SWITCH("AIN6 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain6),
+			    &cs5368_snd_controls_mute_ain[5]),
 	SND_SOC_DAPM_SWITCH("AIN7 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain7),
+			    &cs5368_snd_controls_mute_ain[6]),
 	SND_SOC_DAPM_SWITCH("AIN8 Capture", SND_SOC_NOPM, 0, 0,
-			    &cs5368_snd_controls_mute_ain8),
+			    &cs5368_snd_controls_mute_ain[7]),
 	SND_SOC_DAPM_AIF_OUT("TDM1", "Capture", 0, SND_SOC_NOPM, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("TDM2", "Capture", 1, SND_SOC_NOPM, 0, 0),
 	SND_SOC_DAPM_AIF_OUT("TDM3", "Capture", 2, SND_SOC_NOPM, 0, 0),
