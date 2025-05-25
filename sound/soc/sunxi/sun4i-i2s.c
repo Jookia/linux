@@ -576,13 +576,15 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
 	switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
 	case SND_SOC_DAIFMT_DSP_A:
 	case SND_SOC_DAIFMT_DSP_B:
+		/* We must specify combined BCLKs for the left/right channels */
 		lrck_period = slot_width * slots;
 		break;
 
 	case SND_SOC_DAIFMT_LEFT_J:
 	case SND_SOC_DAIFMT_RIGHT_J:
 	case SND_SOC_DAIFMT_I2S:
-		lrck_period = slot_width;
+		/* We must specify BCLKs per one left/right channel */
+		lrck_period = slot_width * slots / 2;
 		break;
 
 	default:
@@ -656,13 +658,15 @@ static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
 	switch (i2s->format & SND_SOC_DAIFMT_FORMAT_MASK) {
 	case SND_SOC_DAIFMT_DSP_A:
 	case SND_SOC_DAIFMT_DSP_B:
+		/* We must specify combined BCLKs for the left/right channels */
 		lrck_period = slot_width * slots;
 		break;
 
 	case SND_SOC_DAIFMT_LEFT_J:
 	case SND_SOC_DAIFMT_RIGHT_J:
 	case SND_SOC_DAIFMT_I2S:
-		lrck_period = slot_width;
+		/* We must specify BCLKs per one left/right channel */
+		lrck_period = slot_width * slots / 2;
 		break;
 
 	default:
