@@ -194,9 +194,9 @@ static const struct clk_hw *pll_audio0_4x_hws[] = {
 	&pll_audio0_4x_clk.common.hw
 };
 static CLK_FIXED_FACTOR_HWS(pll_audio0_2x_clk, "pll-audio0-2x",
-			    pll_audio0_4x_hws, 2, 1, 0);
+			    pll_audio0_4x_hws, 2, 1, CLK_SET_RATE_PARENT);
 static CLK_FIXED_FACTOR_HWS(pll_audio0_clk, "pll-audio0",
-			    pll_audio0_4x_hws, 4, 1, 0);
+			    pll_audio0_4x_hws, 4, 1, CLK_SET_RATE_PARENT);
 
 /*
  * PLL_AUDIO1 doesn't need Fractional-N. The output is usually 614.4 MHz for
@@ -222,9 +222,9 @@ static const struct clk_hw *pll_audio1_hws[] = {
 	&pll_audio1_clk.common.hw
 };
 static SUNXI_CCU_M_HWS(pll_audio1_div2_clk, "pll-audio1-div2",
-		       pll_audio1_hws, 0x080, 16, 3, 0);
+		       pll_audio1_hws, 0x080, 16, 3, CLK_SET_RATE_PARENT);
 static SUNXI_CCU_M_HWS(pll_audio1_div5_clk, "pll-audio1-div5",
-		       pll_audio1_hws, 0x080, 20, 3, 0);
+		       pll_audio1_hws, 0x080, 20, 3, CLK_SET_RATE_PARENT);
 
 /*
  * The CPUX gate is not modelled - it is in a separate register (0x504)
@@ -537,21 +537,21 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(i2s0_clk, "i2s0", i2s_spdif_tx_parents, 0xa
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_MP_HW_WITH_MUX_GATE(i2s1_clk, "i2s1", i2s_spdif_tx_parents, 0xa14,
 				     0, 5,	/* M */
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_MP_HW_WITH_MUX_GATE(i2s2_clk, "i2s2", i2s_spdif_tx_parents, 0xa18,
 				     0, 5,	/* M */
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static const struct clk_hw *i2s2_asrc_parents[] = {
 	&pll_audio0_4x_clk.common.hw,
@@ -564,7 +564,7 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(i2s2_asrc_clk, "i2s2-asrc", i2s2_asrc_paren
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_GATE_HWS(bus_i2s0_clk, "bus-i2s0", apb0_hws,
 			  0xa20, BIT(0), 0);
@@ -578,7 +578,7 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(spdif_tx_clk, "spdif-tx", i2s_spdif_tx_pare
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static const struct clk_hw *spdif_rx_parents[] = {
 	&pll_periph0_clk.hw,
@@ -590,7 +590,7 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(spdif_rx_clk, "spdif-rx", spdif_rx_parents,
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_GATE_HWS(bus_spdif_clk, "bus-spdif", apb0_hws,
 			  0xa2c, BIT(0), 0);
@@ -605,7 +605,7 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(dmic_clk, "dmic", dmic_codec_parents, 0xa40
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_GATE_HWS(bus_dmic_clk, "bus-dmic", apb0_hws,
 			  0xa4c, BIT(0), 0);
@@ -615,14 +615,14 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(audio_dac_clk, "audio-dac", dmic_codec_pare
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_MP_HW_WITH_MUX_GATE(audio_adc_clk, "audio-adc", dmic_codec_parents, 0xa54,
 				     0, 5,	/* M */
 				     8, 2,	/* P */
 				     24, 3,	/* mux */
 				     BIT(31),	/* gate */
-				     0);
+				     CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_GATE_HWS(bus_audio_clk, "bus-audio", apb0_hws,
 			  0xa5c, BIT(0), 0);

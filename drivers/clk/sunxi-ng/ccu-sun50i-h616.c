@@ -504,7 +504,7 @@ static struct ccu_div spdif_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("spdif",
 						      audio_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_SET_RATE_PARENT),
 	},
 };
 
@@ -519,7 +519,7 @@ static struct ccu_div dmic_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("dmic",
 						      audio_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_SET_RATE_PARENT),
 	},
 };
 
@@ -550,7 +550,7 @@ static struct ccu_div audio_hub_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("audio-hub",
 						      audio_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_SET_RATE_PARENT),
 	},
 };
 

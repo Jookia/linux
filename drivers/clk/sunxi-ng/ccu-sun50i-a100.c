@@ -590,7 +590,7 @@ static struct ccu_div spdif_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("spdif",
 						      audio_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_SET_RATE_PARENT),
 	},
 };
 
@@ -605,7 +605,7 @@ static struct ccu_div dmic_clk = {
 		.hw.init	= CLK_HW_INIT_PARENTS("dmic",
 						      audio_parents,
 						      &ccu_div_ops,
-						      0),
+						      CLK_SET_RATE_PARENT),
 	},
 };
 
@@ -616,21 +616,21 @@ static SUNXI_CCU_M_WITH_MUX_GATE(audio_codec_dac_clk, "audio-codec-dac",
 				 0, 4,		/* M */
 				 24, 2,		/* mux */
 				 BIT(31),	/* gate */
-				 0);
+				 CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_M_WITH_MUX_GATE(audio_codec_adc_clk, "audio-codec-adc",
 				 audio_parents, 0xa54,
 				 0, 4,		/* M */
 				 24, 2,		/* mux */
 				 BIT(31),	/* gate */
-				 0);
+				 CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_M_WITH_MUX_GATE(audio_codec_4x_clk, "audio-codec-4x",
 				 audio_parents, 0xa58,
 				 0, 4,		/* M */
 				 24, 2,		/* mux */
 				 BIT(31),	/* gate */
-				 0);
+				 CLK_SET_RATE_PARENT);
 
 static SUNXI_CCU_GATE(bus_audio_codec_clk, "bus-audio-codec", "apb1", 0xa5c,
 		      BIT(0), 0);
