@@ -246,7 +246,8 @@ static struct ccu_sdm_setting pll_audio_sdm_table[] = {
 static struct ccu_nm pll_audio_clk = {
 	.enable		= SUN50I_A100_PLL_OUTPUT_ENABLE,
 	.lock		= SUN50I_A100_PLL_LOCK,
-	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+	/* 7.5<=N/M0/M1<=125 and 12<=N, M1 is 1, M0 is 2 */
+	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 250),
 	.m		= _SUNXI_CCU_DIV(16, 6),
 	.fixed_post_div	= 2,
 	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table, BIT(24),

@@ -175,7 +175,8 @@ static struct ccu_sdm_setting pll_audio0_sdm_table[] = {
 static struct ccu_nm pll_audio0_4x_clk = {
 	.enable		= BIT(27),
 	.lock		= BIT(28),
-	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+	/* 7.5<=N/M0/M1<=125 and 12<=N, M0 and M1 are 1 */
+	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 125),
 	.m		= _SUNXI_CCU_DIV(16, 6),
 	.sdm		= _SUNXI_CCU_SDM(pll_audio0_sdm_table, BIT(24),
 					 0x178, BIT(31)),
@@ -206,7 +207,12 @@ static CLK_FIXED_FACTOR_HWS(pll_audio0_clk, "pll-audio0",
 static struct ccu_nm pll_audio1_clk = {
 	.enable		= BIT(27),
 	.lock		= BIT(28),
-	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+	/*
+	 * The datasheet doesn't list the constraints for N on this PLL,
+	 * so pick 12 and a minimum based on PLL_AUDIO1 and 128 as a maximum
+	 * based on it being used as an example in the datasheet.
+	 */
+	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 128),
 	.m		= _SUNXI_CCU_DIV(1, 1),
 	.min_rate	= 180000000U,
 	.max_rate	= 3000000000U,

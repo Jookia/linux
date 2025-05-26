@@ -226,7 +226,8 @@ static struct ccu_nkmp pll_de_clk = {
 static struct ccu_nm pll_audio_hs_clk = {
 	.enable		= BIT(31),
 	.lock		= BIT(28),
-	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
+	/* 7.5<=N/M0/M1<=125 and 12<=N, M0 may be 1-2, M1 is 1 */
+	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 125),
 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
 	.common		= {
 		.reg		= 0x078,
