@@ -1260,13 +1260,41 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai *dai)
 	return 0;
 }
 
+static const unsigned int sun4i_constant_rates[] = {
+	8000, 11025, 16000, 22050, 32000, 44100,
+	48000, 64000, 88200, 96000, 176400, 192000,
+};
+
+static const struct snd_pcm_hw_constraint_list sun4i_constraints_rates = {
+	.count = ARRAY_SIZE(sun4i_constant_rates),
+	.list = sun4i_constant_rates,
+	.mask = 0,
+};
+
 static int sun4i_i2s_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
 {
 	struct sun4i_i2s *i2s = snd_soc_dai_get_drvdata(dai);
 	struct snd_pcm_runtime *runtime = sub->runtime;
+	int ret;
 
-	return snd_pcm_hw_constraint_mask64(runtime, SNDRV_PCM_HW_PARAM_FORMAT,
+	ret = snd_pcm_hw_constraint_mask64(runtime, SNDRV_PCM_HW_PARAM_FORMAT,
 					    i2s->variant->pcm_formats);
+	if (ret) {
+		dev_err(dai->dev, "Failed to constrain formats: %d\n", ret);
+		return ret;
+	}
+
+	if (i2s->variant->sysclk_type == SYSCLK_TYPE_FIXED) {
+		ret = snd_pcm_hw_constraint_list(runtime, 0,
+						 SNDRV_PCM_HW_PARAM_RATE,
+						 &sun4i_constraints_rates);
+		if (ret) {
+			dev_err(dai->dev, "Failed to constrain rates: %d\n", ret);
+			return ret;
+		}
+	}
+
+	return 0;
 }
 
 static const struct snd_soc_dai_ops sun4i_i2s_dai_ops = {
@@ -1289,14 +1317,18 @@ static struct snd_soc_dai_driver sun4i_i2s_dai = {
 		.stream_name = "Capture",
 		.channels_min = 1,
 		.channels_max = 8,
-		.rates = SNDRV_PCM_RATE_8000_192000,
+		.rate_min = 8000,
+		.rate_max = 384000,
+		.rates = SNDRV_PCM_RATE_CONTINUOUS,
 		.formats = SUN4I_FORMATS_ALL,
 	},
 	.playback = {
 		.stream_name = "Playback",
 		.channels_min = 1,
 		.channels_max = 8,
-		.rates = SNDRV_PCM_RATE_8000_192000,
+		.rate_min = 8000,
+		.rate_max = 384000,
+		.rates = SNDRV_PCM_RATE_CONTINUOUS,
 		.formats = SUN4I_FORMATS_ALL,
 	},
 	.ops = &sun4i_i2s_dai_ops,
