@@ -1160,6 +1160,9 @@ static int sun4i_i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id,
 	if (clk_id != 0)
 		return -EINVAL;
 
+	if (dir != SND_SOC_CLOCK_OUT)
+		return -ENOTSUPP;
+
 	i2s->mclk_freq = freq;
 
 	return 0;
