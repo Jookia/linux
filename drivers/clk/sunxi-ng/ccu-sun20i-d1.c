@@ -180,8 +180,6 @@ static struct ccu_nm pll_audio0_4x_clk = {
 	.m		= _SUNXI_CCU_DIV(16, 6),
 	.sdm		= _SUNXI_CCU_SDM(pll_audio0_sdm_table, BIT(24),
 					 0x178, BIT(31)),
-	.min_rate	= 180000000U,
-	.max_rate	= 3000000000U,
 	.common		= {
 		.reg		= 0x078,
 		.features	= CCU_FEATURE_SIGMA_DELTA_MOD,
@@ -214,8 +212,6 @@ static struct ccu_nm pll_audio1_clk = {
 	 */
 	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 128),
 	.m		= _SUNXI_CCU_DIV(1, 1),
-	.min_rate	= 180000000U,
-	.max_rate	= 3000000000U,
 	.common		= {
 		.reg		= 0x080,
 		.hw.init	= CLK_HW_INIT_PARENTS_DATA("pll-audio1", osc24M,
