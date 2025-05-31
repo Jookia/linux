@@ -1263,8 +1263,8 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai *dai)
 }
 
 static const unsigned int sun4i_constant_rates[] = {
-	8000, 11025, 16000, 22050, 32000, 44100,
-	48000, 64000, 88200, 96000, 176400, 192000,
+	8000, 11025, 16000, 22050, 24000, 32000, 44100,
+	48000, 64000, 88200, 96000, 176400, 128000, 192000,
 };
 
 static const struct snd_pcm_hw_constraint_list sun4i_constraints_rates = {
