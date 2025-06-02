@@ -1572,7 +1572,7 @@ late_initcall_sync(clk_disable_unused);
 static int clk_core_determine_round_nolock(struct clk_core *core,
 					   struct clk_rate_request *req)
 {
-	long rate;
+	unsigned long rate;
 
 	lockdep_assert_held(&prepare_lock);
 
