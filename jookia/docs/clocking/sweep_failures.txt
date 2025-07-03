@@ -1,0 +1,156 @@
+This is a quick dump of clocks and audio rates that fail or work.
+As far as I can tell pll-audio0-4x sometimes fails, all other clocks work with
+sweeping. Note that in all of these cases the frame clock works, it is just the
+bit clock the has issues.
+
+Clocks that crash
+-----------------
+
+These clocks give an input/output error.
+
+rate: 215000
+i2s2 rate is 55024390
+i2s2 parent is pll-audio0-4x
+audio0 rate is 13756097
+audio0-4x rate is 55024390
+audio1 rate is 2832000000
+audio1-div2 rate is 404571429
+audio1-div4 rate is 566400000
+clk register dump:
+  PLL_AUDIO0 0xF0285D00
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0467500
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x01000000
+
+rate: 158300
+i2s2 rate is 40524590
+i2s2 parent is pll-audio0-4x
+audio0 rate is 10131147
+audio0-4x rate is 40524590
+audio1 rate is 2832000000
+audio1-div2 rate is 404571429
+audio1-div4 rate is 566400000
+clk register dump:
+  PLL_AUDIO0 0xF03C6600
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0467500
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x01000000
+
+Clocks that don't output correctly
+----------------------------------
+
+These clocks give an output that looks like a flat line with some bumps at an
+incorrect voltage.
+
+rate: 215100
+i2s2 rate is 55058823
+i2s2 parent is pll-audio0-4x
+audio0 rate is 13764705
+audio0-4x rate is 55058823
+audio1 rate is 2832000000
+audio1-div2 rate is 404571429
+audio1-div4 rate is 566400000
+clk register dump:
+  PLL_AUDIO0 0xF8102600
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0467500
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x81000000
+
+Clocks that work
+----------------
+
+These clocks work correctly and drive the audio codec.
+
+rate: 215200
+i2s2 rate is 55090909
+i2s2 parent is pll-audio0
+audio0 rate is 55090909
+audio0-4x rate is 220363636
+audio1 rate is 2832000000
+audio1-div2 rate is 404571429
+audio1-div4 rate is 566400000
+clk register dump:
+  PLL_AUDIO0 0xF80A6400
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0467500
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x80000000
+
+rate: 48000
+i2s2 rate is 12288000
+i2s2 parent is pll-audio0-4x
+audio0 rate is 15360000
+audio0-4x rate is 61440000
+audio1 rate is 2832000000
+audio1-div2 rate is 404571429
+audio1-div4 rate is 566400000
+clk register dump:
+  PLL_AUDIO0 0xF0183F00
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0467500
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x01000004
+
+rate: 96000
+i2s2 rate is 24576000
+i2s2 parent is pll-audio1-div2
+audio0 rate is 13764705
+audio0-4x rate is 55058823
+audio1 rate is 3072000000
+audio1-div2 rate is 614400000
+audio1-div4 rate is 614400000
+clk register dump:
+  PLL_AUDIO0 0xF0102600
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0447F00
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x02000018
+
+rate: 96200
+i2s2 rate is 24626086
+i2s2 parent is pll-audio0-4x
+audio0 rate is 30782608
+audio0-4x rate is 123130434
+audio1 rate is 3072000000
+audio1-div2 rate is 614400000
+audio1-div4 rate is 614400000
+clk register dump:
+  PLL_AUDIO0 0xF0167500
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0447F00
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x01000004
+
+rate: 201000
+i2s2 rate is 51428572
+i2s2 parent is pll-audio1-div2
+audio0 rate is 12800000
+audio0-4x rate is 51200000
+audio1 rate is 360000000
+audio1-div2 rate is 51428572
+audio1-div4 rate is 72000000
+clk register dump:
+  PLL_AUDIO0 0xF00E1F00
+  PLL_AUDIO0 PAT0 0x00000000
+  PLL_AUDIO0 PAT1 0x00000000
+  PLL_AUDIO1 0xF0460E00
+  PLL_AUDIO1 PAT0 0x00000000
+  PLL_AUDIO1 PAT1 0x00000000
+  I2S2 0x02000000

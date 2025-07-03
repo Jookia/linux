@@ -1,0 +1,2127 @@
+8200 realrate 8197 delta 3
+8300 realrate 8299 delta 1
+8600 realrate 8599 delta 1
+8800 realrate 8789 delta 11
+8900 realrate 8899 delta 1
+9100 realrate 9099 delta 1
+9200 realrate 9199 delta 1
+9400 realrate 9399 delta 1
+9700 realrate 9680 delta 20
+10100 realrate 10099 delta 1
+10300 realrate 10289 delta 11
+10400 realrate 10399 delta 1
+10600 realrate 10599 delta 1
+10700 realrate 10690 delta 10
+10900 realrate 10899 delta 1
+11200 realrate 11195 delta 5
+11300 realrate 11299 delta 1
+11600 realrate 11599 delta 1
+11800 realrate 11794 delta 6
+11900 realrate 11899 delta 1
+12100 realrate 12096 delta 4
+12200 realrate 12199 delta 1
+12400 realrate 12395 delta 5
+12700 realrate 12698 delta 2
+12800 realrate 12799 delta 1
+13100 realrate 13099 delta 1
+13300 realrate 13281 delta 19
+13400 realrate 13335 delta 65
+13600 realrate 13599 delta 1
+13700 realrate 13697 delta 3
+13900 realrate 13898 delta 2
+14200 realrate 14185 delta 15
+14300 realrate 14298 delta 2
+14600 realrate 14599 delta 1
+14800 realrate 14787 delta 13
+14900 realrate 14892 delta 8
+15100 realrate 15099 delta 1
+15200 realrate 15199 delta 1
+15400 realrate 15398 delta 2
+15700 realrate 15699 delta 1
+15800 realrate 15798 delta 2
+16100 realrate 16099 delta 1
+16300 realrate 16294 delta 6
+16400 realrate 16399 delta 1
+16600 realrate 16598 delta 2
+16700 realrate 16699 delta 1
+16900 realrate 16899 delta 1
+17200 realrate 17199 delta 1
+17300 realrate 17289 delta 11
+17600 realrate 17598 delta 2
+17800 realrate 17798 delta 2
+17900 realrate 17899 delta 1
+18100 realrate 18098 delta 2
+18200 realrate 18187 delta 13
+18400 realrate 18391 delta 9
+18700 realrate 18699 delta 1
+18800 realrate 18798 delta 2
+18900 realrate 18899 delta 1
+19100 realrate 19077 delta 23
+19200 realrate 19199 delta 1
+19300 realrate 19296 delta 4
+19400 realrate 19396 delta 4
+19700 realrate 19699 delta 1
+19800 realrate 19798 delta 2
+19900 realrate 19886 delta 14
+20100 realrate 20089 delta 11
+20200 realrate 20199 delta 1
+20300 realrate 20299 delta 1
+20400 realrate 20399 delta 1
+20600 realrate 20579 delta 21
+20700 realrate 20698 delta 2
+20800 realrate 20796 delta 4
+20900 realrate 20898 delta 2
+21100 realrate 21099 delta 1
+21200 realrate 21198 delta 2
+21300 realrate 21298 delta 2
+21400 realrate 21381 delta 19
+21600 realrate 21587 delta 13
+21700 realrate 21696 delta 4
+21800 realrate 21798 delta 2
+21900 realrate 21899 delta 1
+22100 realrate 22099 delta 1
+22200 realrate 22198 delta 2
+22300 realrate 22298 delta 2
+22400 realrate 22398 delta 2
+22600 realrate 22596 delta 4
+22700 realrate 22699 delta 1
+22800 realrate 22798 delta 2
+22900 realrate 22879 delta 21
+23100 realrate 23082 delta 18
+23200 realrate 23199 delta 1
+23300 realrate 23298 delta 2
+23400 realrate 23389 delta 11
+23600 realrate 23599 delta 1
+23700 realrate 23692 delta 8
+23800 realrate 23772 delta 28
+23900 realrate 23897 delta 3
+24100 realrate 24099 delta 1
+24200 realrate 24181 delta 19
+24300 realrate 24289 delta 11
+24400 realrate 24396 delta 4
+24600 realrate 24599 delta 1
+24700 realrate 24687 delta 13
+24800 realrate 24798 delta 2
+24900 realrate 24898 delta 2
+25100 realrate 25096 delta 4
+25300 realrate 25287 delta 13
+25400 realrate 25397 delta 3
+25600 realrate 25598 delta 2
+25700 realrate 25699 delta 1
+25800 realrate 25799 delta 1
+25900 realrate 25895 delta 5
+26100 realrate 26098 delta 2
+26200 realrate 26199 delta 1
+26300 realrate 26298 delta 2
+26400 realrate 26367 delta 33
+26600 realrate 26598 delta 2
+26700 realrate 26694 delta 6
+26800 realrate 26785 delta 15
+26900 realrate 26884 delta 16
+27100 realrate 27099 delta 1
+27200 realrate 27187 delta 13
+27300 realrate 27298 delta 2
+27400 realrate 27394 delta 6
+27600 realrate 27597 delta 3
+27700 realrate 27698 delta 2
+27800 realrate 27797 delta 3
+27900 realrate 27897 delta 3
+28100 realrate 28098 delta 2
+28200 realrate 28198 delta 2
+28300 realrate 28286 delta 14
+28400 realrate 28371 delta 29
+28600 realrate 28597 delta 3
+28700 realrate 28690 delta 10
+28800 realrate 28799 delta 1
+28900 realrate 28897 delta 3
+29100 realrate 29079 delta 21
+29200 realrate 29196 delta 4
+29300 realrate 29296 delta 4
+29600 realrate 29575 delta 25
+29700 realrate 29697 delta 3
+29800 realrate 29785 delta 15
+29900 realrate 29898 delta 2
+30100 realrate 30078 delta 22
+30200 realrate 30199 delta 1
+30300 realrate 30273 delta 27
+30400 realrate 30397 delta 3
+30600 realrate 30587 delta 13
+30700 realrate 30681 delta 19
+30800 realrate 30797 delta 3
+30900 realrate 30877 delta 23
+31100 realrate 31090 delta 10
+31200 realrate 31161 delta 39
+31300 realrate 31250 delta 50
+31400 realrate 31399 delta 1
+31600 realrate 31597 delta 3
+31700 realrate 31696 delta 4
+31800 realrate 31798 delta 2
+31900 realrate 31897 delta 3
+32000 realrate 31994 delta 6
+32100 realrate 32072 delta 28
+32200 realrate 32199 delta 1
+32300 realrate 32291 delta 9
+32400 realrate 32386 delta 14
+32600 realrate 32552 delta 48
+32700 realrate 32696 delta 4
+32800 realrate 32798 delta 2
+32900 realrate 32899 delta 1
+33100 realrate 33088 delta 12
+33200 realrate 33196 delta 4
+33300 realrate 33299 delta 1
+33400 realrate 33398 delta 2
+33500 realrate 33427 delta 73
+33600 realrate 33593 delta 7
+33700 realrate 33698 delta 2
+33800 realrate 33797 delta 3
+33900 realrate 33898 delta 2
+34000 realrate 33997 delta 3
+34100 realrate 34057 delta 43
+34200 realrate 34198 delta 2
+34300 realrate 34288 delta 12
+34400 realrate 34319 delta 81
+34600 realrate 34598 delta 2
+34700 realrate 34699 delta 1
+34800 realrate 34790 delta 10
+34900 realrate 34883 delta 17
+35100 realrate 35098 delta 2
+35200 realrate 35197 delta 3
+35300 realrate 35298 delta 2
+35400 realrate 35386 delta 14
+35500 realrate 35493 delta 7
+35600 realrate 35596 delta 4
+35700 realrate 35625 delta 75
+35800 realrate 35773 delta 27
+35900 realrate 35895 delta 5
+36100 realrate 36099 delta 1
+36200 realrate 36196 delta 4
+36300 realrate 36272 delta 28
+36400 realrate 36397 delta 3
+36500 realrate 36458 delta 42
+36600 realrate 36597 delta 3
+36700 realrate 36684 delta 16
+36800 realrate 36794 delta 6
+36900 realrate 36895 delta 5
+37000 realrate 36998 delta 2
+37100 realrate 37098 delta 2
+37200 realrate 37197 delta 3
+37300 realrate 37298 delta 2
+37400 realrate 37397 delta 3
+37600 realrate 37597 delta 3
+37700 realrate 37698 delta 2
+37800 realrate 37796 delta 4
+37900 realrate 37890 delta 10
+38000 realrate 37998 delta 2
+38100 realrate 38085 delta 15
+38200 realrate 38180 delta 20
+38300 realrate 38297 delta 3
+38400 realrate 38397 delta 3
+38500 realrate 38496 delta 4
+38600 realrate 38584 delta 16
+38700 realrate 38690 delta 10
+38800 realrate 38778 delta 22
+38900 realrate 38884 delta 16
+39100 realrate 39095 delta 5
+39300 realrate 39299 delta 1
+39400 realrate 39375 delta 25
+39500 realrate 39496 delta 4
+39600 realrate 39596 delta 4
+39700 realrate 39695 delta 5
+39800 realrate 39799 delta 1
+39900 realrate 39884 delta 16
+40100 realrate 40094 delta 6
+40200 realrate 40121 delta 79
+40300 realrate 40299 delta 1
+40400 realrate 40396 delta 4
+40600 realrate 40597 delta 3
+40700 realrate 40697 delta 3
+40800 realrate 40781 delta 19
+40900 realrate 40895 delta 5
+41000 realrate 40994 delta 6
+41100 realrate 41090 delta 10
+41200 realrate 41173 delta 27
+41300 realrate 41270 delta 30
+41400 realrate 41396 delta 4
+41500 realrate 41466 delta 34
+41600 realrate 41590 delta 10
+41700 realrate 41621 delta 79
+41800 realrate 41796 delta 4
+41900 realrate 41895 delta 5
+42100 realrate 42099 delta 1
+42200 realrate 42187 delta 13
+42300 realrate 42296 delta 4
+42400 realrate 42367 delta 33
+42600 realrate 42582 delta 18
+42700 realrate 42668 delta 32
+42800 realrate 42782 delta 18
+42900 realrate 42895 delta 5
+43000 realrate 42998 delta 2
+43100 realrate 43094 delta 6
+43200 realrate 43174 delta 26
+43300 realrate 43269 delta 31
+43400 realrate 43392 delta 8
+43600 realrate 43595 delta 5
+43700 realrate 43678 delta 22
+43800 realrate 43798 delta 2
+43900 realrate 43898 delta 2
+44000 realrate 43945 delta 55
+44200 realrate 44185 delta 15
+44300 realrate 44299 delta 1
+44400 realrate 44363 delta 37
+44500 realrate 44498 delta 2
+44600 realrate 44594 delta 6
+44700 realrate 44677 delta 23
+44800 realrate 44796 delta 4
+44900 realrate 44899 delta 1
+45100 realrate 45099 delta 1
+45200 realrate 45192 delta 8
+45300 realrate 45299 delta 1
+45400 realrate 45394 delta 6
+45500 realrate 45468 delta 32
+45600 realrate 45572 delta 28
+45700 realrate 45693 delta 7
+45800 realrate 45797 delta 3
+45900 realrate 45898 delta 2
+46000 realrate 45973 delta 27
+46100 realrate 46093 delta 7
+46200 realrate 46195 delta 5
+46300 realrate 46296 delta 4
+46400 realrate 46396 delta 4
+46600 realrate 46597 delta 3
+46700 realrate 46685 delta 15
+46800 realrate 46685 delta 115
+46900 realrate 46875 delta 25
+47000 realrate 46875 delta 125
+47100 realrate 47099 delta 1
+47200 realrate 47198 delta 2
+47300 realrate 47297 delta 3
+47400 realrate 47384 delta 16
+47600 realrate 47596 delta 4
+47700 realrate 47683 delta 17
+47800 realrate 47794 delta 6
+47900 realrate 47872 delta 28
+48100 realrate 48097 delta 3
+48200 realrate 48199 delta 1
+48300 realrate 48281 delta 19
+48400 realrate 48371 delta 29
+48500 realrate 48491 delta 9
+48600 realrate 48579 delta 21
+48700 realrate 48691 delta 9
+48800 realrate 48793 delta 7
+48900 realrate 48883 delta 17
+49000 realrate 48991 delta 9
+49100 realrate 49072 delta 28
+49200 realrate 49189 delta 11
+49300 realrate 49278 delta 22
+49400 realrate 49395 delta 5
+49600 realrate 49596 delta 4
+49700 realrate 49692 delta 8
+49800 realrate 49790 delta 10
+49900 realrate 49879 delta 21
+50100 realrate 50099 delta 1
+50200 realrate 50189 delta 11
+50300 realrate 50292 delta 8
+50500 realrate 50441 delta 59
+50600 realrate 50595 delta 5
+50700 realrate 50694 delta 6
+50800 realrate 50781 delta 19
+50900 realrate 50876 delta 24
+51100 realrate 51097 delta 3
+51200 realrate 51196 delta 4
+51300 realrate 51269 delta 31
+51400 realrate 51382 delta 18
+51500 realrate 51485 delta 15
+51600 realrate 51598 delta 2
+51700 realrate 51689 delta 11
+51800 realrate 51791 delta 9
+51900 realrate 51861 delta 39
+52000 realrate 51995 delta 5
+52100 realrate 52031 delta 69
+52200 realrate 52195 delta 5
+52300 realrate 52295 delta 5
+52400 realrate 52360 delta 40
+52600 realrate 52576 delta 24
+52700 realrate 52699 delta 1
+52800 realrate 52796 delta 4
+52900 realrate 52870 delta 30
+53000 realrate 52968 delta 32
+53100 realrate 53079 delta 21
+53200 realrate 53197 delta 3
+53300 realrate 53289 delta 11
+53400 realrate 53357 delta 43
+53500 realrate 53498 delta 2
+53600 realrate 53571 delta 29
+53700 realrate 53693 delta 7
+53800 realrate 53768 delta 32
+53900 realrate 53894 delta 6
+54100 realrate 54049 delta 51
+54200 realrate 54199 delta 1
+54300 realrate 54253 delta 47
+54400 realrate 54398 delta 2
+54500 realrate 54495 delta 5
+54600 realrate 54595 delta 5
+54700 realrate 54687 delta 13
+54800 realrate 54788 delta 12
+54900 realrate 54898 delta 2
+55100 realrate 55098 delta 2
+55200 realrate 55175 delta 25
+55300 realrate 55299 delta 1
+55400 realrate 55397 delta 3
+55600 realrate 55595 delta 5
+55700 realrate 55698 delta 2
+55800 realrate 55792 delta 8
+55900 realrate 55851 delta 49
+56000 realrate 55963 delta 37
+56100 realrate 56096 delta 4
+56200 realrate 56159 delta 41
+56300 realrate 56250 delta 50
+56400 realrate 56396 delta 4
+56500 realrate 56463 delta 37
+56600 realrate 56573 delta 27
+56700 realrate 56696 delta 4
+56800 realrate 56770 delta 30
+56900 realrate 56896 delta 4
+57100 realrate 57095 delta 5
+57200 realrate 57193 delta 7
+57300 realrate 57231 delta 69
+57400 realrate 57381 delta 19
+57600 realrate 57598 delta 2
+57700 realrate 57656 delta 44
+57800 realrate 57783 delta 17
+57900 realrate 57889 delta 11
+58000 realrate 57997 delta 3
+58100 realrate 58084 delta 16
+58200 realrate 58159 delta 41
+58300 realrate 58298 delta 2
+58400 realrate 58392 delta 8
+58600 realrate 58593 delta 7
+58700 realrate 58695 delta 5
+58900 realrate 58894 delta 6
+59000 realrate 58971 delta 29
+59100 realrate 59090 delta 10
+59200 realrate 59185 delta 15
+59300 realrate 59294 delta 6
+59400 realrate 59394 delta 6
+59500 realrate 59495 delta 5
+59600 realrate 59570 delta 30
+59700 realrate 59612 delta 88
+59800 realrate 59797 delta 3
+59900 realrate 59840 delta 60
+60100 realrate 60058 delta 42
+60200 realrate 60197 delta 3
+60300 realrate 60191 delta 109
+60400 realrate 60369 delta 31
+60500 realrate 60444 delta 56
+60600 realrate 60594 delta 6
+60700 realrate 60661 delta 39
+60800 realrate 60795 delta 5
+60900 realrate 60897 delta 3
+61000 realrate 60987 delta 13
+61100 realrate 61088 delta 12
+61200 realrate 61166 delta 34
+61300 realrate 61257 delta 43
+61400 realrate 61351 delta 49
+61600 realrate 61523 delta 77
+61700 realrate 61698 delta 2
+61800 realrate 61737 delta 63
+61900 realrate 61875 delta 25
+62000 realrate 61979 delta 21
+62100 realrate 62094 delta 6
+62200 realrate 62160 delta 40
+62300 realrate 62298 delta 2
+62400 realrate 62322 delta 78
+62600 realrate 62500 delta 100
+62700 realrate 62695 delta 5
+62800 realrate 62794 delta 6
+62900 realrate 62888 delta 12
+63100 realrate 63089 delta 11
+63200 realrate 63194 delta 6
+63300 realrate 63281 delta 19
+63400 realrate 63392 delta 8
+63500 realrate 63492 delta 8
+63600 realrate 63596 delta 4
+63700 realrate 63616 delta 84
+63800 realrate 63794 delta 6
+63900 realrate 63888 delta 12
+64000 realrate 63988 delta 12
+64100 realrate 64094 delta 6
+64200 realrate 64174 delta 26
+64300 realrate 64285 delta 15
+64400 realrate 64393 delta 7
+64600 realrate 64583 delta 17
+64700 realrate 64692 delta 8
+64800 realrate 64761 delta 39
+64900 realrate 64861 delta 39
+65100 realrate 65082 delta 18
+65200 realrate 65193 delta 7
+65300 realrate 65244 delta 56
+65400 realrate 65393 delta 7
+65500 realrate 65463 delta 37
+65600 realrate 65563 delta 37
+65700 realrate 65688 delta 12
+65800 realrate 65799 delta 1
+65900 realrate 65896 delta 4
+66100 realrate 66086 delta 14
+66200 realrate 66127 delta 73
+66300 realrate 66271 delta 29
+66400 realrate 66381 delta 19
+66500 realrate 66406 delta 94
+66600 realrate 66594 delta 6
+66700 realrate 66666 delta 34
+66800 realrate 66796 delta 4
+66900 realrate 66885 delta 15
+67000 realrate 66964 delta 36
+67100 realrate 67095 delta 5
+67200 realrate 67187 delta 13
+67300 realrate 67255 delta 45
+67400 realrate 67382 delta 18
+67600 realrate 67555 delta 45
+67700 realrate 67677 delta 23
+67800 realrate 67788 delta 12
+67900 realrate 67845 delta 55
+68000 realrate 67994 delta 6
+68100 realrate 68092 delta 8
+68200 realrate 68132 delta 68
+68300 realrate 68287 delta 13
+68400 realrate 68396 delta 4
+68500 realrate 68484 delta 16
+68600 realrate 68576 delta 24
+68700 realrate 68638 delta 62
+68800 realrate 68790 delta 10
+68900 realrate 68847 delta 53
+69100 realrate 69045 delta 55
+69200 realrate 69196 delta 4
+69300 realrate 69247 delta 53
+69400 realrate 69399 delta 1
+69500 realrate 69493 delta 7
+69600 realrate 69580 delta 20
+69700 realrate 69679 delta 21
+69800 realrate 69791 delta 9
+69900 realrate 69886 delta 14
+70100 realrate 70075 delta 25
+70200 realrate 70165 delta 35
+70300 realrate 70165 delta 135
+70400 realrate 70312 delta 88
+70600 realrate 70588 delta 12
+70700 realrate 70696 delta 4
+70800 realrate 70790 delta 10
+70900 realrate 70898 delta 2
+71000 realrate 70963 delta 37
+71100 realrate 71093 delta 7
+71200 realrate 71193 delta 7
+71300 realrate 71289 delta 11
+71400 realrate 71394 delta 6
+71500 realrate 71484 delta 16
+71600 realrate 71590 delta 10
+71700 realrate 71691 delta 9
+71800 realrate 71790 delta 10
+71900 realrate 71898 delta 2
+72100 realrate 72070 delta 30
+72200 realrate 72198 delta 2
+72300 realrate 72298 delta 2
+72400 realrate 72350 delta 50
+72600 realrate 72580 delta 20
+72700 realrate 72690 delta 10
+72800 realrate 72794 delta 6
+72900 realrate 72823 delta 77
+73000 realrate 72916 delta 84
+73100 realrate 73093 delta 7
+73200 realrate 73190 delta 10
+73300 realrate 73295 delta 5
+73400 realrate 73369 delta 31
+73600 realrate 73588 delta 12
+73700 realrate 73660 delta 40
+73800 realrate 73790 delta 10
+73900 realrate 73897 delta 3
+74000 realrate 73979 delta 21
+74100 realrate 74062 delta 38
+74200 realrate 74184 delta 16
+74300 realrate 74292 delta 8
+74400 realrate 74395 delta 5
+74500 realrate 74448 delta 52
+74600 realrate 74596 delta 4
+74700 realrate 74695 delta 5
+74800 realrate 74776 delta 24
+74900 realrate 74878 delta 22
+75100 realrate 75000 delta 100
+75200 realrate 75195 delta 5
+75300 realrate 75246 delta 54
+75400 realrate 75393 delta 7
+75500 realrate 75487 delta 13
+75600 realrate 75581 delta 19
+75700 realrate 75694 delta 6
+75800 realrate 75797 delta 3
+75900 realrate 75863 delta 37
+76000 realrate 75969 delta 31
+76100 realrate 76095 delta 5
+76200 realrate 76171 delta 29
+76300 realrate 76293 delta 7
+76400 realrate 76360 delta 40
+76600 realrate 76593 delta 7
+76700 realrate 76622 delta 78
+76800 realrate 76795 delta 5
+76900 realrate 76875 delta 25
+77000 realrate 76981 delta 19
+77100 realrate 77097 delta 3
+77200 realrate 77168 delta 32
+77300 realrate 77256 delta 44
+77400 realrate 77398 delta 2
+77600 realrate 77524 delta 76
+77700 realrate 77636 delta 64
+77800 realrate 77792 delta 8
+77900 realrate 77872 delta 28
+78100 realrate 78015 delta 85
+78200 realrate 78125 delta 75
+78300 realrate 78296 delta 4
+78400 realrate 78369 delta 31
+78500 realrate 78488 delta 12
+78600 realrate 78598 delta 2
+78700 realrate 78683 delta 17
+78800 realrate 78789 delta 11
+78900 realrate 78887 delta 13
+79000 realrate 78993 delta 7
+79100 realrate 79081 delta 19
+79200 realrate 79101 delta 99
+79300 realrate 79241 delta 59
+79400 realrate 79391 delta 9
+79600 realrate 79599 delta 1
+79700 realrate 79687 delta 13
+79800 realrate 79787 delta 13
+79900 realrate 79891 delta 9
+80100 realrate 80078 delta 22
+80200 realrate 80141 delta 59
+80300 realrate 80228 delta 72
+80400 realrate 80357 delta 43
+80500 realrate 80492 delta 8
+80600 realrate 80592 delta 8
+80700 realrate 80686 delta 14
+80800 realrate 80792 delta 8
+80900 realrate 80859 delta 41
+81100 realrate 81081 delta 19
+81200 realrate 81129 delta 71
+81300 realrate 81298 delta 2
+81400 realrate 81395 delta 5
+81500 realrate 81490 delta 10
+81600 realrate 81562 delta 38
+81700 realrate 81676 delta 24
+81800 realrate 81781 delta 19
+81900 realrate 81896 delta 4
+82000 realrate 81949 delta 51
+82100 realrate 82031 delta 69
+82200 realrate 82175 delta 25
+82300 realrate 82291 delta 9
+82400 realrate 82386 delta 14
+82600 realrate 82589 delta 11
+82700 realrate 82682 delta 18
+82800 realrate 82792 delta 8
+82900 realrate 82894 delta 6
+83000 realrate 82991 delta 9
+83100 realrate 83035 delta 65
+83200 realrate 83176 delta 24
+83300 realrate 83250 delta 50
+83400 realrate 83243 delta 157
+83500 realrate 83496 delta 4
+83600 realrate 83593 delta 7
+83700 realrate 83677 delta 23
+83800 realrate 83776 delta 24
+83900 realrate 83881 delta 19
+84100 realrate 84051 delta 49
+84200 realrate 84183 delta 17
+84300 realrate 84296 delta 4
+84400 realrate 84375 delta 25
+84500 realrate 84490 delta 10
+84600 realrate 84586 delta 14
+84700 realrate 84635 delta 65
+84800 realrate 84735 delta 65
+84900 realrate 84881 delta 19
+85100 realrate 85096 delta 4
+85200 realrate 85156 delta 44
+85300 realrate 85297 delta 3
+85400 realrate 85379 delta 21
+85600 realrate 85546 delta 54
+85700 realrate 85693 delta 7
+85800 realrate 85790 delta 10
+85900 realrate 85871 delta 29
+86000 realrate 85996 delta 4
+86100 realrate 86096 delta 4
+86200 realrate 86189 delta 11
+86300 realrate 86292 delta 8
+86400 realrate 86397 delta 3
+86500 realrate 86482 delta 18
+86600 realrate 86599 delta 1
+86700 realrate 86693 delta 7
+86800 realrate 86776 delta 24
+86900 realrate 86890 delta 10
+87100 realrate 87053 delta 47
+87200 realrate 87187 delta 13
+87300 realrate 87239 delta 61
+87400 realrate 87394 delta 6
+87600 realrate 87500 delta 100
+87700 realrate 87635 delta 65
+87800 realrate 87797 delta 3
+87900 realrate 87890 delta 10
+88000 realrate 87993 delta 7
+88100 realrate 88092 delta 8
+88300 realrate 88299 delta 1
+88400 realrate 88392 delta 8
+88600 realrate 88598 delta 2
+88700 realrate 88682 delta 18
+88800 realrate 88727 delta 73
+88900 realrate 88888 delta 12
+89000 realrate 88983 delta 17
+89100 realrate 89062 delta 38
+89200 realrate 89176 delta 24
+89300 realrate 89285 delta 15
+89400 realrate 89389 delta 11
+89500 realrate 89409 delta 91
+89600 realrate 89583 delta 17
+89700 realrate 89613 delta 87
+89800 realrate 89777 delta 23
+89900 realrate 89876 delta 24
+90100 realrate 90097 delta 3
+90200 realrate 90198 delta 2
+90300 realrate 90277 delta 23
+90400 realrate 90371 delta 29
+90500 realrate 90489 delta 11
+90600 realrate 90598 delta 2
+90700 realrate 90625 delta 75
+90800 realrate 90789 delta 11
+90900 realrate 90880 delta 20
+91000 realrate 90937 delta 63
+91100 realrate 91096 delta 4
+91200 realrate 91193 delta 7
+91300 realrate 91282 delta 18
+91400 realrate 91386 delta 14
+91600 realrate 91594 delta 6
+91700 realrate 91689 delta 11
+91800 realrate 91796 delta 4
+91900 realrate 91875 delta 25
+92000 realrate 91981 delta 19
+92100 realrate 92013 delta 87
+92200 realrate 92187 delta 13
+92300 realrate 92285 delta 15
+92400 realrate 92391 delta 9
+92600 realrate 92592 delta 8
+92700 realrate 92633 delta 67
+92800 realrate 92793 delta 7
+92900 realrate 92897 delta 3
+93100 realrate 93017 delta 83
+93200 realrate 93017 delta 183
+93300 realrate 93017 delta 283
+93400 realrate 93017 delta 383
+93500 realrate 93017 delta 483
+93600 realrate 93017 delta 583
+93700 realrate 93017 delta 683
+93800 realrate 93750 delta 50
+93900 realrate 93750 delta 150
+94000 realrate 93750 delta 250
+94100 realrate 93750 delta 350
+94200 realrate 93750 delta 450
+94300 realrate 93750 delta 550
+94400 realrate 93750 delta 650
+94600 realrate 94594 delta 6
+94700 realrate 94696 delta 4
+94800 realrate 94791 delta 9
+94900 realrate 94893 delta 7
+95100 realrate 95089 delta 11
+95200 realrate 95192 delta 8
+95300 realrate 95299 delta 1
+95400 realrate 95394 delta 6
+95500 realrate 95424 delta 76
+95600 realrate 95588 delta 12
+95700 realrate 95663 delta 37
+95800 realrate 95788 delta 12
+95900 realrate 95788 delta 112
+96100 realrate 96093 delta 7
+96200 realrate 96195 delta 5
+96300 realrate 96283 delta 17
+96400 realrate 96261 delta 139
+96500 realrate 96467 delta 33
+96600 realrate 96590 delta 10
+96700 realrate 96679 delta 21
+96800 realrate 96774 delta 26
+96900 realrate 96875 delta 25
+97000 realrate 96982 delta 18
+97100 realrate 97098 delta 2
+97200 realrate 97179 delta 21
+97300 realrate 97287 delta 13
+97400 realrate 97265 delta 135
+97600 realrate 97576 delta 24
+97700 realrate 97697 delta 3
+97800 realrate 97656 delta 144
+97900 realrate 97826 delta 74
+98000 realrate 97972 delta 28
+98100 realrate 98090 delta 10
+98200 realrate 98172 delta 28
+98300 realrate 98286 delta 14
+98400 realrate 98379 delta 21
+98500 realrate 98484 delta 16
+98600 realrate 98437 delta 163
+98700 realrate 98632 delta 68
+98800 realrate 98790 delta 10
+98900 realrate 98863 delta 37
+99000 realrate 98845 delta 155
+99100 realrate 98958 delta 142
+99200 realrate 99184 delta 16
+99300 realrate 99158 delta 142
+99400 realrate 99375 delta 25
+99500 realrate 99489 delta 11
+99600 realrate 99537 delta 63
+99700 realrate 99671 delta 29
+99800 realrate 99798 delta 2
+99900 realrate 99897 delta 3
+100100 realrate 100084 delta 16
+100200 realrate 100183 delta 17
+100300 realrate 100290 delta 10
+100400 realrate 100378 delta 22
+100500 realrate 100446 delta 54
+100600 realrate 100585 delta 15
+100700 realrate 100643 delta 57
+100800 realrate 100781 delta 19
+100900 realrate 100892 delta 8
+101000 realrate 100883 delta 117
+101100 realrate 101086 delta 14
+101200 realrate 101190 delta 10
+101300 realrate 101293 delta 7
+101400 realrate 101380 delta 20
+101500 realrate 101470 delta 30
+101600 realrate 101562 delta 38
+101700 realrate 101694 delta 6
+101800 realrate 101785 delta 15
+101900 realrate 101862 delta 38
+102000 realrate 101991 delta 9
+102100 realrate 102083 delta 17
+102200 realrate 102195 delta 5
+102300 realrate 102272 delta 28
+102400 realrate 102272 delta 128
+102600 realrate 102594 delta 6
+102700 realrate 102539 delta 161
+102800 realrate 102796 delta 4
+102900 realrate 102896 delta 4
+arecord: pcm_read:2269: read error: Input/output error
+103000 realrate 102971 delta 29
+103100 realrate 103040 delta 60
+103200 realrate 103125 delta 75
+103300 realrate 103125 delta 175
+103400 realrate 103365 delta 35
+103500 realrate 103490 delta 10
+103600 realrate 103571 delta 29
+103700 realrate 103693 delta 7
+103800 realrate 103794 delta 6
+103900 realrate 103885 delta 15
+104000 realrate 103977 delta 23
+104100 realrate 104062 delta 38
+104200 realrate 104062 delta 138
+104300 realrate 104296 delta 4
+104400 realrate 104363 delta 37
+104500 realrate 104492 delta 8
+104600 realrate 104492 delta 108
+104700 realrate 104687 delta 13
+104800 realrate 104687 delta 113
+arecord: pcm_read:2269: read error: Input/output error
+104900 realrate 104872 delta 28
+105100 realrate 105082 delta 18
+105200 realrate 105182 delta 18
+105300 realrate 105288 delta 12
+105400 realrate 105357 delta 43
+105500 realrate 105468 delta 32
+105600 realrate 105592 delta 8
+105700 realrate 105698 delta 2
+105800 realrate 105769 delta 31
+105900 realrate 105882 delta 18
+106000 realrate 105937 delta 63
+106100 realrate 106026 delta 74
+106200 realrate 106186 delta 14
+106300 realrate 106250 delta 50
+106400 realrate 106370 delta 30
+106500 realrate 106481 delta 19
+106600 realrate 106578 delta 22
+106700 realrate 106681 delta 19
+106800 realrate 106640 delta 160
+106900 realrate 106875 delta 25
+107000 realrate 106933 delta 67
+107100 realrate 107016 delta 84
+107200 realrate 107142 delta 58
+107300 realrate 107291 delta 9
+107400 realrate 107386 delta 14
+107600 realrate 107536 delta 64
+107700 realrate 107685 delta 15
+107800 realrate 107758 delta 42
+107900 realrate 107862 delta 38
+108000 realrate 107954 delta 46
+108100 realrate 108099 delta 1
+108200 realrate 108072 delta 128
+arecord: pcm_read:2269: read error: Input/output error
+108300 realrate 108297 delta 3
+108400 realrate 108398 delta 2
+108500 realrate 108482 delta 18
+108600 realrate 108506 delta 94
+108700 realrate 108695 delta 5
+108800 realrate 108796 delta 4
+108900 realrate 108870 delta 30
+109000 realrate 108984 delta 16
+109100 realrate 109090 delta 10
+109200 realrate 109191 delta 9
+109300 realrate 109203 delta 97
+109400 realrate 109375 delta 25
+109500 realrate 109375 delta 125
+109600 realrate 109577 delta 23
+109700 realrate 109687 delta 13
+109800 realrate 109786 delta 14
+109900 realrate 109879 delta 21
+110100 realrate 110054 delta 46
+arecord: pcm_read:2269: read error: Input/output error
+110200 realrate 110197 delta 3
+110300 realrate 110294 delta 6
+110400 realrate 110383 delta 17
+110500 realrate 110351 delta 149
+110600 realrate 110576 delta 24
+110700 realrate 110625 delta 75
+110800 realrate 110677 delta 123
+110900 realrate 110899 delta 1
+111000 realrate 110991 delta 9
+111100 realrate 111019 delta 81
+111200 realrate 111191 delta 9
+111300 realrate 111263 delta 37
+111400 realrate 111397 delta 3
+111500 realrate 111486 delta 14
+111600 realrate 111562 delta 38
+111700 realrate 111607 delta 93
+111800 realrate 111672 delta 128
+111900 realrate 111895 delta 5
+112000 realrate 111860 delta 140
+112100 realrate 112092 delta 8
+arecord: pcm_read:2269: read error: Input/output error
+112200 realrate 112192 delta 8
+112300 realrate 112293 delta 7
+112400 realrate 112304 delta 96
+112600 realrate 112500 delta 100
+112700 realrate 112699 delta 1
+112800 realrate 112792 delta 8
+112900 realrate 112882 delta 18
+113000 realrate 112980 delta 20
+113100 realrate 113095 delta 5
+113200 realrate 113185 delta 15
+113300 realrate 113281 delta 19
+113400 realrate 113392 delta 8
+113500 realrate 113437 delta 63
+113600 realrate 113581 delta 19
+113700 realrate 113696 delta 4
+113800 realrate 113750 delta 50
+113900 realrate 113839 delta 61
+114000 realrate 113991 delta 9
+114100 realrate 114062 delta 38
+114200 realrate 114182 delta 18
+114300 realrate 114285 delta 15
+114400 realrate 114375 delta 25
+114500 realrate 114483 delta 17
+114600 realrate 114430 delta 170
+114700 realrate 114694 delta 6
+114800 realrate 114795 delta 5
+114900 realrate 114889 delta 11
+115100 realrate 114955 delta 145
+115200 realrate 115178 delta 22
+115300 realrate 115287 delta 13
+115400 realrate 115312 delta 88
+115500 realrate 115489 delta 11
+115600 realrate 115552 delta 48
+115700 realrate 115691 delta 9
+115800 realrate 115752 delta 48
+115900 realrate 115808 delta 92
+arecord: pcm_read:2269: read error: Input/output error
+116000 realrate 115995 delta 5
+116100 realrate 116071 delta 29
+116200 realrate 116122 delta 78
+116300 realrate 116250 delta 50
+116400 realrate 116379 delta 21
+116500 realrate 116477 delta 23
+116600 realrate 116586 delta 14
+116700 realrate 116688 delta 12
+arecord: pcm_read:2269: read error: Input/output error
+116800 realrate 116776 delta 24
+116900 realrate 116898 delta 2
+117000 realrate 116935 delta 65
+117100 realrate 116935 delta 165
+117200 realrate 117187 delta 13
+117300 realrate 117187 delta 113
+117400 realrate 117187 delta 213
+117700 realrate 117686 delta 14
+117800 realrate 117788 delta 12
+117900 realrate 117897 delta 3
+arecord: pcm_read:2269: read error: Input/output error
+118000 realrate 117995 delta 5
+118100 realrate 118055 delta 45
+118200 realrate 118164 delta 36
+118300 realrate 118269 delta 31
+118400 realrate 118371 delta 29
+118500 realrate 118421 delta 79
+118600 realrate 118566 delta 34
+118700 realrate 118683 delta 17
+118800 realrate 118750 delta 50
+118900 realrate 118750 delta 150
+119000 realrate 118861 delta 139
+119100 realrate 119087 delta 13
+119200 realrate 119196 delta 4
+119300 realrate 119225 delta 75
+119400 realrate 119225 delta 175
+119500 realrate 119485 delta 15
+119600 realrate 119579 delta 21
+119700 realrate 119680 delta 20
+119800 realrate 119654 delta 146
+arecord: pcm_read:2269: read error: Input/output error
+119900 realrate 119877 delta 23
+arecord: pcm_read:2269: read error: Input/output error
+120100 realrate 120065 delta 35
+120200 realrate 120192 delta 8
+arecord: pcm_read:2269: read error: Input/output error
+120300 realrate 120283 delta 17
+120400 realrate 120394 delta 6
+120500 realrate 120394 delta 106
+120600 realrate 120535 delta 65
+120700 realrate 120689 delta 11
+120800 realrate 120703 delta 97
+120900 realrate 120793 delta 107
+121000 realrate 120967 delta 33
+121100 realrate 121093 delta 7
+121200 realrate 121189 delta 11
+121300 realrate 121093 delta 207
+121400 realrate 121394 delta 6
+121500 realrate 121492 delta 8
+121600 realrate 121582 delta 18
+121700 realrate 121675 delta 25
+121800 realrate 121767 delta 33
+121900 realrate 121875 delta 25
+122000 realrate 121975 delta 25
+122100 realrate 122093 delta 7
+122200 realrate 122159 delta 41
+122300 realrate 122209 delta 91
+122400 realrate 122282 delta 118
+122600 realrate 122514 delta 86
+122700 realrate 122685 delta 15
+122800 realrate 122702 delta 98
+122900 realrate 122888 delta 12
+123000 realrate 122983 delta 17
+123100 realrate 123046 delta 54
+123200 realrate 123183 delta 17
+arecord: pcm_read:2269: read error: Input/output error
+123300 realrate 123263 delta 37
+123400 realrate 123301 delta 99
+123500 realrate 123475 delta 25
+123600 realrate 123437 delta 163
+123700 realrate 123579 delta 121
+123800 realrate 123798 delta 2
+123900 realrate 123883 delta 17
+124000 realrate 123991 delta 9
+124100 realrate 123883 delta 217
+124200 realrate 124188 delta 12
+124300 realrate 124273 delta 27
+124400 realrate 124320 delta 80
+arecord: pcm_read:2269: read error: Input/output error
+124500 realrate 124487 delta 13
+124600 realrate 124511 delta 89
+124700 realrate 124667 delta 33
+124800 realrate 124667 delta 133
+124900 realrate 124667 delta 233
+125100 realrate 125000 delta 100
+125200 realrate 125000 delta 200
+125300 realrate 125000 delta 300
+125400 realrate 125390 delta 10
+125500 realrate 125480 delta 20
+arecord: pcm_read:2269: read error: Input/output error
+125600 realrate 125589 delta 11
+125700 realrate 125686 delta 14
+125800 realrate 125762 delta 38
+125900 realrate 125892 delta 8
+126000 realrate 125976 delta 24
+126100 realrate 126077 delta 23
+126200 realrate 126157 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+126300 realrate 126275 delta 25
+126400 realrate 126358 delta 42
+arecord: pcm_read:2269: read error: Input/output error
+126500 realrate 126488 delta 12
+126600 realrate 126562 delta 38
+126700 realrate 126689 delta 11
+126800 realrate 126562 delta 238
+126900 realrate 126838 delta 62
+127000 realrate 126953 delta 47
+127100 realrate 127083 delta 17
+127200 realrate 127155 delta 45
+127300 realrate 127232 delta 68
+127400 realrate 127232 delta 168
+arecord: pcm_read:2269: read error: Input/output error
+127600 realrate 127561 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+127700 realrate 127693 delta 7
+127800 realrate 127747 delta 53
+127900 realrate 127734 delta 166
+arecord: pcm_read:2269: read error: Input/output error
+128000 realrate 127976 delta 24
+128100 realrate 128048 delta 52
+arecord: pcm_read:2269: read error: Input/output error
+128200 realrate 128188 delta 12
+128300 realrate 128216 delta 84
+128400 realrate 128396 delta 4
+128500 realrate 128472 delta 28
+128600 realrate 128571 delta 29
+arecord: pcm_read:2269: read error: Input/output error
+128700 realrate 128676 delta 24
+128800 realrate 128777 delta 23
+128900 realrate 128777 delta 123
+129000 realrate 128906 delta 94
+arecord: pcm_read:2269: read error: Input/output error
+129100 realrate 129098 delta 2
+129200 realrate 129192 delta 8
+129300 realrate 129261 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+129400 realrate 129375 delta 25
+129500 realrate 129464 delta 36
+129600 realrate 129523 delta 77
+129700 realrate 129687 delta 13
+129800 realrate 129723 delta 77
+129900 realrate 129807 delta 93
+130100 realrate 130078 delta 22
+130200 realrate 130147 delta 53
+arecord: pcm_read:2269: read error: Input/output error
+130300 realrate 130296 delta 4
+130400 realrate 130387 delta 13
+130500 realrate 130489 delta 11
+130600 realrate 130371 delta 229
+130700 realrate 130681 delta 19
+130800 realrate 130787 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+130900 realrate 130896 delta 4
+131000 realrate 130859 delta 141
+131100 realrate 130974 delta 126
+131200 realrate 130974 delta 226
+131300 realrate 131250 delta 50
+131400 realrate 131250 delta 150
+131500 realrate 131493 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+131600 realrate 131578 delta 22
+131700 realrate 131696 delta 4
+131800 realrate 131793 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+131900 realrate 131885 delta 15
+132000 realrate 131835 delta 165
+arecord: pcm_read:2269: read error: Input/output error
+132100 realrate 132015 delta 85
+arecord: pcm_read:2269: read error: Input/output error
+132200 realrate 132172 delta 28
+132300 realrate 132291 delta 9
+132400 realrate 132254 delta 146
+132600 realrate 132589 delta 11
+132700 realrate 132692 delta 8
+132800 realrate 132711 delta 89
+132900 realrate 132812 delta 88
+133000 realrate 132994 delta 6
+133100 realrate 133064 delta 36
+133200 realrate 133167 delta 33
+133300 realrate 133223 delta 77
+133400 realrate 133333 delta 67
+arecord: pcm_read:2269: read error: Input/output error
+133500 realrate 133474 delta 26
+133600 realrate 133593 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+133700 realrate 133680 delta 20
+133800 realrate 133765 delta 35
+133900 realrate 133765 delta 135
+134000 realrate 133928 delta 72
+134100 realrate 134084 delta 16
+arecord: pcm_read:2269: read error: Input/output error
+134200 realrate 134191 delta 9
+134300 realrate 134290 delta 10
+134400 realrate 134375 delta 25
+134500 realrate 134375 delta 125
+arecord: pcm_read:2269: read error: Input/output error
+134600 realrate 134576 delta 24
+134700 realrate 134698 delta 2
+134800 realrate 134765 delta 35
+arecord: pcm_read:2269: read error: Input/output error
+134900 realrate 134868 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+135100 realrate 135063 delta 37
+135200 realrate 135174 delta 26
+135300 realrate 135298 delta 2
+135400 realrate 135298 delta 102
+135500 realrate 135216 delta 284
+135600 realrate 135576 delta 24
+135700 realrate 135690 delta 10
+135800 realrate 135775 delta 25
+135900 realrate 135869 delta 31
+136000 realrate 135937 delta 63
+136100 realrate 136088 delta 12
+136200 realrate 136160 delta 40
+136300 realrate 136264 delta 36
+136400 realrate 136230 delta 170
+136500 realrate 136363 delta 137
+136600 realrate 136574 delta 26
+arecord: pcm_read:2269: read error: Input/output error
+136700 realrate 136652 delta 48
+arecord: pcm_read:2269: read error: Input/output error
+136800 realrate 136782 delta 18
+arecord: pcm_read:2269: read error: Input/output error
+136900 realrate 136875 delta 25
+137000 realrate 136718 delta 282
+137100 realrate 137019 delta 81
+137200 realrate 137195 delta 5
+137300 realrate 137276 delta 24
+arecord: pcm_read:2269: read error: Input/output error
+137400 realrate 137392 delta 8
+137600 realrate 137581 delta 19
+137700 realrate 137695 delta 5
+137800 realrate 137784 delta 16
+137900 realrate 137695 delta 205
+arecord: pcm_read:2269: read error: Input/output error
+138000 realrate 137971 delta 29
+138100 realrate 138091 delta 9
+138200 realrate 138157 delta 43
+138300 realrate 138281 delta 19
+138400 realrate 138281 delta 119
+138500 realrate 138392 delta 108
+138600 realrate 138586 delta 14
+138700 realrate 138671 delta 29
+138800 realrate 138798 delta 2
+138900 realrate 138888 delta 12
+139000 realrate 138970 delta 30
+139100 realrate 139062 delta 38
+139200 realrate 139160 delta 40
+139300 realrate 139285 delta 15
+139400 realrate 139322 delta 78
+139500 realrate 139481 delta 19
+139600 realrate 139583 delta 17
+arecord: pcm_read:2269: read error: Input/output error
+139700 realrate 139668 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+139800 realrate 139772 delta 28
+arecord: pcm_read:2269: read error: Input/output error
+139900 realrate 139880 delta 20
+140100 realrate 140073 delta 27
+140200 realrate 140073 delta 127
+140300 realrate 140073 delta 227
+140400 realrate 140073 delta 327
+140500 realrate 140073 delta 427
+140600 realrate 140073 delta 527
+140700 realrate 140625 delta 75
+140800 realrate 140625 delta 175
+140900 realrate 140625 delta 275
+141000 realrate 140625 delta 375
+141100 realrate 140625 delta 475
+141200 realrate 141176 delta 24
+141300 realrate 141250 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+141400 realrate 141393 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+141500 realrate 141477 delta 23
+141600 realrate 141581 delta 19
+arecord: pcm_read:2269: read error: Input/output error
+141700 realrate 141666 delta 34
+141800 realrate 141796 delta 4
+141900 realrate 141891 delta 9
+142000 realrate 141964 delta 36
+142100 realrate 142089 delta 11
+142200 realrate 142187 delta 13
+142300 realrate 142187 delta 113
+142400 realrate 142361 delta 39
+142600 realrate 142578 delta 22
+142700 realrate 142663 delta 37
+142800 realrate 142788 delta 12
+142900 realrate 142857 delta 43
+143000 realrate 142968 delta 32
+143100 realrate 142968 delta 132
+arecord: pcm_read:2269: read error: Input/output error
+143200 realrate 143181 delta 19
+arecord: pcm_read:2269: read error: Input/output error
+143300 realrate 143278 delta 22
+143400 realrate 143229 delta 171
+143500 realrate 143494 delta 6
+143600 realrate 143554 delta 46
+143700 realrate 143668 delta 32
+143800 realrate 143750 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+143900 realrate 143895 delta 5
+144000 realrate 143973 delta 27
+arecord: pcm_read:2269: read error: Input/output error
+144100 realrate 144097 delta 3
+144200 realrate 144140 delta 60
+144300 realrate 144140 delta 160
+arecord: pcm_read:2269: read error: Input/output error
+144400 realrate 144375 delta 25
+arecord: pcm_read:2269: read error: Input/output error
+144500 realrate 144467 delta 33
+arecord: pcm_read:2269: read error: Input/output error
+144600 realrate 144597 delta 3
+144700 realrate 144675 delta 25
+144800 realrate 144531 delta 269
+144900 realrate 144886 delta 14
+145100 realrate 145089 delta 11
+145200 realrate 145161 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+145300 realrate 145220 delta 80
+145400 realrate 145380 delta 20
+145500 realrate 145474 delta 26
+145600 realrate 145312 delta 288
+145700 realrate 145692 delta 8
+145800 realrate 145692 delta 108
+145900 realrate 145647 delta 253
+146000 realrate 145982 delta 18
+146100 realrate 146075 delta 25
+arecord: pcm_read:2269: read error: Input/output error
+146200 realrate 146186 delta 14
+146300 realrate 146250 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+146400 realrate 146381 delta 19
+146500 realrate 146484 delta 16
+arecord: pcm_read:2269: read error: Input/output error
+146600 realrate 146590 delta 10
+arecord: pcm_read:2269: read error: Input/output error
+146700 realrate 146673 delta 27
+146800 realrate 146484 delta 316
+146900 realrate 146875 delta 25
+147000 realrate 146990 delta 10
+arecord: pcm_read:2269: read error: Input/output error
+147100 realrate 147090 delta 10
+147200 realrate 147017 delta 183
+147300 realrate 147017 delta 283
+147400 realrate 147321 delta 79
+arecord: pcm_read:2269: read error: Input/output error
+147600 realrate 147569 delta 31
+147700 realrate 147656 delta 44
+arecord: pcm_read:2269: read error: Input/output error
+147800 realrate 147775 delta 25
+147900 realrate 147656 delta 244
+148000 realrate 147949 delta 51
+148100 realrate 148097 delta 3
+148200 realrate 148185 delta 15
+arecord: pcm_read:2269: read error: Input/output error
+148300 realrate 148295 delta 5
+arecord: pcm_read:2269: read error: Input/output error
+148400 realrate 148295 delta 105
+148500 realrate 148437 delta 63
+arecord: pcm_read:2269: read error: Input/output error
+148600 realrate 148584 delta 16
+148700 realrate 148660 delta 40
+arecord: pcm_read:2269: read error: Input/output error
+148800 realrate 148777 delta 23
+148900 realrate 148897 delta 3
+149000 realrate 148995 delta 5
+arecord: pcm_read:2269: read error: Input/output error
+149100 realrate 149077 delta 23
+149200 realrate 149147 delta 53
+149300 realrate 149147 delta 153
+arecord: pcm_read:2269: read error: Input/output error
+149400 realrate 149364 delta 36
+149500 realrate 149493 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+149600 realrate 149553 delta 47
+arecord: pcm_read:2269: read error: Input/output error
+149700 realrate 149697 delta 3
+149800 realrate 149756 delta 44
+149900 realrate 149756 delta 144
+150100 realrate 150000 delta 100
+150200 realrate 150000 delta 200
+arecord: pcm_read:2269: read error: Input/output error
+150300 realrate 150297 delta 3
+150400 realrate 150390 delta 10
+150500 realrate 150390 delta 110
+150600 realrate 150568 delta 32
+150700 realrate 150669 delta 31
+150800 realrate 150760 delta 40
+150900 realrate 150878 delta 22
+151000 realrate 150974 delta 26
+151100 realrate 150878 delta 222
+arecord: pcm_read:2269: read error: Input/output error
+151200 realrate 151147 delta 53
+151300 realrate 151041 delta 259
+151400 realrate 151339 delta 61
+151500 realrate 151278 delta 222
+arecord: pcm_read:2269: read error: Input/output error
+151600 realrate 151595 delta 5
+151700 realrate 151562 delta 138
+151800 realrate 151785 delta 15
+arecord: pcm_read:2269: read error: Input/output error
+151900 realrate 151875 delta 25
+152000 realrate 151988 delta 12
+arecord: pcm_read:2269: read error: Input/output error
+152100 realrate 152083 delta 17
+152200 realrate 152191 delta 9
+152300 realrate 152191 delta 109
+152400 realrate 152343 delta 57
+arecord: pcm_read:2269: read error: Input/output error
+152600 realrate 152573 delta 27
+152700 realrate 152678 delta 22
+152800 realrate 152777 delta 23
+152900 realrate 152884 delta 16
+153000 realrate 152343 delta 657
+arecord: pcm_read:2269: read error: Input/output error
+153100 realrate 153061 delta 39
+153200 realrate 153125 delta 75
+153300 realrate 153293 delta 7
+153400 realrate 153293 delta 107
+153500 realrate 153245 delta 255
+arecord: pcm_read:2269: read error: Input/output error
+153600 realrate 153590 delta 10
+arecord: pcm_read:2269: read error: Input/output error
+153700 realrate 153688 delta 12
+153800 realrate 153750 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+153900 realrate 153891 delta 9
+arecord: pcm_read:2269: read error: Input/output error
+154000 realrate 153891 delta 109
+154100 realrate 154017 delta 83
+154200 realrate 154194 delta 6
+154300 realrate 154296 delta 4
+154400 realrate 154326 delta 74
+154500 realrate 154296 delta 204
+154600 realrate 154560 delta 40
+154700 realrate 154687 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+154800 realrate 154796 delta 4
+154900 realrate 154891 delta 9
+155100 realrate 154947 delta 153
+155200 realrate 155172 delta 28
+155300 realrate 155273 delta 27
+155400 realrate 155357 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+155500 realrate 155487 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+155600 realrate 155585 delta 15
+155700 realrate 155691 delta 9
+155800 realrate 155691 delta 109
+155900 realrate 155844 delta 56
+156000 realrate 155844 delta 156
+156100 realrate 155844 delta 256
+156200 realrate 155844 delta 356
+156300 realrate 156250 delta 50
+156400 realrate 156250 delta 150
+156500 realrate 156250 delta 250
+156600 realrate 156250 delta 350
+156700 realrate 156696 delta 4
+arecord: pcm_read:2269: read error: Input/output error
+156800 realrate 156788 delta 12
+arecord: pcm_read:2269: read error: Input/output error
+156900 realrate 156887 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+157000 realrate 156976 delta 24
+157100 realrate 157094 delta 6
+157200 realrate 157169 delta 31
+157300 realrate 157258 delta 42
+157400 realrate 157169 delta 231
+arecord: pcm_read:2269: read error: Input/output error
+157600 realrate 157579 delta 21
+157700 realrate 157552 delta 148
+arecord: pcm_read:2269: read error: Input/output error
+157800 realrate 157774 delta 26
+157900 realrate 157894 delta 6
+arecord: pcm_read:2269: read error: Input/output error
+158000 realrate 157986 delta 14
+arecord: pcm_read:2269: read error: Input/output error
+158100 realrate 158088 delta 12
+arecord: pcm_read:2269: read error: Input/output error
+158200 realrate 158088 delta 112
+arecord: pcm_read:2269: read error: Input/output error
+158300 realrate 158299 delta 1
+158400 realrate 158361 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+158500 realrate 158482 delta 18
+158600 realrate 158203 delta 397
+158700 realrate 158547 delta 153
+arecord: pcm_read:2269: read error: Input/output error
+158800 realrate 158770 delta 30
+arecord: pcm_read:2269: read error: Input/output error
+158900 realrate 158898 delta 2
+159000 realrate 158967 delta 33
+159100 realrate 159090 delta 10
+arecord: pcm_read:2269: read error: Input/output error
+159200 realrate 159198 delta 2
+159300 realrate 159226 delta 74
+159400 realrate 159375 delta 25
+159500 realrate 159375 delta 125
+arecord: pcm_read:2269: read error: Input/output error
+159600 realrate 159574 delta 26
+159700 realrate 159667 delta 33
+159800 realrate 159722 delta 78
+arecord: pcm_read:2269: read error: Input/output error
+159900 realrate 159836 delta 64
+160100 realrate 160096 delta 4
+160200 realrate 160156 delta 44
+160300 realrate 160282 delta 18
+160400 realrate 160361 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+160500 realrate 160487 delta 13
+160600 realrate 160511 delta 89
+160700 realrate 160511 delta 189
+160800 realrate 160714 delta 86
+160900 realrate 160714 delta 186
+arecord: pcm_read:2269: read error: Input/output error
+161000 realrate 160966 delta 34
+arecord: pcm_read:2269: read error: Input/output error
+161100 realrate 161057 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+161200 realrate 161184 delta 16
+161300 realrate 161250 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+161400 realrate 161372 delta 28
+161500 realrate 161305 delta 195
+arecord: pcm_read:2269: read error: Input/output error
+161600 realrate 161569 delta 31
+161700 realrate 161684 delta 16
+161800 realrate 161794 delta 6
+161900 realrate 161794 delta 106
+162000 realrate 161718 delta 282
+arecord: pcm_read:2269: read error: Input/output error
+162100 realrate 162076 delta 24
+162200 realrate 162162 delta 38
+162300 realrate 162109 delta 191
+162400 realrate 162259 delta 141
+162600 realrate 162597 delta 3
+162700 realrate 162597 delta 103
+162800 realrate 162683 delta 117
+162900 realrate 162828 delta 72
+163000 realrate 162980 delta 20
+163100 realrate 163043 delta 57
+163200 realrate 163194 delta 6
+arecord: pcm_read:2269: read error: Input/output error
+163300 realrate 163254 delta 46
+163400 realrate 163392 delta 8
+163500 realrate 163461 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+163600 realrate 163563 delta 37
+163700 realrate 163690 delta 10
+163800 realrate 163690 delta 110
+163900 realrate 163690 delta 210
+164000 realrate 163690 delta 310
+164100 realrate 164062 delta 38
+164200 realrate 164062 delta 138
+164300 realrate 164062 delta 238
+164400 realrate 164062 delta 338
+arecord: pcm_read:2269: read error: Input/output error
+164500 realrate 164473 delta 27
+arecord: pcm_read:2269: read error: Input/output error
+164600 realrate 164583 delta 17
+164700 realrate 164695 delta 5
+164800 realrate 164772 delta 28
+164900 realrate 164870 delta 30
+arecord: pcm_read:2269: read error: Input/output error
+165100 realrate 165081 delta 19
+165200 realrate 165178 delta 22
+arecord: pcm_read:2269: read error: Input/output error
+165300 realrate 165296 delta 4
+165400 realrate 165364 delta 36
+165500 realrate 165441 delta 59
+arecord: pcm_read:2269: read error: Input/output error
+165600 realrate 165558 delta 42
+arecord: pcm_read:2269: read error: Input/output error
+165700 realrate 165697 delta 3
+165800 realrate 165760 delta 40
+165900 realrate 165736 delta 164
+166000 realrate 165983 delta 17
+166100 realrate 166071 delta 29
+166200 realrate 166015 delta 185
+arecord: pcm_read:2269: read error: Input/output error
+166300 realrate 166273 delta 27
+166400 realrate 166330 delta 70
+arecord: pcm_read:2269: read error: Input/output error
+166500 realrate 166487 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+166600 realrate 166487 delta 113
+166700 realrate 166406 delta 294
+166800 realrate 166406 delta 394
+arecord: pcm_read:2269: read error: Input/output error
+166900 realrate 166875 delta 25
+167000 realrate 166992 delta 8
+arecord: pcm_read:2269: read error: Input/output error
+167100 realrate 167045 delta 55
+167200 realrate 167187 delta 13
+arecord: pcm_read:2269: read error: Input/output error
+167300 realrate 167279 delta 21
+167400 realrate 167307 delta 93
+167500 realrate 167410 delta 90
+arecord: pcm_read:2269: read error: Input/output error
+167600 realrate 167553 delta 47
+167700 realrate 167410 delta 290
+167800 realrate 167763 delta 37
+arecord: pcm_read:2269: read error: Input/output error
+167900 realrate 167877 delta 23
+168000 realrate 167968 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+168100 realrate 168042 delta 58
+168200 realrate 167968 delta 232
+168300 realrate 168269 delta 31
+arecord: pcm_read:2269: read error: Input/output error
+168400 realrate 168367 delta 33
+168500 realrate 168478 delta 22
+168600 realrate 168478 delta 122
+168700 realrate 168478 delta 222
+168800 realrate 168750 delta 50
+168900 realrate 168750 delta 150
+169000 realrate 168750 delta 250
+169100 realrate 168750 delta 350
+arecord: pcm_read:2269: read error: Input/output error
+169200 realrate 169157 delta 43
+169300 realrate 169084 delta 216
+169400 realrate 169354 delta 46
+169500 realrate 169270 delta 230
+169600 realrate 169471 delta 129
+169700 realrate 169642 delta 58
+arecord: pcm_read:2269: read error: Input/output error
+169800 realrate 169763 delta 37
+169900 realrate 169836 delta 64
+170000 realrate 169921 delta 79
+170100 realrate 170089 delta 11
+170200 realrate 170192 delta 8
+arecord: pcm_read:2269: read error: Input/output error
+170300 realrate 170280 delta 20
+170400 realrate 170312 delta 88
+170500 realrate 170312 delta 188
+170600 realrate 170594 delta 6
+arecord: pcm_read:2269: read error: Input/output error
+170700 realrate 170673 delta 27
+170800 realrate 170758 delta 42
+170900 realrate 170866 delta 34
+171000 realrate 170758 delta 242
+171100 realrate 171093 delta 7
+171200 realrate 171195 delta 5
+171300 realrate 171093 delta 207
+171400 realrate 171386 delta 14
+arecord: pcm_read:2269: read error: Input/output error
+171500 realrate 171493 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+171600 realrate 171580 delta 20
+171700 realrate 171634 delta 66
+171800 realrate 171634 delta 166
+171900 realrate 171875 delta 25
+172000 realrate 171875 delta 125
+172100 realrate 171875 delta 225
+arecord: pcm_read:2269: read error: Input/output error
+172200 realrate 172193 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+172300 realrate 172297 delta 3
+172400 realrate 172379 delta 21
+172600 realrate 172585 delta 15
+172700 realrate 172697 delta 3
+arecord: pcm_read:2269: read error: Input/output error
+172800 realrate 172794 delta 6
+172900 realrate 172851 delta 49
+173000 realrate 172952 delta 48
+173100 realrate 172851 delta 249
+173200 realrate 173199 delta 1
+173300 realrate 173295 delta 5
+arecord: pcm_read:2269: read error: Input/output error
+173400 realrate 173349 delta 51
+173500 realrate 173437 delta 63
+arecord: pcm_read:2269: read error: Input/output error
+173600 realrate 173537 delta 63
+173700 realrate 173668 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+173800 realrate 173780 delta 20
+173900 realrate 173891 delta 9
+174000 realrate 173913 delta 87
+174100 realrate 173913 delta 187
+174200 realrate 174107 delta 93
+174300 realrate 174107 delta 193
+arecord: pcm_read:2269: read error: Input/output error
+174400 realrate 174375 delta 25
+174500 realrate 174316 delta 184
+174600 realrate 174568 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+174700 realrate 174632 delta 68
+174800 realrate 174788 delta 12
+174900 realrate 174715 delta 185
+175100 realrate 175091 delta 9
+175200 realrate 175164 delta 36
+175300 realrate 175271 delta 29
+arecord: pcm_read:2269: read error: Input/output error
+175400 realrate 175347 delta 53
+arecord: pcm_read:2269: read error: Input/output error
+175500 realrate 175480 delta 20
+175600 realrate 175595 delta 5
+175700 realrate 175595 delta 105
+175800 realrate 175781 delta 19
+175900 realrate 175781 delta 119
+176000 realrate 175986 delta 14
+arecord: pcm_read:2269: read error: Input/output error
+176100 realrate 176067 delta 33
+176200 realrate 176185 delta 15
+176300 realrate 176250 delta 50
+176500 realrate 176470 delta 30
+arecord: pcm_read:2269: read error: Input/output error
+176600 realrate 176598 delta 2
+176700 realrate 176682 delta 18
+176800 realrate 176785 delta 15
+arecord: pcm_read:2269: read error: Input/output error
+176900 realrate 176886 delta 14
+177000 realrate 176915 delta 85
+177100 realrate 176846 delta 254
+177200 realrate 176846 delta 354
+arecord: pcm_read:2269: read error: Input/output error
+177300 realrate 177272 delta 28
+arecord: pcm_read:2269: read error: Input/output error
+177400 realrate 177364 delta 36
+177500 realrate 177246 delta 254
+177600 realrate 177556 delta 44
+177700 realrate 177631 delta 69
+177800 realrate 177734 delta 66
+arecord: pcm_read:2269: read error: Input/output error
+177900 realrate 177884 delta 16
+178000 realrate 177966 delta 34
+178100 realrate 177966 delta 134
+178200 realrate 178125 delta 75
+178300 realrate 178278 delta 22
+arecord: pcm_read:2269: read error: Input/output error
+178400 realrate 178353 delta 47
+178500 realrate 178125 delta 375
+178600 realrate 178571 delta 29
+arecord: pcm_read:2269: read error: Input/output error
+178700 realrate 178655 delta 45
+arecord: pcm_read:2269: read error: Input/output error
+178800 realrate 178779 delta 21
+178900 realrate 178846 delta 54
+179000 realrate 178710 delta 290
+179100 realrate 178710 delta 390
+arecord: pcm_read:2269: read error: Input/output error
+179200 realrate 179166 delta 34
+179300 realrate 179276 delta 24
+179400 realrate 179347 delta 53
+arecord: pcm_read:2269: read error: Input/output error
+179500 realrate 179464 delta 36
+179600 realrate 179555 delta 45
+179700 realrate 179687 delta 13
+179800 realrate 179687 delta 113
+arecord: pcm_read:2269: read error: Input/output error
+179900 realrate 179898 delta 2
+arecord: pcm_read:2269: read error: Input/output error
+180100 realrate 180098 delta 2
+180200 realrate 180175 delta 25
+180300 realrate 180288 delta 12
+180400 realrate 180397 delta 3
+180500 realrate 180468 delta 32
+180600 realrate 180555 delta 45
+arecord: pcm_read:2269: read error: Input/output error
+180700 realrate 180681 delta 19
+180800 realrate 180681 delta 119
+180900 realrate 180803 delta 97
+arecord: pcm_read:2269: read error: Input/output error
+181000 realrate 180959 delta 41
+181100 realrate 181034 delta 66
+181200 realrate 181144 delta 56
+181300 realrate 181250 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+181400 realrate 181385 delta 15
+181500 realrate 181451 delta 49
+181600 realrate 181547 delta 53
+181700 realrate 181640 delta 60
+arecord: pcm_read:2269: read error: Input/output error
+181800 realrate 181760 delta 40
+arecord: pcm_read:2269: read error: Input/output error
+181900 realrate 181875 delta 25
+182000 realrate 181985 delta 15
+182100 realrate 181640 delta 460
+arecord: pcm_read:2269: read error: Input/output error
+182200 realrate 182193 delta 7
+182300 realrate 182091 delta 209
+182400 realrate 182386 delta 14
+182500 realrate 182291 delta 209
+182600 realrate 182565 delta 35
+arecord: pcm_read:2269: read error: Input/output error
+182700 realrate 182692 delta 8
+182800 realrate 182733 delta 67
+182900 realrate 182889 delta 11
+183000 realrate 182963 delta 37
+183100 realrate 183035 delta 65
+183200 realrate 183173 delta 27
+183300 realrate 183105 delta 195
+arecord: pcm_read:2269: read error: Input/output error
+183400 realrate 183333 delta 67
+183500 realrate 183423 delta 77
+183600 realrate 183593 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+183700 realrate 183673 delta 27
+183800 realrate 183750 delta 50
+183900 realrate 183894 delta 6
+arecord: pcm_read:2269: read error: Input/output error
+184000 realrate 183962 delta 38
+184100 realrate 184090 delta 10
+184200 realrate 184151 delta 49
+184300 realrate 184267 delta 33
+184400 realrate 184375 delta 25
+184500 realrate 184475 delta 25
+184600 realrate 184570 delta 30
+184700 realrate 184659 delta 41
+arecord: pcm_read:2269: read error: Input/output error
+184800 realrate 184742 delta 58
+184900 realrate 184570 delta 330
+185000 realrate 184966 delta 34
+arecord: pcm_read:2269: read error: Input/output error
+185100 realrate 185096 delta 4
+185200 realrate 185156 delta 44
+arecord: pcm_read:2269: read error: Input/output error
+185300 realrate 185267 delta 33
+185400 realrate 185156 delta 244
+arecord: pcm_read:2269: read error: Input/output error
+185500 realrate 185461 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+185600 realrate 185586 delta 14
+185700 realrate 185546 delta 154
+185800 realrate 185795 delta 5
+185900 realrate 185883 delta 17
+186000 realrate 185987 delta 13
+186100 realrate 186035 delta 65
+186200 realrate 186035 delta 165
+186300 realrate 186035 delta 265
+186400 realrate 186035 delta 365
+186500 realrate 186035 delta 465
+186600 realrate 186035 delta 565
+186700 realrate 186035 delta 665
+186800 realrate 186035 delta 765
+186900 realrate 186035 delta 865
+187000 realrate 186035 delta 965
+187100 realrate 186035 delta 1065
+187200 realrate 186035 delta 1165
+187300 realrate 186035 delta 1265
+187400 realrate 186035 delta 1365
+187600 realrate 187500 delta 100
+187700 realrate 187500 delta 200
+187800 realrate 187500 delta 300
+187900 realrate 187500 delta 400
+188000 realrate 187500 delta 500
+188100 realrate 187500 delta 600
+188200 realrate 187500 delta 700
+188300 realrate 187500 delta 800
+188400 realrate 187500 delta 900
+188500 realrate 187500 delta 1000
+188600 realrate 187500 delta 1100
+188700 realrate 187500 delta 1200
+188800 realrate 187500 delta 1300
+188900 realrate 187500 delta 1400
+189000 realrate 188988 delta 12
+189100 realrate 189088 delta 12
+189200 realrate 189062 delta 138
+189300 realrate 189268 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+189400 realrate 189375 delta 25
+arecord: pcm_read:2269: read error: Input/output error
+189500 realrate 189494 delta 6
+arecord: pcm_read:2269: read error: Input/output error
+189600 realrate 189583 delta 17
+arecord: pcm_read:2269: read error: Input/output error
+189700 realrate 189680 delta 20
+arecord: pcm_read:2269: read error: Input/output error
+189800 realrate 189786 delta 14
+189900 realrate 189843 delta 57
+arecord: pcm_read:2269: read error: Input/output error
+190000 realrate 189967 delta 33
+arecord: pcm_read:2269: read error: Input/output error
+190100 realrate 190033 delta 67
+arecord: pcm_read:2269: read error: Input/output error
+190200 realrate 190178 delta 22
+arecord: pcm_read:2269: read error: Input/output error
+190300 realrate 190257 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+190400 realrate 190340 delta 60
+190500 realrate 190476 delta 24
+190600 realrate 190573 delta 27
+190700 realrate 190677 delta 23
+190800 realrate 190789 delta 11
+190900 realrate 190848 delta 52
+191000 realrate 190972 delta 28
+191100 realrate 191037 delta 63
+arecord: pcm_read:2269: read error: Input/output error
+191200 realrate 191176 delta 24
+191300 realrate 191250 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+191400 realrate 191326 delta 74
+arecord: pcm_read:2269: read error: Input/output error
+191500 realrate 191489 delta 11
+191600 realrate 191576 delta 24
+arecord: pcm_read:2269: read error: Input/output error
+191700 realrate 191666 delta 34
+191800 realrate 191761 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+191900 realrate 191860 delta 40
+192000 realrate 191964 delta 36
+arecord: pcm_read:2269: read error: Input/output error
+192100 realrate 192073 delta 27
+192200 realrate 192187 delta 13
+192300 realrate 192266 delta 34
+192400 realrate 192349 delta 51
+192500 realrate 192434 delta 66
+arecord: pcm_read:2269: read error: Input/output error
+192600 realrate 192567 delta 33
+192700 realrate 192613 delta 87
+192800 realrate 192522 delta 278
+192900 realrate 192857 delta 43
+193000 realrate 192708 delta 292
+193100 realrate 193014 delta 86
+arecord: pcm_read:2269: read error: Input/output error
+193200 realrate 193181 delta 19
+arecord: pcm_read:2269: read error: Input/output error
+193300 realrate 193239 delta 61
+193400 realrate 193359 delta 41
+arecord: pcm_read:2269: read error: Input/output error
+193500 realrate 193484 delta 16
+193600 realrate 193548 delta 52
+arecord: pcm_read:2269: read error: Input/output error
+193700 realrate 193614 delta 86
+193800 realrate 193750 delta 50
+193900 realrate 193750 delta 150
+194000 realrate 193965 delta 35
+194100 realrate 194078 delta 22
+194200 realrate 194196 delta 4
+194300 realrate 194196 delta 104
+arecord: pcm_read:2269: read error: Input/output error
+194400 realrate 194359 delta 41
+194500 realrate 194444 delta 56
+194600 realrate 194575 delta 25
+194700 realrate 194575 delta 125
+194800 realrate 194531 delta 269
+arecord: pcm_read:2269: read error: Input/output error
+194900 realrate 194852 delta 48
+195100 realrate 195000 delta 100
+arecord: pcm_read:2269: read error: Input/output error
+195200 realrate 195153 delta 47
+arecord: pcm_read:2269: read error: Input/output error
+195300 realrate 195153 delta 147
+195400 realrate 195312 delta 88
+arecord: pcm_read:2269: read error: Input/output error
+195500 realrate 195478 delta 22
+195600 realrate 195581 delta 19
+195700 realrate 195652 delta 48
+arecord: pcm_read:2269: read error: Input/output error
+195800 realrate 195772 delta 28
+195900 realrate 195870 delta 30
+196000 realrate 195870 delta 130
+196100 realrate 196022 delta 78
+196200 realrate 196180 delta 20
+196300 realrate 196289 delta 11
+196400 realrate 196344 delta 56
+196500 realrate 196428 delta 72
+196600 realrate 196572 delta 28
+196700 realrate 196691 delta 9
+196800 realrate 196691 delta 109
+196900 realrate 196875 delta 25
+197000 realrate 196875 delta 125
+arecord: pcm_read:2269: read error: Input/output error
+197100 realrate 197066 delta 34
+197200 realrate 197198 delta 2
+197300 realrate 197265 delta 35
+197400 realrate 197368 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+197500 realrate 197473 delta 27
+197600 realrate 197544 delta 56
+arecord: pcm_read:2269: read error: Input/output error
+197700 realrate 197690 delta 10
+197800 realrate 197727 delta 73
+197900 realrate 197727 delta 173
+198000 realrate 197544 delta 456
+198100 realrate 197544 delta 556
+198200 realrate 197916 delta 284
+arecord: pcm_read:2269: read error: Input/output error
+198300 realrate 198214 delta 86
+198400 realrate 198153 delta 247
+198500 realrate 198437 delta 63
+198600 realrate 198529 delta 71
+198700 realrate 198660 delta 40
+198800 realrate 198750 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+198900 realrate 198863 delta 37
+arecord: pcm_read:2269: read error: Input/output error
+199000 realrate 198979 delta 21
+199100 realrate 199013 delta 87
+199200 realrate 199013 delta 187
+199300 realrate 199218 delta 82
+199400 realrate 199218 delta 182
+arecord: pcm_read:2269: read error: Input/output error
+199500 realrate 199468 delta 32
+arecord: pcm_read:2269: read error: Input/output error
+199600 realrate 199596 delta 4
+199700 realrate 199652 delta 48
+199800 realrate 199728 delta 72
+199900 realrate 199882 delta 18
+200100 realrate 200000 delta 100
+arecord: pcm_read:2269: read error: Input/output error
+200200 realrate 200168 delta 32
+200300 realrate 200120 delta 180
+200400 realrate 200367 delta 33
+200500 realrate 200431 delta 69
+arecord: pcm_read:2269: read error: Input/output error
+200600 realrate 200581 delta 19
+200700 realrate 200657 delta 43
+200800 realrate 200657 delta 143
+200900 realrate 200892 delta 8
+201000 realrate 200892 delta 108
+201100 realrate 200892 delta 208
+201200 realrate 201171 delta 29
+arecord: pcm_read:2269: read error: Input/output error
+201300 realrate 201286 delta 14
+201400 realrate 201388 delta 12
+arecord: pcm_read:2269: read error: Input/output error
+201500 realrate 201462 delta 38
+201600 realrate 201562 delta 38
+201700 realrate 201650 delta 50
+arecord: pcm_read:2269: read error: Input/output error
+201800 realrate 201766 delta 34
+arecord: pcm_read:2269: read error: Input/output error
+201900 realrate 201766 delta 134
+202000 realrate 201562 delta 438
+arecord: pcm_read:2269: read error: Input/output error
+202100 realrate 202083 delta 17
+202200 realrate 202148 delta 52
+202300 realrate 202205 delta 95
+202400 realrate 202302 delta 98
+202600 realrate 202566 delta 34
+arecord: pcm_read:2269: read error: Input/output error
+202700 realrate 202620 delta 80
+arecord: pcm_read:2269: read error: Input/output error
+202800 realrate 202761 delta 39
+202900 realrate 202840 delta 60
+203000 realrate 202840 delta 160
+203100 realrate 202840 delta 260
+203200 realrate 203125 delta 75
+203300 realrate 203125 delta 175
+203400 realrate 203125 delta 275
+arecord: pcm_read:2269: read error: Input/output error
+203500 realrate 203457 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+203600 realrate 203571 delta 29
+203700 realrate 203663 delta 37
+203800 realrate 203725 delta 75
+203900 realrate 203804 delta 96
+204000 realrate 203947 delta 53
+204100 realrate 204044 delta 56
+arecord: pcm_read:2269: read error: Input/output error
+204200 realrate 204166 delta 34
+204300 realrate 203906 delta 394
+204400 realrate 204375 delta 25
+204500 realrate 204375 delta 125
+204600 realrate 204241 delta 359
+204700 realrate 204241 delta 459
+arecord: pcm_read:2269: read error: Input/output error
+204800 realrate 204769 delta 31
+204900 realrate 204861 delta 39
+arecord: pcm_read:2269: read error: Input/output error
+205000 realrate 204941 delta 59
+205100 realrate 205078 delta 22
+205200 realrate 205188 delta 12
+205300 realrate 205280 delta 20
+205400 realrate 205357 delta 43
+arecord: pcm_read:2269: read error: Input/output error
+205500 realrate 205452 delta 48
+205600 realrate 205592 delta 8
+arecord: pcm_read:2269: read error: Input/output error
+205700 realrate 205645 delta 55
+arecord: pcm_read:2269: read error: Input/output error
+205800 realrate 205792 delta 8
+205900 realrate 205882 delta 18
+206000 realrate 205729 delta 271
+206100 realrate 205729 delta 371
+206200 realrate 205729 delta 471
+206300 realrate 206250 delta 50
+206400 realrate 206250 delta 150
+206500 realrate 206250 delta 250
+206600 realrate 206597 delta 3
+206700 realrate 206250 delta 450
+arecord: pcm_read:2269: read error: Input/output error
+206800 realrate 206730 delta 70
+206900 realrate 206896 delta 4
+207000 realrate 206957 delta 43
+207100 realrate 207031 delta 69
+arecord: pcm_read:2269: read error: Input/output error
+207200 realrate 207122 delta 78
+207300 realrate 207236 delta 64
+arecord: pcm_read:2269: read error: Input/output error
+207400 realrate 207386 delta 14
+arecord: pcm_read:2269: read error: Input/output error
+207500 realrate 207446 delta 54
+207600 realrate 207589 delta 11
+207700 realrate 207589 delta 111
+arecord: pcm_read:2269: read error: Input/output error
+207800 realrate 207770 delta 30
+207900 realrate 207880 delta 20
+208000 realrate 207954 delta 46
+arecord: pcm_read:2269: read error: Input/output error
+208100 realrate 208079 delta 21
+208200 realrate 208125 delta 75
+208300 realrate 208125 delta 175
+208400 realrate 208007 delta 393
+208500 realrate 208007 delta 493
+208600 realrate 208593 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+208700 realrate 208669 delta 31
+208800 realrate 208726 delta 74
+208900 realrate 208881 delta 19
+209000 realrate 208984 delta 16
+209100 realrate 208984 delta 116
+209200 realrate 208984 delta 216
+209300 realrate 209134 delta 166
+arecord: pcm_read:2269: read error: Input/output error
+209400 realrate 209375 delta 25
+arecord: pcm_read:2269: read error: Input/output error
+209500 realrate 209441 delta 59
+209600 realrate 209558 delta 42
+209700 realrate 209659 delta 41
+arecord: pcm_read:2269: read error: Input/output error
+209800 realrate 209703 delta 97
+209900 realrate 209821 delta 79
+210100 realrate 210069 delta 31
+210200 realrate 210129 delta 71
+arecord: pcm_read:2269: read error: Input/output error
+210300 realrate 210227 delta 73
+arecord: pcm_read:2269: read error: Input/output error
+210400 realrate 210365 delta 35
+210500 realrate 210495 delta 5
+210600 realrate 210526 delta 74
+210700 realrate 210526 delta 174
+210800 realrate 210526 delta 274
+210900 realrate 210526 delta 374
+211000 realrate 210937 delta 63
+211100 realrate 210937 delta 163
+211200 realrate 210937 delta 263
+211300 realrate 210937 delta 363
+211400 realrate 211397 delta 3
+arecord: pcm_read:2269: read error: Input/output error
+211500 realrate 211482 delta 18
+arecord: pcm_read:2269: read error: Input/output error
+211600 realrate 211538 delta 62
+arecord: pcm_read:2269: read error: Input/output error
+211700 realrate 211693 delta 7
+arecord: pcm_read:2269: read error: Input/output error
+211800 realrate 211693 delta 107
+211900 realrate 211875 delta 25
+212000 realrate 211956 delta 44
+arecord: pcm_read:2269: read error: Input/output error
+212100 realrate 212053 delta 47
+212200 realrate 212171 delta 29
+212300 realrate 212264 delta 36
+212400 realrate 212372 delta 28
+212600 realrate 212500 delta 100
+arecord: pcm_read:2269: read error: Input/output error
+212700 realrate 212652 delta 48
+212800 realrate 210937 delta 1863
+212900 realrate 212890 delta 10
+213000 realrate 212890 delta 110
+213100 realrate 212890 delta 210
+213200 realrate 212890 delta 310
+213300 realrate 213281 delta 19
+arecord: pcm_read:2269: read error: Input/output error
+213400 realrate 213362 delta 38
+213500 realrate 213430 delta 70
+213600 realrate 213281 delta 319
+arecord: pcm_read:2269: read error: Input/output error
+213700 realrate 213662 delta 38
+213800 realrate 213750 delta 50
+213900 realrate 213867 delta 33
+214000 realrate 213994 delta 6
+214100 realrate 214033 delta 67
+214200 realrate 214033 delta 167
+214300 realrate 214285 delta 15
+214400 realrate 214285 delta 115
+214500 realrate 214285 delta 215
+arecord: pcm_read:2269: read error: Input/output error
+214600 realrate 214583 delta 17
+arecord: pcm_read:2269: read error: Input/output error
+214700 realrate 214638 delta 62
+214800 realrate 214772 delta 28
+214900 realrate 214843 delta 57
+arecord: pcm_read:2269: read error: Input/output error
+215000 realrate 214939 delta 61
