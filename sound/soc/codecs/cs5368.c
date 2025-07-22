@@ -28,8 +28,8 @@
  *   out of 8 works well.
  * - LRCK doesn't do anything in TDM mode, clocking out 2 slots then toggling
  *   LRCK will not skip slots.
- * - The data sheet says the TDM format is left justified, but it's
- *   actually standard I2S format. Figure 12 seems to confirm this.
+ * - The data sheet says the TDM format is left justified, but it has an
+ *   initial SCLK cycle. This is equivalent to I2S with an inverted LRCK.
  * - All SDOUT pins do not remain active during TDM mode.
  */
 
@@ -335,12 +335,19 @@ static int cs5368_dai_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
 {
 	int format_mode = fmt & SND_SOC_DAIFMT_FORMAT_MASK;
 	int clock_mode = fmt & SND_SOC_DAIFMT_CLOCK_PROVIDER_MASK;
+	int polarity_mode = fmt & SND_SOC_DAIFMT_INV_MASK;
 
 	struct device *dev = dai->dev;
 
 	if (format_mode != SND_SOC_DAIFMT_I2S &&
 	    format_mode != SND_SOC_DAIFMT_DSP_A) {
 		dev_err(dev, "codec only supports I2S or DSP_A TDM formats\n");
+		return -EINVAL;
+	}
+
+	if (format_mode == SND_SOC_DAIFMT_I2S &&
+	    polarity_mode != SND_SOC_DAIFMT_NB_IF) {
+		dev_err(dev, "codec only supports I2S with inverted LRCK\n");
 		return -EINVAL;
 	}
 
