@@ -530,7 +530,7 @@ static SUNXI_CCU_GATE_HWS(bus_ths_clk, "bus-ths", apb0_hws,
 
 static const struct clk_hw *i2s_spdif_tx_parents[] = {
 	&pll_audio0_clk.hw,
-	&pll_audio0_4x_clk.common.hw,
+	NULL, /* disable &pll_audio0_4x_clk.common.hw, it seems broken on some rates */
 	&pll_audio1_div2_clk.common.hw,
 	&pll_audio1_div5_clk.common.hw,
 };
@@ -556,7 +556,7 @@ static SUNXI_CCU_MP_HW_WITH_MUX_GATE(i2s2_clk, "i2s2", i2s_spdif_tx_parents, 0xa
 				     CLK_SET_RATE_PARENT);
 
 static const struct clk_hw *i2s2_asrc_parents[] = {
-	&pll_audio0_4x_clk.common.hw,
+	NULL, /* disable &pll_audio0_4x_clk.common.hw, it seems broken on some rates */
 	&pll_periph0_clk.hw,
 	&pll_audio1_div2_clk.common.hw,
 	&pll_audio1_div5_clk.common.hw,
