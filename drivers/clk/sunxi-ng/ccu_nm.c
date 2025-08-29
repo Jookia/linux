@@ -34,16 +34,24 @@ static unsigned long ccu_nm_find_best(struct ccu_common *common, unsigned long p
 	unsigned long best_n = 0, best_m = 0;
 	unsigned long _n, _m;
 
-	for (_n = nm->min_n; _n <= nm->max_n; _n++) {
-		for (_m = nm->min_m; _m <= nm->max_m; _m++) {
-			unsigned long tmp_rate = ccu_nm_calc_rate(parent,
-								  _n, _m);
+	for (_m = nm->min_m; _m <= nm->max_m; _m++) {
+		unsigned long n_size, tmp_rate;
 
-			if (ccu_is_better_rate(common, rate, tmp_rate, best_rate)) {
-				best_rate = tmp_rate;
-				best_n = _n;
-				best_m = _m;
-			}
+		n_size = parent / _m;
+		_n = rate / n_size;
+
+		if (_n < nm->min_n)
+			continue;
+
+		if (nm->max_n < _n)
+			break;
+
+		tmp_rate = ccu_nm_calc_rate(parent, _n, _m);
+
+		if (ccu_is_better_rate(common, rate, tmp_rate, best_rate)) {
+			best_rate = tmp_rate;
+			best_n = _n;
+			best_m = _m;
 		}
 	}
 
