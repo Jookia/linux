@@ -11,52 +11,112 @@
 #include "ccu_gate.h"
 #include "ccu_nm.h"
 
+static u64 frac_create(u32 value, u32 frac)
+{
+	return ((u64)value << 32) + frac;
+}
+
+static u64 frac_floor_bits(u64 value, int bits)
+{
+	int frac_bits = 32 - bits;
+	u64 floored = value >> frac_bits;
+
+	return floored << frac_bits;
+}
+
+static u64 frac_round_bits(u64 value, int bits)
+{
+	int frac_bits = 32 - bits;
+	int round_bit = (value >> (frac_bits - 1)) & 1;
+	u64 floored = value >> frac_bits;
+	u64 rounded = floored + round_bit;
+
+	return rounded << frac_bits;
+}
+
+static unsigned long frac_floor(u64 value)
+{
+	return value >> 32;
+}
+
+static unsigned long frac_round(u64 value)
+{
+	return frac_round_bits(value, 0) >> 32;
+}
+
 struct _ccu_nm {
-	unsigned long	n, min_n, max_n;
+	u64		n_frac;
+	unsigned long	min_n, max_n;
 	unsigned long	m, min_m, max_m;
 };
 
-static unsigned long ccu_nm_calc_rate(unsigned long parent,
-				      unsigned long n, unsigned long m)
+static u64 ccu_nm_calc_rate_frac(u64 parent, u64 n, u64 m)
 {
-	u64 rate = parent;
-
-	rate *= n;
-	do_div(rate, m);
-
-	return rate;
+	return div64_u64(parent, m) * n;
 }
 
-static unsigned long ccu_nm_find_best(struct ccu_common *common, unsigned long parent,
-				      unsigned long rate, struct _ccu_nm *nm)
+static bool ccu_nm_is_better_rate_frac(struct ccu_common *common,
+			u64 target_rate,
+			u64 current_rate,
+			u64 best_rate)
 {
-	unsigned long best_rate = 0;
-	unsigned long best_n = 0, best_m = 0;
-	unsigned long _n, _m;
+	unsigned long min_rate_hw, max_rate_hw;
+	u64 min_rate, max_rate;
 
-	for (_m = nm->min_m; _m <= nm->max_m; _m++) {
-		unsigned long n_size, tmp_rate;
+	clk_hw_get_rate_range(&common->hw, &min_rate_hw, &max_rate_hw);
+	min_rate = frac_create(min_rate_hw, 0);
+	max_rate = frac_create(max_rate_hw, 0);
 
-		n_size = parent / _m;
-		_n = rate / n_size;
+	if (current_rate > max_rate)
+		return false;
 
-		if (_n < nm->min_n)
+	if (current_rate < min_rate)
+		return false;
+
+	if (common->features & CCU_FEATURE_CLOSEST_RATE)
+		return abs(current_rate - target_rate) < abs(best_rate - target_rate);
+
+	return current_rate <= target_rate && current_rate > best_rate;
+}
+
+static u64 ccu_nm_find_best_frac(struct ccu_common *common, u64 parent,
+				      u64 rate, struct _ccu_nm *nm,
+				      int precision_bits)
+{
+	u64 best_rate = 0;
+	u64 best_n = 0, best_m = 0;
+	int m_int;
+
+	for (m_int = nm->min_m; m_int <= nm->max_m; m_int++) {
+		unsigned long n_int;
+		u64 n, m, n_size, tmp_rate;
+
+		m = frac_create(m_int, 0);
+		n_size = div64_u64(parent, m);
+		n = div64_u64(rate, n_size);
+		if (common->features & CCU_FEATURE_CLOSEST_RATE)
+			n = frac_round_bits(n, precision_bits);
+		else
+			n = frac_floor_bits(n, precision_bits);
+
+		n_int = frac_floor(n);
+		if (n_int < nm->min_n)
 			continue;
-
-		if (nm->max_n < _n)
+		if (nm->max_n < n_int)
 			break;
 
-		tmp_rate = ccu_nm_calc_rate(parent, _n, _m);
+		tmp_rate = ccu_nm_calc_rate_frac(parent, n, m);
 
-		if (ccu_is_better_rate(common, rate, tmp_rate, best_rate)) {
+		if (ccu_nm_is_better_rate_frac(common, rate,
+					  tmp_rate, best_rate)) {
 			best_rate = tmp_rate;
-			best_n = _n;
-			best_m = _m;
+			best_n = n;
+			best_m = m;
 		}
 	}
 
-	nm->n = best_n;
-	nm->m = best_m;
+	nm->n_frac = best_n;
+	nm->m = frac_floor(best_m);
 
 	return best_rate;
 }
@@ -113,10 +173,17 @@ static unsigned long ccu_nm_recalc_rate(struct clk_hw *hw,
 	if (!m)
 		m++;
 
-	if (ccu_sdm_helper_is_enabled(&nm->common, &nm->sdm))
+	if (ccu_sdm_helper_is_enabled(&nm->common, &nm->sdm)) {
 		rate = ccu_sdm_helper_read_rate(&nm->common, &nm->sdm, m, n);
-	else
-		rate = ccu_nm_calc_rate(parent_rate, n, m);
+	} else {
+		u64 parent_frac, n_frac, m_frac, rate_frac;
+
+		parent_frac = frac_create(parent_rate, 0);
+		n_frac = frac_create(n, 0);
+		m_frac = frac_create(m, 0);
+		rate_frac = ccu_nm_calc_rate_frac(parent_frac, n_frac, m_frac);
+		rate = frac_round(rate_frac);
+	}
 
 	if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
 		rate /= nm->fixed_post_div;
@@ -129,6 +196,8 @@ static long ccu_nm_round_rate(struct clk_hw *hw, unsigned long rate,
 {
 	struct ccu_nm *nm = hw_to_ccu_nm(hw);
 	struct _ccu_nm _nm;
+	u64 parent_frac, rate_frac, best_frac;
+	int frac_precision = 0;
 
 	if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
 		rate *= nm->fixed_post_div;
@@ -164,7 +233,11 @@ static long ccu_nm_round_rate(struct clk_hw *hw, unsigned long rate,
 	_nm.min_m = 1;
 	_nm.max_m = nm->m.max ?: 1 << nm->m.width;
 
-	rate = ccu_nm_find_best(&nm->common, *parent_rate, rate, &_nm);
+	parent_frac = frac_create(*parent_rate, 0);
+	rate_frac = frac_create(rate, 0);
+	best_frac = ccu_nm_find_best_frac(&nm->common, parent_frac,
+					  rate_frac, &_nm, frac_precision);
+	rate = frac_round(best_frac);
 
 	if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
 		rate /= nm->fixed_post_div;
@@ -176,8 +249,10 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 			   unsigned long parent_rate)
 {
 	struct ccu_nm *nm = hw_to_ccu_nm(hw);
+	u64 parent_frac, rate_frac;
 	struct _ccu_nm _nm;
-	unsigned long flags;
+	unsigned long flags, n_int;
+	int frac_precision = 0;
 	u32 reg;
 
 	/* Adjust target rate according to post-dividers */
@@ -207,15 +282,21 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 	_nm.min_m = 1;
 	_nm.max_m = nm->m.max ?: 1 << nm->m.width;
 
+	parent_frac = frac_create(parent_rate, 0);
+	rate_frac = frac_create(rate, 0);
+
 	if (ccu_sdm_helper_has_rate(&nm->common, &nm->sdm, rate)) {
 		ccu_sdm_helper_enable(&nm->common, &nm->sdm, rate);
 
 		/* Sigma delta modulation requires specific N and M factors */
 		ccu_sdm_helper_get_factors(&nm->common, &nm->sdm, rate,
-					   &_nm.m, &_nm.n);
+					   &_nm.m, &n_int);
+		_nm.n_frac = frac_create(n_int, 0);
 	} else {
 		ccu_sdm_helper_disable(&nm->common, &nm->sdm);
-		ccu_nm_find_best(&nm->common, parent_rate, rate, &_nm);
+		ccu_nm_find_best_frac(&nm->common, parent_frac, rate_frac,
+				      &_nm, frac_precision);
+		n_int = frac_floor(_nm.n_frac);
 	}
 
 	spin_lock_irqsave(nm->common.lock, flags);
@@ -224,7 +305,7 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 	reg &= ~GENMASK(nm->n.width + nm->n.shift - 1, nm->n.shift);
 	reg &= ~GENMASK(nm->m.width + nm->m.shift - 1, nm->m.shift);
 
-	reg |= (_nm.n - nm->n.offset) << nm->n.shift;
+	reg |= (n_int - nm->n.offset) << nm->n.shift;
 	reg |= (_nm.m - nm->m.offset) << nm->m.shift;
 	writel(reg, nm->common.base + nm->common.reg);
 
