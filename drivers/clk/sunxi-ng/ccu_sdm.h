@@ -48,6 +48,15 @@ struct ccu_sdm_internal {
 		.tuning_reg	= _reg,			\
 	}
 
+int ccu_sdm_helper_precision(struct ccu_common *common,
+			     struct ccu_sdm_internal *sdm);
+int ccu_sdm_helper_set(struct ccu_common *common,
+		       struct ccu_sdm_internal *sdm,
+		       unsigned long parent_rate, u32 frac);
+u32 ccu_sdm_helper_get(struct ccu_common *common,
+		       struct ccu_sdm_internal *sdm,
+		       unsigned long parent_rate);
+
 bool ccu_sdm_helper_is_enabled(struct ccu_common *common,
 			       struct ccu_sdm_internal *sdm);
 void ccu_sdm_helper_enable(struct ccu_common *common,

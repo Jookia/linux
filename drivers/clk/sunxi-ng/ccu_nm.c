@@ -34,6 +34,11 @@ static u64 frac_round_bits(u64 value, int bits)
 	return rounded << frac_bits;
 }
 
+static u32 frac_frac(u64 value)
+{
+	return (u32)value;
+}
+
 static unsigned long frac_floor(u64 value)
 {
 	return value >> 32;
@@ -146,8 +151,10 @@ static unsigned long ccu_nm_recalc_rate(struct clk_hw *hw,
 					unsigned long parent_rate)
 {
 	struct ccu_nm *nm = hw_to_ccu_nm(hw);
+	u64 parent_frac, n_frac, m_frac, rate_frac;
 	unsigned long rate;
 	unsigned long n, m;
+	u32 sdm_frac;
 	u32 reg;
 
 	if (ccu_frac_helper_is_enabled(&nm->common, &nm->frac)) {
@@ -173,17 +180,12 @@ static unsigned long ccu_nm_recalc_rate(struct clk_hw *hw,
 	if (!m)
 		m++;
 
-	if (ccu_sdm_helper_is_enabled(&nm->common, &nm->sdm)) {
-		rate = ccu_sdm_helper_read_rate(&nm->common, &nm->sdm, m, n);
-	} else {
-		u64 parent_frac, n_frac, m_frac, rate_frac;
-
-		parent_frac = frac_create(parent_rate, 0);
-		n_frac = frac_create(n, 0);
-		m_frac = frac_create(m, 0);
-		rate_frac = ccu_nm_calc_rate_frac(parent_frac, n_frac, m_frac);
-		rate = frac_round(rate_frac);
-	}
+	sdm_frac = ccu_sdm_helper_get(&nm->common, &nm->sdm, parent_rate);
+	parent_frac = frac_create(parent_rate, 0);
+	n_frac = frac_create(n, sdm_frac);
+	m_frac = frac_create(m, 0);
+	rate_frac = ccu_nm_calc_rate_frac(parent_frac, n_frac, m_frac);
+	rate = frac_round(rate_frac);
 
 	if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
 		rate /= nm->fixed_post_div;
@@ -197,7 +199,7 @@ static long ccu_nm_round_rate(struct clk_hw *hw, unsigned long rate,
 	struct ccu_nm *nm = hw_to_ccu_nm(hw);
 	struct _ccu_nm _nm;
 	u64 parent_frac, rate_frac, best_frac;
-	int frac_precision = 0;
+	int frac_precision;
 
 	if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
 		rate *= nm->fixed_post_div;
@@ -235,6 +237,7 @@ static long ccu_nm_round_rate(struct clk_hw *hw, unsigned long rate,
 
 	parent_frac = frac_create(*parent_rate, 0);
 	rate_frac = frac_create(rate, 0);
+	frac_precision = ccu_sdm_helper_precision(&nm->common, &nm->sdm);
 	best_frac = ccu_nm_find_best_frac(&nm->common, parent_frac,
 					  rate_frac, &_nm, frac_precision);
 	rate = frac_round(best_frac);
@@ -252,7 +255,7 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 	u64 parent_frac, rate_frac;
 	struct _ccu_nm _nm;
 	unsigned long flags, n_int;
-	int frac_precision = 0;
+	int frac_precision;
 	u32 reg;
 
 	/* Adjust target rate according to post-dividers */
@@ -284,6 +287,7 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 
 	parent_frac = frac_create(parent_rate, 0);
 	rate_frac = frac_create(rate, 0);
+	frac_precision = ccu_sdm_helper_precision(&nm->common, &nm->sdm);
 
 	if (ccu_sdm_helper_has_rate(&nm->common, &nm->sdm, rate)) {
 		ccu_sdm_helper_enable(&nm->common, &nm->sdm, rate);
@@ -296,6 +300,8 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 		ccu_sdm_helper_disable(&nm->common, &nm->sdm);
 		ccu_nm_find_best_frac(&nm->common, parent_frac, rate_frac,
 				      &_nm, frac_precision);
+		ccu_sdm_helper_set(&nm->common, &nm->sdm, parent_rate,
+				   frac_frac(_nm.n_frac));
 		n_int = frac_floor(_nm.n_frac);
 	}
 
