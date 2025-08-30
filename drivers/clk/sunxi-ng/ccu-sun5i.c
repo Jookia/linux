@@ -38,24 +38,7 @@ static struct ccu_nkmp pll_core_clk = {
 	},
 };
 
-/*
- * The Audio PLL is supposed to have 4 outputs: 3 fixed factors from
- * the base (2x, 4x and 8x), and one variable divider (the one true
- * pll audio).
- *
- * With sigma-delta modulation for fractional-N on the audio PLL,
- * we have to use specific dividers. This means the variable divider
- * can no longer be used, as the audio codec requests the exact clock
- * rates we support through this mechanism. So we now hard code the
- * variable divider to 1. This means the clock rates will no longer
- * match the clock names.
- */
 #define SUN5I_PLL_AUDIO_REG	0x008
-
-static struct ccu_sdm_setting pll_audio_sdm_table[] = {
-	{ .rate = 22579200, .pattern = 0xc0010d84, .m = 8, .n = 7 },
-	{ .rate = 24576000, .pattern = 0xc000ac02, .m = 14, .n = 14 },
-};
 
 static struct ccu_nm pll_audio_base_clk = {
 	.enable		= BIT(31),
@@ -66,8 +49,7 @@ static struct ccu_nm pll_audio_base_clk = {
 	 * offset
 	 */
 	.m		= _SUNXI_CCU_DIV_OFFSET(0, 5, 0),
-	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table, 0,
-					 0x00c, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(0, 0x00c, BIT(31)),
 	.common		= {
 		.reg		= 0x008,
 		.features	= CCU_FEATURE_SIGMA_DELTA_MOD,

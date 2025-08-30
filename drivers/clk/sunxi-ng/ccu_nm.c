@@ -224,12 +224,6 @@ static long ccu_nm_round_rate(struct clk_hw *hw, unsigned long rate,
 		return rate;
 	}
 
-	if (ccu_sdm_helper_has_rate(&nm->common, &nm->sdm, rate)) {
-		if (nm->common.features & CCU_FEATURE_FIXED_POSTDIV)
-			rate /= nm->fixed_post_div;
-		return rate;
-	}
-
 	_nm.min_n = nm->n.min ?: 1;
 	_nm.max_n = nm->n.max ?: 1 << nm->n.width;
 	_nm.min_m = 1;
@@ -289,21 +283,11 @@ static int ccu_nm_set_rate(struct clk_hw *hw, unsigned long rate,
 	rate_frac = frac_create(rate, 0);
 	frac_precision = ccu_sdm_helper_precision(&nm->common, &nm->sdm);
 
-	if (ccu_sdm_helper_has_rate(&nm->common, &nm->sdm, rate)) {
-		ccu_sdm_helper_enable(&nm->common, &nm->sdm, rate);
-
-		/* Sigma delta modulation requires specific N and M factors */
-		ccu_sdm_helper_get_factors(&nm->common, &nm->sdm, rate,
-					   &_nm.m, &n_int);
-		_nm.n_frac = frac_create(n_int, 0);
-	} else {
-		ccu_sdm_helper_disable(&nm->common, &nm->sdm);
-		ccu_nm_find_best_frac(&nm->common, parent_frac, rate_frac,
-				      &_nm, frac_precision);
-		ccu_sdm_helper_set(&nm->common, &nm->sdm, parent_rate,
-				   frac_frac(_nm.n_frac));
-		n_int = frac_floor(_nm.n_frac);
-	}
+	ccu_nm_find_best_frac(&nm->common, parent_frac, rate_frac,
+			      &_nm, frac_precision);
+	ccu_sdm_helper_set(&nm->common, &nm->sdm, parent_rate,
+			   frac_frac(_nm.n_frac));
+	n_int = frac_floor(_nm.n_frac);
 
 	spin_lock_irqsave(nm->common.lock, flags);
 

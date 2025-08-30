@@ -61,19 +61,7 @@ static struct ccu_mult pll_c1cpux_clk = {
 	},
 };
 
-/*
- * The Audio PLL has d1, d2 dividers in addition to the usual N, M
- * factors. Since we only need 2 frequencies from this PLL: 22.5792 MHz
- * and 24.576 MHz, ignore them for now. Enforce the default for them,
- * which is d1 = 0, d2 = 1.
- */
 #define SUN8I_A83T_PLL_AUDIO_REG	0x008
-
-/* clock rates doubled for post divider */
-static struct ccu_sdm_setting pll_audio_sdm_table[] = {
-	{ .rate = 45158400, .pattern = 0xc00121ff, .m = 29, .n = 54 },
-	{ .rate = 49152000, .pattern = 0xc000e147, .m = 30, .n = 61 },
-};
 
 static struct ccu_nm pll_audio_clk = {
 	.enable		= BIT(31),
@@ -81,8 +69,7 @@ static struct ccu_nm pll_audio_clk = {
 	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 0, 12, 0),
 	.m		= _SUNXI_CCU_DIV(0, 6),
 	.fixed_post_div	= 2,
-	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table, BIT(24),
-					 0x284, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(BIT(24), 0x284, BIT(31)),
 	.common		= {
 		.reg		= SUN8I_A83T_PLL_AUDIO_REG,
 		.lock_reg	= CCU_SUN8I_A83T_LOCK_REG,

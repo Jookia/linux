@@ -161,16 +161,7 @@ static struct ccu_nkmp pll_ve_clk = {
 	},
 };
 
-/*
- * PLL_AUDIO0 has m0, m1 dividers in addition to the usual N, M factors.
- * Since we only need one frequency from this PLL (22.5792 x 4 == 90.3168 MHz),
- * ignore them for now. Enforce the default for them, which is m1 = 0, m0 = 0.
- * The M factor must be an even number to produce a 50% duty cycle output.
- */
 #define SUN20I_D1_PLL_AUDIO0_REG		0x078
-static struct ccu_sdm_setting pll_audio0_sdm_table[] = {
-	{ .rate = 90316800, .pattern = 0xc001288d, .m = 6, .n = 22 },
-};
 
 static struct ccu_nm pll_audio0_4x_clk = {
 	.enable		= BIT(27),
@@ -178,8 +169,7 @@ static struct ccu_nm pll_audio0_4x_clk = {
 	/* 7.5<=N/M0/M1<=125 and 12<=N, M0 and M1 are 1 */
 	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 125),
 	.m		= _SUNXI_CCU_DIV(16, 6),
-	.sdm		= _SUNXI_CCU_SDM(pll_audio0_sdm_table, BIT(24),
-					 0x178, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(BIT(24), 0x178, BIT(31)),
 	.common		= {
 		.reg		= 0x078,
 		.features	= CCU_FEATURE_SIGMA_DELTA_MOD,

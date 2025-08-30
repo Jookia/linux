@@ -195,27 +195,14 @@ static struct ccu_nkmp pll_hsic_clk = {
 	},
 };
 
-/*
- * The Audio PLL is supposed to have 3 outputs: 2 fixed factors from
- * the base (2x and 4x), and one variable divider (the one true pll audio).
- *
- * We don't have any need for the variable divider for now, so we just
- * hardcode it to match with the clock names.
- */
 #define SUN50I_H6_PLL_AUDIO_REG		0x078
-
-static struct ccu_sdm_setting pll_audio_sdm_table[] = {
-	{ .rate = 541900800, .pattern = 0xc001288d, .m = 1, .n = 22 },
-	{ .rate = 589824000, .pattern = 0xc00126e9, .m = 1, .n = 24 },
-};
 
 static struct ccu_nm pll_audio_base_clk = {
 	.enable		= BIT(31),
 	.lock		= BIT(28),
 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
 	.m		= _SUNXI_CCU_DIV(1, 1), /* input divider */
-	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table,
-					 BIT(24), 0x178, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(BIT(24), 0x178, BIT(31)),
 	.common		= {
 		.features	= CCU_FEATURE_SIGMA_DELTA_MOD,
 		.reg		= 0x078,

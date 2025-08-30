@@ -187,23 +187,14 @@ static struct ccu_nkmp pll_ve_clk = {
 	},
 };
 
-/*
- * The COM PLL has m0 dividers in addition to the usual N, M
- * factors. Since we only need 1 frequencies from this PLL: 45.1584 MHz,
- * ignore it for now.
- */
 #define SUN50I_A100_PLL_COM_REG		0x060
-static struct ccu_sdm_setting pll_com_sdm_table[] = {
-	{ .rate = 451584000, .pattern = 0xc0014396, .m = 2, .n = 37 },
-};
 
 static struct ccu_nm pll_com_clk = {
 	.enable		= SUN50I_A100_PLL_OUTPUT_ENABLE,
 	.lock		= SUN50I_A100_PLL_LOCK,
 	.n		= _SUNXI_CCU_MULT_MIN(8, 8, 12),
 	.m		= _SUNXI_CCU_DIV(0, 1),
-	.sdm		= _SUNXI_CCU_SDM(pll_com_sdm_table, BIT(24),
-					 0x160, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(BIT(24), 0x160, BIT(31)),
 	.common		= {
 		.reg		= 0x060,
 		.features	= CCU_FEATURE_SIGMA_DELTA_MOD,
@@ -229,19 +220,7 @@ static struct ccu_nm pll_video3_clk = {
 	},
 };
 
-/*
- * The Audio PLL has m0, m1 dividers in addition to the usual N, M
- * factors. Since we only need 4 frequencies from this PLL: 22.5792 MHz,
- * 24.576 MHz, 90.3168MHz and 98.304MHz ignore them for now.
- * Enforce the default for them, which is m0 = 1, m1 = 0.
- */
 #define SUN50I_A100_PLL_AUDIO_REG		0x078
-static struct ccu_sdm_setting pll_audio_sdm_table[] = {
-	{ .rate = 45158400, .pattern = 0xc001bcd3, .m = 18, .n = 33 },
-	{ .rate = 49152000, .pattern = 0xc001eb85, .m = 20, .n = 40 },
-	{ .rate = 180633600, .pattern = 0xc001288d, .m = 3, .n = 22 },
-	{ .rate = 196608000, .pattern = 0xc001eb85, .m = 5, .n = 40 },
-};
 
 static struct ccu_nm pll_audio_clk = {
 	.enable		= SUN50I_A100_PLL_OUTPUT_ENABLE,
@@ -250,8 +229,7 @@ static struct ccu_nm pll_audio_clk = {
 	.n		= _SUNXI_CCU_MULT_OFFSET_MIN_MAX(8, 8, 1, 12, 250),
 	.m		= _SUNXI_CCU_DIV(16, 6),
 	.fixed_post_div	= 2,
-	.sdm		= _SUNXI_CCU_SDM(pll_audio_sdm_table, BIT(24),
-					 0x178, BIT(31)),
+	.sdm		= _SUNXI_CCU_SDM(BIT(24), 0x178, BIT(31)),
 	.common		= {
 		.reg		= 0x078,
 		.features	= CCU_FEATURE_FIXED_POSTDIV |
