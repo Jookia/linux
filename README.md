@@ -8,6 +8,11 @@ Audio features:
 - CS5368 sound codec support
 - sound-card-test continous rate support
 
+Allwinner features:
+
+- Fractional SDM clock rates (see [clocking docs](./jookia/docs/clocking/))
+- Arbitrary I2S rates
+
 Allwinner D1/T113 features:
 
 - Thermal sensor enabled
@@ -45,6 +50,11 @@ Audio features:
 
 - CS5368 sound codec: d607727261d85442 on 2025-03-22
 - sound-card-test continous rate support: Not tested recently
+
+Allwinner features:
+
+- Fractional SDM clock rates: 376d9b568a4fdcdb on 2025-08-31
+- Arbitrary I2S rates: 376d9b568a4fdcdb on 2025-08-31
 
 Allwinner D1/T113 features:
 
