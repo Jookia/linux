@@ -237,38 +237,38 @@ The 48kHz example from before gives this clock tree:
 
 Assuming a clock tree like this:
 
-- pll_audio0
-- pll_audio1
-- i2s_clk (parents pll_audio0 or pll_audio1)
+	- pll_audio0
+	- pll_audio1
+	- i2s_clk (parents pll_audio0 or pll_audio1)
 
 Searching for the i2s_clk using two audio_plls could have a call tree like this:
 
-- round_rate(i2s_clk, 12.288 MHz)
-	- round_rate(pll_audio0, 12.288 MHz) = 12.285714 MHz
-		- Divides by 1 back down to 12.285714 MHz
-		- New closest match: 12.285714 MHz
-	- round_rate(pll_audio1, 12.288 MHz) = 0 MHz
-		- No match, PLL can't go that low
-	- round_rate(pll_audio0, 24.576 MHz) = 24.571428 MHz
-		- Divides by 2 back down to 12.285714 MHz
-		- Not a new closest match
-	- round_rate(pll_audio1, 24.576 MHz) = 24 MHz
-		- Divides by 2 back down to 12 MHz
-		- Not a new closest match
-	- (many other attempts omitted)
-	- round_rate(pll_audio0, 614.4 MHz) = 614.4 MHz
-		- Divides by 50 back down to 12.288 MHz
-		- Perfect match found, return it
+	- round_rate(i2s_clk, 12.288 MHz)
+		- round_rate(pll_audio0, 12.288 MHz) = 12.285714 MHz
+			- Divides by 1 back down to 12.285714 MHz
+			- New closest match: 12.285714 MHz
+		- round_rate(pll_audio1, 12.288 MHz) = 0 MHz
+			- No match, PLL can't go that low
+		- round_rate(pll_audio0, 24.576 MHz) = 24.571428 MHz
+			- Divides by 2 back down to 12.285714 MHz
+			- Not a new closest match
+		- round_rate(pll_audio1, 24.576 MHz) = 24 MHz
+			- Divides by 2 back down to 12 MHz
+			- Not a new closest match
+		- (many other attempts omitted)
+		- round_rate(pll_audio0, 614.4 MHz) = 614.4 MHz
+			- Divides by 50 back down to 12.288 MHz
+			- Perfect match found, return it
 
 In reality we have a clock tree that looks more like this:
 
-- pll_audio0_4x
-	- pll_audio0_2x
-	- pll_audio0
-- pll_audio1
-	- pll_audio1_div2
-	- pll_audio1_div5
-- i2s_clk (parents pll_audio0_4x, pll_audio0, pll_audio1_div2, pll_audio1_div5)
+	- pll_audio0_4x
+		- pll_audio0_2x
+		- pll_audio0
+	- pll_audio1
+		- pll_audio1_div2
+		- pll_audio1_div5
+	- i2s_clk (parents pll_audio0_4x, pll_audio0, pll_audio1_div2, pll_audio1_div5)
 
 The i2s_clk calc rate would search through parents rates for pll_audio0 which
 would search through parent rates for pll_audio_4x. The same happens with
