@@ -53,8 +53,8 @@ Audio features:
 
 Allwinner features:
 
-- Fractional SDM clock rates: 376d9b568a4fdcdb on 2025-08-31
-- Arbitrary I2S rates: 376d9b568a4fdcdb on 2025-08-31
+- Fractional SDM clock rates: ff6d78f6852e182f on 2025-08-31
+- Arbitrary I2S rates: ff6d78f6852e182f on 2025-08-31
 
 Allwinner D1/T113 features:
 
