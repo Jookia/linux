@@ -151,9 +151,8 @@
 #define SUN50I_R329_I2S_RX_CHAN_MAP2_REG 0x70
 #define SUN50I_R329_I2S_RX_CHAN_MAP3_REG 0x74
 
-#define SYSCLK_TYPE_FIXED 0 /* Used for troubleshooting */
-#define SYSCLK_TYPE_SUN4I 1
-#define SYSCLK_TYPE_SUN8I 2
+#define SYSCLK_TYPE_SUN4I 0
+#define SYSCLK_TYPE_SUN8I 1
 
 struct sun4i_i2s;
 
@@ -169,12 +168,7 @@ struct sun4i_i2s;
  * @num_din_pins: input pins
  * @num_dout_pins: output pins (currently set but unused)
  * @channels_max: maximum channels
- * @bclk_dividers: bit clock dividers array
- * @num_bclk_dividers: number of bit clock dividers
- * @mclk_dividers: mclk dividers array
- * @num_mclk_dividers: number of mclk dividers
  * @sysclk_type: type of sysclk
- * @get_bclk_parent_rate: callback to get bclk parent rate
  * @get_sr: callback to get sample resolution
  * @get_wss: callback to get word select size
  * @set_chan_cfg: callback to set channel configuration
@@ -195,14 +189,8 @@ struct sun4i_i2s_quirks {
 	unsigned int			num_dout_pins;
 	unsigned int			channels_max;
 
-	const struct sun4i_i2s_clk_div	*bclk_dividers;
-	unsigned int			num_bclk_dividers;
-	const struct sun4i_i2s_clk_div	*mclk_dividers;
-	unsigned int			num_mclk_dividers;
-
 	unsigned int			sysclk_type;
 
-	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *i2s);
 	int	(*get_sr)(unsigned int width);
 	int	(*get_wss)(unsigned int width);
 
@@ -239,11 +227,6 @@ struct sun4i_i2s {
 	struct regmap_field	*field_fmt_sr;
 
 	const struct sun4i_i2s_quirks	*variant;
-};
-
-struct sun4i_i2s_clk_div {
-	u8	div;
-	u8	val;
 };
 
 static int sun4i_i2s_read_channel_dins(struct device *dev, struct sun4i_i2s *i2s)
@@ -311,186 +294,6 @@ static int sun4i_i2s_read_channel_slots(struct device *dev, struct sun4i_i2s *i2
 
 	/* Add 1 to be inclusive of slot 0 */
 	i2s->slots = slot_max + 1;
-
-	return 0;
-}
-
-static const struct sun4i_i2s_clk_div sun4i_i2s_bclk_div[] = {
-	{ .div = 2, .val = 0 },
-	{ .div = 4, .val = 1 },
-	{ .div = 6, .val = 2 },
-	{ .div = 8, .val = 3 },
-	{ .div = 12, .val = 4 },
-	{ .div = 16, .val = 5 },
-	/* TODO - extend divide ratio supported by newer SoCs */
-};
-
-static const struct sun4i_i2s_clk_div sun4i_i2s_mclk_div[] = {
-	{ .div = 1, .val = 0 },
-	{ .div = 2, .val = 1 },
-	{ .div = 4, .val = 2 },
-	{ .div = 6, .val = 3 },
-	{ .div = 8, .val = 4 },
-	{ .div = 12, .val = 5 },
-	{ .div = 16, .val = 6 },
-	{ .div = 24, .val = 7 },
-	/* TODO - extend divide ratio supported by newer SoCs */
-};
-
-static const struct sun4i_i2s_clk_div sun8i_i2s_clk_div[] = {
-	{ .div = 1, .val = 1 },
-	{ .div = 2, .val = 2 },
-	{ .div = 4, .val = 3 },
-	{ .div = 6, .val = 4 },
-	{ .div = 8, .val = 5 },
-	{ .div = 12, .val = 6 },
-	{ .div = 16, .val = 7 },
-	{ .div = 24, .val = 8 },
-	{ .div = 32, .val = 9 },
-	{ .div = 48, .val = 10 },
-	{ .div = 64, .val = 11 },
-	{ .div = 96, .val = 12 },
-	{ .div = 128, .val = 13 },
-	{ .div = 176, .val = 14 },
-	{ .div = 192, .val = 15 },
-};
-
-static unsigned long sun4i_i2s_get_bclk_parent_rate(const struct sun4i_i2s *i2s)
-{
-	return i2s->mclk_freq;
-}
-
-static unsigned long sun8i_i2s_get_bclk_parent_rate(const struct sun4i_i2s *i2s)
-{
-	return clk_get_rate(i2s->mod_clk);
-}
-
-static int sun4i_i2s_get_bclk_div(struct sun4i_i2s *i2s,
-				  unsigned long parent_rate,
-				  unsigned int sampling_rate,
-				  unsigned int channels,
-				  unsigned int word_size)
-{
-	const struct sun4i_i2s_clk_div *dividers = i2s->variant->bclk_dividers;
-	int div = parent_rate / sampling_rate / word_size / channels;
-	int i;
-
-	for (i = 0; i < i2s->variant->num_bclk_dividers; i++) {
-		const struct sun4i_i2s_clk_div *bdiv = &dividers[i];
-
-		if (bdiv->div == div)
-			return bdiv->val;
-	}
-
-	return -EINVAL;
-}
-
-static int sun4i_i2s_get_mclk_div(struct sun4i_i2s *i2s,
-				  unsigned long parent_rate,
-				  unsigned long mclk_rate)
-{
-	const struct sun4i_i2s_clk_div *dividers = i2s->variant->mclk_dividers;
-	int div = parent_rate / mclk_rate;
-	int i;
-
-	for (i = 0; i < i2s->variant->num_mclk_dividers; i++) {
-		const struct sun4i_i2s_clk_div *mdiv = &dividers[i];
-
-		if (mdiv->div == div)
-			return mdiv->val;
-	}
-
-	return -EINVAL;
-}
-
-static int sun4i_i2s_oversample_rates[] = { 128, 192, 256, 384, 512, 768 };
-static bool sun4i_i2s_oversample_is_valid(unsigned int oversample)
-{
-	int i;
-
-	for (i = 0; i < ARRAY_SIZE(sun4i_i2s_oversample_rates); i++)
-		if (sun4i_i2s_oversample_rates[i] == oversample)
-			return true;
-
-	return false;
-}
-
-static int sun4i_i2s_set_clk_rate(struct snd_soc_dai *dai,
-				  unsigned int rate,
-				  unsigned int slots,
-				  unsigned int slot_width)
-{
-	struct sun4i_i2s *i2s = snd_soc_dai_get_drvdata(dai);
-	unsigned int oversample_rate, clk_rate, bclk_parent_rate;
-	int bclk_div, mclk_div;
-	int ret;
-
-	if (i2s->mclk_freq == 0) {
-		dev_err(dai->dev, "MCLK not set!\n");
-		return -EINVAL;
-	}
-
-	/* Other sysclk types are handled in sun4i_i2s_set_sysclk */
-	if (i2s->variant->sysclk_type != SYSCLK_TYPE_FIXED)
-		return 0;
-
-	switch (rate) {
-	case 176400:
-	case 88200:
-	case 44100:
-	case 22050:
-	case 11025:
-		clk_rate = 22579200;
-		break;
-
-	case 192000:
-	case 128000:
-	case 96000:
-	case 64000:
-	case 48000:
-	case 32000:
-	case 24000:
-	case 16000:
-	case 12000:
-	case 8000:
-		clk_rate = 24576000;
-		break;
-
-	default:
-		dev_err(dai->dev, "Unsupported sample rate: %u\n", rate);
-		return -EINVAL;
-	}
-
-	ret = clk_set_rate(i2s->mod_clk, clk_rate);
-	if (ret)
-		return ret;
-
-	oversample_rate = i2s->mclk_freq / rate;
-	if (!sun4i_i2s_oversample_is_valid(oversample_rate)) {
-		dev_err(dai->dev, "Unsupported oversample rate: %d\n",
-			oversample_rate);
-		return -EINVAL;
-	}
-
-	bclk_parent_rate = i2s->variant->get_bclk_parent_rate(i2s);
-	bclk_div = sun4i_i2s_get_bclk_div(i2s, bclk_parent_rate,
-					  rate, slots, slot_width);
-	if (bclk_div < 0) {
-		dev_err(dai->dev, "Unsupported BCLK divider: %d\n", bclk_div);
-		return -EINVAL;
-	}
-
-	mclk_div = sun4i_i2s_get_mclk_div(i2s, clk_rate, i2s->mclk_freq);
-	if (mclk_div < 0) {
-		dev_err(dai->dev, "Unsupported MCLK divider: %d\n", mclk_div);
-		return -EINVAL;
-	}
-
-	regmap_write(i2s->regmap, SUN4I_I2S_CLK_DIV_REG,
-		     SUN4I_I2S_CLK_DIV_BCLK(bclk_div) |
-		     SUN4I_I2S_CLK_DIV_MCLK(mclk_div));
-
-	regmap_field_write(i2s->field_clkdiv_mclk_en, 1);
 
 	return 0;
 }
@@ -760,8 +563,7 @@ static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
 	regmap_field_write(i2s->field_fmt_wss, wss);
 	regmap_field_write(i2s->field_fmt_sr, sr);
 
-	return sun4i_i2s_set_clk_rate(dai, params_rate(params),
-				      slots, slot_width);
+	return 0;
 }
 
 static int sun4i_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
@@ -1186,11 +988,6 @@ static int sun4i_i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id,
 		return -ENOTSUPP;
 
 	switch (sysclk_type) {
-	case SYSCLK_TYPE_FIXED:
-		/* Handled by sun4i_i2s_set_clk_rate */
-		i2s->mclk_freq = freq;
-		return 0;
-
 	case SYSCLK_TYPE_SUN4I:
 		/* BCLK requires a division of 2 */
 		clk_mul = 2;
@@ -1262,17 +1059,6 @@ static int sun4i_i2s_dai_probe(struct snd_soc_dai *dai)
 	return 0;
 }
 
-static const unsigned int sun4i_constant_rates[] = {
-	8000, 11025, 16000, 22050, 24000, 32000, 44100,
-	48000, 64000, 88200, 96000, 176400, 128000, 192000,
-};
-
-static const struct snd_pcm_hw_constraint_list sun4i_constraints_rates = {
-	.count = ARRAY_SIZE(sun4i_constant_rates),
-	.list = sun4i_constant_rates,
-	.mask = 0,
-};
-
 static int sun4i_i2s_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_dai *dai)
 {
 	struct sun4i_i2s *i2s = snd_soc_dai_get_drvdata(dai);
@@ -1284,16 +1070,6 @@ static int sun4i_i2s_dai_startup(struct snd_pcm_substream *sub, struct snd_soc_d
 	if (ret) {
 		dev_err(dai->dev, "Failed to constrain formats: %d\n", ret);
 		return ret;
-	}
-
-	if (i2s->variant->sysclk_type == SYSCLK_TYPE_FIXED) {
-		ret = snd_pcm_hw_constraint_list(runtime, 0,
-						 SNDRV_PCM_HW_PARAM_RATE,
-						 &sun4i_constraints_rates);
-		if (ret) {
-			dev_err(dai->dev, "Failed to constrain rates: %d\n", ret);
-			return ret;
-		}
 	}
 
 	ret = snd_pcm_hw_constraint_minmax(runtime, SNDRV_PCM_HW_PARAM_CHANNELS,
@@ -1572,12 +1348,7 @@ static const struct sun4i_i2s_quirks sun4i_a10_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 2, 3),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 5),
 	.channels_max		= 8,
-	.bclk_dividers		= sun4i_i2s_bclk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun4i_i2s_bclk_div),
-	.mclk_dividers		= sun4i_i2s_mclk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun4i_i2s_mclk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN4I,
-	.get_bclk_parent_rate	= sun4i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun4i_i2s_get_sr,
 	.get_wss		= sun4i_i2s_get_wss,
 	.set_chan_cfg		= sun4i_i2s_set_chan_cfg,
@@ -1593,12 +1364,7 @@ static const struct sun4i_i2s_quirks sun6i_a31_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 2, 3),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 5),
 	.channels_max		= 8,
-	.bclk_dividers		= sun4i_i2s_bclk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun4i_i2s_bclk_div),
-	.mclk_dividers		= sun4i_i2s_mclk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun4i_i2s_mclk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN4I,
-	.get_bclk_parent_rate	= sun4i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun4i_i2s_get_sr,
 	.get_wss		= sun4i_i2s_get_wss,
 	.set_chan_cfg		= sun4i_i2s_set_chan_cfg,
@@ -1619,12 +1385,7 @@ static const struct sun4i_i2s_quirks sun8i_a83t_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 2, 3),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 5),
 	.channels_max		= 8,
-	.bclk_dividers		= sun4i_i2s_bclk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun4i_i2s_bclk_div),
-	.mclk_dividers		= sun4i_i2s_mclk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun4i_i2s_mclk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN4I,
-	.get_bclk_parent_rate	= sun4i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun4i_i2s_get_sr,
 	.get_wss		= sun4i_i2s_get_wss,
 	.set_chan_cfg		= sun4i_i2s_set_chan_cfg,
@@ -1640,12 +1401,7 @@ static const struct sun4i_i2s_quirks sun8i_h3_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 0, 2),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 6),
 	.channels_max		= 8,
-	.bclk_dividers		= sun8i_i2s_clk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
-	.mclk_dividers		= sun8i_i2s_clk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN8I,
-	.get_bclk_parent_rate	= sun8i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun8i_i2s_get_sr_wss,
 	.get_wss		= sun8i_i2s_get_sr_wss,
 	.set_chan_cfg		= sun8i_i2s_set_chan_cfg,
@@ -1661,12 +1417,7 @@ static const struct sun4i_i2s_quirks sun50i_a64_codec_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 2, 3),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 5),
 	.channels_max		= 8,
-	.bclk_dividers		= sun4i_i2s_bclk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun4i_i2s_bclk_div),
-	.mclk_dividers		= sun4i_i2s_mclk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun4i_i2s_mclk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN4I,
-	.get_bclk_parent_rate	= sun4i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun4i_i2s_get_sr,
 	.get_wss		= sun4i_i2s_get_wss,
 	.set_chan_cfg		= sun4i_i2s_set_chan_cfg,
@@ -1682,12 +1433,7 @@ static const struct sun4i_i2s_quirks sun50i_h6_i2s_quirks = {
 	.field_fmt_wss		= REG_FIELD(SUN4I_I2S_FMT0_REG, 0, 2),
 	.field_fmt_sr		= REG_FIELD(SUN4I_I2S_FMT0_REG, 4, 6),
 	.channels_max		= 8,
-	.bclk_dividers		= sun8i_i2s_clk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
-	.mclk_dividers		= sun8i_i2s_clk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN8I,
-	.get_bclk_parent_rate	= sun8i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun8i_i2s_get_sr_wss,
 	.get_wss		= sun8i_i2s_get_sr_wss,
 	.set_chan_cfg		= sun50i_h6_i2s_set_chan_cfg,
@@ -1705,12 +1451,7 @@ static const struct sun4i_i2s_quirks sun50i_r329_i2s_quirks = {
 	.num_din_pins		= 4,
 	.num_dout_pins		= 4,
 	.channels_max		= 16,
-	.bclk_dividers		= sun8i_i2s_clk_div,
-	.num_bclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
-	.mclk_dividers		= sun8i_i2s_clk_div,
-	.num_mclk_dividers	= ARRAY_SIZE(sun8i_i2s_clk_div),
 	.sysclk_type            = SYSCLK_TYPE_SUN8I,
-	.get_bclk_parent_rate	= sun8i_i2s_get_bclk_parent_rate,
 	.get_sr			= sun8i_i2s_get_sr_wss,
 	.get_wss		= sun8i_i2s_get_sr_wss,
 	.set_chan_cfg		= sun50i_h6_i2s_set_chan_cfg,
