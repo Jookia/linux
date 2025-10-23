@@ -433,7 +433,6 @@ static const struct nv3052c_reg fs035vg158_panel_regs[] = {
 	{ 0x36, 0x0a }, // bgr = 1, ss = 1, gs = 0
 };
 
-
 static const struct nv3052c_reg wl_355608_a8_panel_regs[] = {
 	// EXTC Command set enable, select page 1
 	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x01 },
