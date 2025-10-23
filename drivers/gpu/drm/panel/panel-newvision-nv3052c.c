@@ -291,7 +291,7 @@ static const struct nv3052c_reg fs035vg158_panel_regs[] = {
 	{ 0xb8, 0x26 },
 	{ 0xf0, 0x00 },
 	{ 0xf6, 0xc0 },
-	// EXTC Command set enable, select page 0
+	// EXTC Command set enable, select page 2
 	{ 0xff, 0x30 }, { 0xff, 0x52 }, { 0xff, 0x02 },
 	// Set gray scale voltage to adjust gamma
 	{ 0xb0, 0x0b }, // PGAMVR0
