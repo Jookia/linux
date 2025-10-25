@@ -20,6 +20,11 @@
 #include <drm/drm_modes.h>
 #include <drm/drm_panel.h>
 
+#define NV3052C_REG_INTERFACE_PIXEL_FORMAT 0x3A
+#define NV3052C_PIXEL_FORMAT_16 0x50
+#define NV3052C_PIXEL_FORMAT_18 0x60
+#define NV3052C_PIXEL_FORMAT_24 0x70
+
 struct nv3052c_reg {
 	u8 cmd;
 	u8 val;
@@ -32,6 +37,7 @@ struct nv3052c_panel_info {
 	u32 bus_format, bus_flags;
 	const struct nv3052c_reg *panel_regs;
 	unsigned int panel_regs_len;
+	bool selectable_pixel_format;
 };
 
 struct nv3052c {
@@ -41,6 +47,7 @@ struct nv3052c {
 	const struct nv3052c_panel_info *panel_info;
 	struct regulator *supply;
 	struct gpio_desc *reset_gpio;
+	u8 pixel_format;
 };
 
 static const struct nv3052c_reg ltk035c5444t_panel_regs[] = {
@@ -664,6 +671,13 @@ static int nv3052c_prepare(struct drm_panel *panel)
 		}
 	}
 
+	err = mipi_dbi_command(dbi, NV3052C_REG_INTERFACE_PIXEL_FORMAT,
+			       priv->pixel_format);
+	if (err) {
+		dev_err(priv->dev, "Unable to set pixel format: %d\n", err);
+		goto err_disable_regulator;
+	}
+
 	err = mipi_dbi_command(dbi, MIPI_DCS_EXIT_SLEEP_MODE);
 	if (err) {
 		dev_err(priv->dev, "Unable to exit sleep mode: %d\n", err);
@@ -770,6 +784,35 @@ static const struct drm_panel_funcs nv3052c_funcs = {
 	.get_modes	= nv3052c_get_modes,
 };
 
+static int nv3052c_get_pixel_format(struct device *dev, struct nv3052c *priv)
+{
+	bool selectable_format = priv->panel_info->selectable_pixel_format;
+	const char *format_name;
+	int ret;
+
+	priv->pixel_format = NV3052C_PIXEL_FORMAT_24;
+
+	if (!selectable_format)
+		return 0;
+
+	ret = device_property_read_string(dev, "pixel-format", &format_name);
+	if (ret)
+		return 0;
+
+	if (!strcmp(format_name, "r5g6b5")) {
+		priv->pixel_format = NV3052C_PIXEL_FORMAT_16;
+	} else if (!strcmp(format_name, "r6g6b6")) {
+		priv->pixel_format = NV3052C_PIXEL_FORMAT_18;
+	} else if (!strcmp(format_name, "r8g8b8")) {
+		priv->pixel_format = NV3052C_PIXEL_FORMAT_24;
+	} else {
+		dev_err(dev, "Unknown pixel format: %s\n", format_name);
+		return -EINVAL;
+	}
+
+	return 0;
+}
+
 static int nv3052c_probe(struct spi_device *spi)
 {
 	struct device *dev = &spi->dev;
@@ -793,6 +836,10 @@ static int nv3052c_probe(struct spi_device *spi)
 	priv->reset_gpio = devm_gpiod_get(dev, "reset", GPIOD_OUT_HIGH);
 	if (IS_ERR(priv->reset_gpio))
 		return dev_err_probe(dev, PTR_ERR(priv->reset_gpio), "Failed to get reset GPIO\n");
+
+	err = nv3052c_get_pixel_format(dev, priv);
+	if (err)
+		return dev_err_probe(dev, err, "Unable to get pixel format\n");
 
 	err = mipi_dbi_spi_init(spi, &priv->dbi, NULL);
 	if (err)
@@ -889,6 +936,7 @@ static const struct nv3052c_panel_info ltk035c5444t_panel_info = {
 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
 	.panel_regs = ltk035c5444t_panel_regs,
 	.panel_regs_len = ARRAY_SIZE(ltk035c5444t_panel_regs),
+	.selectable_pixel_format = false,
 };
 
 static const struct nv3052c_panel_info fs035vg158_panel_info = {
@@ -900,6 +948,7 @@ static const struct nv3052c_panel_info fs035vg158_panel_info = {
 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
 	.panel_regs = fs035vg158_panel_regs,
 	.panel_regs_len = ARRAY_SIZE(fs035vg158_panel_regs),
+	.selectable_pixel_format = true,
 };
 
 static const struct nv3052c_panel_info wl_355608_a8_panel_info = {
@@ -911,6 +960,7 @@ static const struct nv3052c_panel_info wl_355608_a8_panel_info = {
 	.bus_flags = DRM_BUS_FLAG_DE_HIGH | DRM_BUS_FLAG_PIXDATA_DRIVE_NEGEDGE,
 	.panel_regs = wl_355608_a8_panel_regs,
 	.panel_regs_len = ARRAY_SIZE(wl_355608_a8_panel_regs),
+	.selectable_pixel_format = false,
 };
 
 static const struct spi_device_id nv3052c_ids[] = {
