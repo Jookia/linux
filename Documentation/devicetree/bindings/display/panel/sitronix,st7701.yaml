@@ -29,6 +29,7 @@ properties:
           - densitron,dmt028vghmcmi-1a
           - elida,kd50t048a
           - techstar,ts8550b
+          - fascontek,fs028vg047
       - const: sitronix,st7701
 
   reg:
@@ -86,6 +87,7 @@ allOf:
                 - densitron,dmt028vghmcmi-1a
                 - elida,kd50t048a
                 - techstar,ts8550b
+                - fascontek,fs028vg047
     then:
       required:
         - dc-gpios
