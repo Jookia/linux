@@ -55,6 +55,20 @@ properties:
 
   backlight: true
 
+  pixel-format:
+    description: >
+      RGB interface pixel format:
+      * `r5g6b5` - 16-bit pixels, d[20:16]=r, d[13:5]=g, d[4:0]=b
+      * `r6g6b6` - 18-bit pixels, d[21:16]=r, d[13:8]=g, d[5:0]=b
+      * `r8g8b8` - 24-bit pixels, d[23:16]=r, d[15:8]=g, d[7:0]=b
+      * `r6g6b6_packed` - 18-bit pixels, d[17:12]=r, d[11:6]=g, d[5:0]=b
+    enum:
+      - r5g6b5
+      - r6g6b6
+      - r8g8b8
+      - r6g6b6_packed
+    default: r8g8b8
+
 required:
   - compatible
   - reg
@@ -72,6 +86,7 @@ allOf:
             # SPI connected panels
             enum:
               - anbernic,rg28xx-panel
+              - fascontek,fs028vg047
     then:
       $ref: /schemas/spi/spi-peripheral-props.yaml#
 
@@ -94,6 +109,17 @@ allOf:
     else:
       properties:
         dc-gpios: false
+
+  - if:
+      properties:
+        compatible:
+          not:
+            contains:
+              enum:
+                - fascontek,fs028vg047
+    then:
+      properties:
+        pixel-format: false
 
 unevaluatedProperties: false
 
@@ -128,13 +154,14 @@ examples:
         #size-cells = <0>;
 
         panel@0 {
-            compatible = "anbernic,rg28xx-panel", "sitronix,st7701";
+            compatible = "fascontek,fs028vg047", "sitronix,st7701";
             reg = <0>;
             spi-max-frequency = <3125000>;
             VCC-supply = <&reg_lcd>;
             IOVCC-supply = <&reg_lcd>;
             reset-gpios = <&pio 8 14 GPIO_ACTIVE_HIGH>; /* LCD-RST: PI14 */
             backlight = <&backlight>;
+            pixel-format = "r8g8b8";
 
             port {
                 panel_in_rgb: endpoint {
