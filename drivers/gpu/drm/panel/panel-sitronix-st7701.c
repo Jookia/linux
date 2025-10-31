@@ -399,15 +399,7 @@ static void dmt028vghmcmi_1a_gip_sequence(struct st7701 *st7701)
 	ST7701_WRITE(st7701, 0xE8, 0x00, 0x0C);
 	msleep(10);
 	ST7701_WRITE(st7701, 0xE8, 0x00, 0x00);
-
 	st7701_switch_cmd_bkx(st7701, false, 0);
-	ST7701_WRITE(st7701, 0x11);
-	msleep(120);
-	ST7701_WRITE(st7701, 0xE8, 0x00, 0x00);
-
-	st7701_switch_cmd_bkx(st7701, false, 0);
-
-	ST7701_WRITE(st7701, 0x3A, 0x70);
 }
 
 static void kd50t048a_gip_sequence(struct st7701 *st7701)
@@ -466,9 +458,6 @@ static void rg_arc_gip_sequence(struct st7701 *st7701)
 	ST7701_WRITE(st7701, 0xEF, 0x08, 0x08, 0x08, 0x45, 0x3F, 0x54);
 	st7701_switch_cmd_bkx(st7701, false, 0);
 	ST7701_WRITE(st7701, MIPI_DCS_SET_ADDRESS_MODE, 0x17);
-	ST7701_WRITE(st7701, MIPI_DCS_SET_PIXEL_FORMAT, 0x77);
-	ST7701_WRITE(st7701, MIPI_DCS_EXIT_SLEEP_MODE, 0x00);
-	msleep(120);
 }
 
 static void rg28xx_gip_sequence(struct st7701 *st7701)
@@ -563,15 +552,7 @@ static void fs028vg047_gip_sequence(struct st7701 *st7701)
 	ST7701_WRITE(st7701, 0xE8, 0x00, 0x0C);
 	msleep(10);
 	ST7701_WRITE(st7701, 0xE8, 0x00, 0x00);
-
-	st7701_switch_cmd_bkx(st7701, false, 0);
-	ST7701_WRITE(st7701, MIPI_DCS_EXIT_SLEEP_MODE);
-	msleep(120);
-	ST7701_WRITE(st7701, 0xE8, 0x00, 0x00);
-
-	st7701_switch_cmd_bkx(st7701, false, 0);
-
-	ST7701_WRITE(st7701, MIPI_DCS_SET_PIXEL_FORMAT, 0x70);
+	st7701_switch_cmd_bkx(st7701, true, 0);
 }
 
 static int st7701_prepare(struct drm_panel *panel)
