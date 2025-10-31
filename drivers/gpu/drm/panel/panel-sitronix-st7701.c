@@ -31,6 +31,7 @@
 #define ST7701_CMD2_BK0_LNESET			0xC0 /* Display Line setting */
 #define ST7701_CMD2_BK0_PORCTRL			0xC1 /* Porch control */
 #define ST7701_CMD2_BK0_INVSEL			0xC2 /* Inversion selection, Frame Rate Control */
+#define ST7701_CMD2_BK0_COLCTRL			0xCD /* Color control */
 
 /* Command2, BK1 commands */
 #define ST7701_CMD2_BK1_VRHS			0xB0 /* Vop amplitude setting */
@@ -70,6 +71,7 @@
 #define ST7701_CMD2_BK0_INVSEL_ONES_MASK	GENMASK(5, 4)
 #define ST7701_CMD2_BK0_INVSEL_NLINV_MASK	GENMASK(2, 0)
 #define ST7701_CMD2_BK0_INVSEL_RTNI_MASK	GENMASK(4, 0)
+#define ST7701_CMD2_BK0_COLCTRL_MDT		BIT(3)
 
 /* Command2, BK1 bytes */
 #define ST7701_CMD2_BK1_VRHA_MASK		GENMASK(7, 0)
@@ -107,6 +109,7 @@ struct st7701_panel_desc {
 	unsigned int lanes;
 	enum mipi_dsi_pixel_format format;
 	unsigned int panel_sleep_delay;
+	bool selectable_pixel_format;
 
 	/* TFT matrix driver configuration, panel specific. */
 	const u8	pv_gamma[16];	/* Positive voltage gamma control */
@@ -139,6 +142,8 @@ struct st7701 {
 	struct gpio_desc *reset;
 	unsigned int sleep_delay;
 	enum drm_panel_orientation orientation;
+	u8 pixel_format;
+	bool pixel_packed;
 
 	int (*write_command)(struct st7701 *st7701, u8 cmd, const u8 *seq,
 			     size_t len);
@@ -220,6 +225,10 @@ static void st7701_init_sequence(struct st7701 *st7701)
 
 	msleep(st7701->sleep_delay);
 
+	/* Set pixel format */
+	ST7701_WRITE(st7701, MIPI_DCS_SET_PIXEL_FORMAT,
+		   (st7701->pixel_format << 4));
+
 	/* Command2, BK0 */
 	st7701_switch_cmd_bkx(st7701, true, 0);
 
@@ -258,6 +267,10 @@ static void st7701_init_sequence(struct st7701 *st7701)
 		   FIELD_PREP(ST7701_CMD2_BK0_INVSEL_NLINV_MASK, desc->nlinv),
 		   FIELD_PREP(ST7701_CMD2_BK0_INVSEL_RTNI_MASK,
 			      (clamp((u32)mode->htotal, 512U, 1008U) - 512) / 16));
+
+	/* Color control, set RGB pixel format argument */
+	ST7701_WRITE(st7701, ST7701_CMD2_BK0_COLCTRL,
+		   (st7701->pixel_packed ? ST7701_CMD2_BK0_COLCTRL_MDT : 0));
 
 	/* Command2, BK1 */
 	st7701_switch_cmd_bkx(st7701, true, 1);
@@ -1195,6 +1208,7 @@ static const struct st7701_panel_desc fs028vg047_desc = {
 	.mode = &fs028vg047_mode,
 
 	.panel_sleep_delay = 0,
+	.selectable_pixel_format = true,
 
 	.pv_gamma = {
 		CFIELD_PREP(ST7701_CMD2_BK0_GAMCTRL_AJ_MASK, 0) |
@@ -1279,6 +1293,39 @@ static void st7701_cleanup(void *data)
 	drm_panel_unprepare(&st7701->panel);
 }
 
+static int st7701_get_pixel_format(struct device *dev, struct st7701 *st7701)
+{
+	bool selectable_format = st7701->desc->selectable_pixel_format;
+	const char *format_name;
+	int ret;
+
+	st7701->pixel_format = MIPI_DCS_PIXEL_FMT_24BIT;
+	st7701->pixel_packed = false;
+
+	if (!selectable_format)
+		return 0;
+
+	ret = device_property_read_string(dev, "pixel-format", &format_name);
+	if (ret)
+		return 0;
+
+	if (!strcmp(format_name, "r5g6b5")) {
+		st7701->pixel_format = MIPI_DCS_PIXEL_FMT_16BIT;
+	} else if (!strcmp(format_name, "r6g6b6")) {
+		st7701->pixel_format = MIPI_DCS_PIXEL_FMT_18BIT;
+	} else if (!strcmp(format_name, "r8g8b8")) {
+		st7701->pixel_format = MIPI_DCS_PIXEL_FMT_24BIT;
+	} else if (!strcmp(format_name, "r6g6b6_packed")) {
+		st7701->pixel_format = MIPI_DCS_PIXEL_FMT_18BIT;
+		st7701->pixel_packed = true;
+	} else {
+		dev_err(dev, "Unknown pixel format: %s\n", format_name);
+		return -EINVAL;
+	}
+
+	return 0;
+}
+
 static int st7701_probe(struct device *dev, int connector_type)
 {
 	const struct st7701_panel_desc *desc;
@@ -1309,6 +1356,10 @@ static int st7701_probe(struct device *dev, int connector_type)
 		dev_err(dev, "Couldn't get our reset GPIO\n");
 		return PTR_ERR(st7701->reset);
 	}
+
+	ret = st7701_get_pixel_format(dev, st7701);
+	if (ret)
+		return dev_err_probe(dev, ret, "Failed to get pixel format\n");
 
 	ret = of_drm_get_panel_orientation(dev->of_node, &st7701->orientation);
 	if (ret < 0)
