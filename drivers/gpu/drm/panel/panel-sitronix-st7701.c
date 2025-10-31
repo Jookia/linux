@@ -1293,6 +1293,9 @@ static int st7701_probe(struct device *dev, int connector_type)
 	if (!desc)
 		return -ENODEV;
 
+	dev_set_drvdata(dev, st7701);
+	st7701->desc = desc;
+
 	st7701->supplies[0].supply = "VCC";
 	st7701->supplies[1].supply = "IOVCC";
 
@@ -1329,9 +1332,6 @@ static int st7701_probe(struct device *dev, int connector_type)
 		return ret;
 
 	drm_panel_add(&st7701->panel);
-
-	dev_set_drvdata(dev, st7701);
-	st7701->desc = desc;
 
 	return devm_add_action_or_reset(dev, st7701_cleanup, st7701);
 }
