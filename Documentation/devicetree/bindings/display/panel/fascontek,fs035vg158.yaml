@@ -25,7 +25,7 @@ properties:
   pixel-format:
     description: >
       RGB interface pixel format:
-      * `r5g6b5` - 16-bit pixels, d[20:16]=r, d[13:5]=g, d[4:0]=b
+      * `r5g6b5` - 16-bit pixels, d[20:16]=r, d[13:8]=g, d[4:0]=b
       * `r6g6b6` - 18-bit pixels, d[21:16]=r, d[13:8]=g, d[5:0]=b
       * `r8g8b8` - 24-bit pixels, d[23:16]=r, d[15:8]=g, d[7:0]=b
     enum:
