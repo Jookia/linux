@@ -3,6 +3,12 @@ Jookia's Linux
 
 This is my fork of Linux with out of tree features I use or have developed:
 
+Video features:
+
+- Fascontek FS305VG158 panel
+- Fascontek FS028VG047 panel
+- Setting NV3052C and ST7701 panel pixel formats
+
 Audio features:
 
 - CS5368 sound codec support
@@ -45,6 +51,12 @@ Testing notes
 
 I try to test my custom features with each release, but this isn't always
 feasible. Here's a list of features I've tested and which commit I tested.
+
+Video features:
+
+- Fascontek FS305VG158 panel: ea6f5abeb4676112 on 2025-10-31
+- Fascontek FS028VG047 panel: ea6f5abeb4676112 on 2025-10-31
+- Setting NV3052C and ST7701 panel pixel formats: ea6f5abeb4676112 on 2025-10-31
 
 Audio features:
 
