@@ -297,6 +297,11 @@ static int cs5368_dai_hw_params(struct snd_pcm_substream *substream,
 	struct device *dev = dai->dev;
 	struct cs5368_priv *priv = dev_get_drvdata(dev);
 
+	if (!priv->tdm) {
+		dev_err(dev, "codec only supports TDM mode\n");
+		return -EINVAL;
+	}
+
 	int rate = params_rate(params);
 	int lrck_speed = 0;
 	int rc = 0;
