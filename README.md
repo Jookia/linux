@@ -27,6 +27,8 @@ Allwinner D1/T113 features:
 - LCD tint or green display fix
 - Watchdog persists after boot (by Regis Dargent)
 
+There's numerous other improvements and bugfixes to support these features.
+
 This branch tracks Linux v6.12. To see a list of commits from this branch
 only use this command:
 
@@ -54,27 +56,27 @@ feasible. Here's a list of features I've tested and which commit I tested.
 
 Video features:
 
-- Fascontek FS305VG158 panel: ea6f5abeb4676112 on 2025-10-31
-- Fascontek FS028VG047 panel: ea6f5abeb4676112 on 2025-10-31
-- Setting NV3052C and ST7701 panel pixel formats: ea6f5abeb4676112 on 2025-10-31
+- Fascontek FS305VG158 panel: 9246574a753f8679 on 2025-11-09
+- Fascontek FS028VG047 panel: 9246574a753f8679 on 2025-11-09
+- Setting NV3052C and ST7701 panel pixel formats: 9246574a753f8679 on 2025-11-09
 
 Audio features:
 
-- CS5368 sound codec: d607727261d85442 on 2025-03-22
+- CS5368 sound codec: 9246574a753f8679 on 2025-11-09 (Broken!)
 - sound-card-test continous rate support: Not tested recently
 
 Allwinner features:
 
-- Fractional SDM clock rates: ff6d78f6852e182f on 2025-08-31
-- Arbitrary I2S rates: ff6d78f6852e182f on 2025-08-31
+- Fractional SDM clock rates: 9246574a753f8679 on 2025-11-09
+- Arbitrary I2S rates: 9246574a753f8679 on 2025-11-09 (Broken!)
 
 Allwinner D1/T113 features:
 
-- T113 thermal sensor: d607727261d85442 on 2025-03-23
-- T113 PWM: d607727261d85442 on 2025-03-20
+- T113 thermal sensor: 9246574a753f8679 on 2025-11-09
+- T113 PWM: 9246574a753f8679 on 2025-11-09
 - I2S multiple DIN pins: Not tested recently
-- LCD tint or green display fix: d607727261d85442 on 2025-03-20
-- Watchdog persists after boot: d607727261d85442 on 2025-03-13
+- LCD tint or green display fix: 9246574a753f8679 on 2025-11-09
+- Watchdog persists after boot: 9246574a753f8679 on 2025-11-09
 
 Mainline README
 ---------------
