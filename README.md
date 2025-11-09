@@ -62,19 +62,19 @@ Video features:
 
 Audio features:
 
-- CS5368 sound codec: 9246574a753f8679 on 2025-11-09 (Broken!)
-- sound-card-test continous rate support: Not tested recently
+- CS5368 sound codec: acf045e69a985cf8 on 2025-11-10
+- sound-card-test continous rate support: acf045e69a985cf8 on 2025-11-10
 
 Allwinner features:
 
 - Fractional SDM clock rates: 9246574a753f8679 on 2025-11-09
-- Arbitrary I2S rates: 9246574a753f8679 on 2025-11-09 (Broken!)
+- Arbitrary I2S rates: acf045e69a985cf8 on 2025-11-10
 
 Allwinner D1/T113 features:
 
 - T113 thermal sensor: 9246574a753f8679 on 2025-11-09
 - T113 PWM: 9246574a753f8679 on 2025-11-09
-- I2S multiple DIN pins: Not tested recently
+- I2S multiple DIN pins: acf045e69a985cf8 on 2025-11-10
 - LCD tint or green display fix: 9246574a753f8679 on 2025-11-09
 - Watchdog persists after boot: 9246574a753f8679 on 2025-11-09
 
