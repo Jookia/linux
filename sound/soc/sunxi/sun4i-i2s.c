@@ -1008,14 +1008,13 @@ static int sun4i_i2s_set_sysclk(struct snd_soc_dai *dai, int clk_id,
 	}
 
 	if (freq == 0 && i2s->mclk_freq != 0) {
-		clk_rate_exclusive_put(i2s->mod_clk);
 		i2s->mclk_freq = 0;
 		return 0;
 	}
 
 	clk_rate = freq * clk_mul;
 
-	ret = clk_set_rate_exclusive(i2s->mod_clk, clk_rate);
+	ret = clk_set_rate(i2s->mod_clk, clk_rate);
 	if (ret) {
 		dev_err(dai->dev, "Unable to set %pC clock to %i: %d\n",
 			i2s->mod_clk, clk_rate, ret);
