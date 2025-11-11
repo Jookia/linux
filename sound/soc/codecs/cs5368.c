@@ -49,13 +49,13 @@
 #define REG_GCTL_MDIV_MASK 0x30
 
 static const struct reg_sequence cs5368_reg_init[] = {
-	{ REG_GCTL, 0x8B }, /* CP-EN, TDM format, slave audio clocking */
-	{ REG_OVFM, 0x00 }, /* Mask all overflows */
-	{ REG_SDEN, 0x0A }, /* Only enable TDM and _TDM pins */
+	{ REG_GCTL, 0x8B }, // CP-EN, TDM format, slave audio clocking
+	{ REG_OVFM, 0x00 }, // Mask all overflows
+	{ REG_SDEN, 0x0A }, // Only enable TDM and _TDM pins
 };
 
 static const struct reg_default cs5368_reg_defaults[] = {
-	{ REG_REVI, 0x80 }, /* Assume revision A by default */
+	{ REG_REVI, 0x80 }, // Assume revision A by default
 	{ REG_GCTL, 0x00 },
 	{ REG_OVFL, 0xFF },
 	{ REG_OVFM, 0xFF },
@@ -107,8 +107,8 @@ static const struct regmap_config cs5368_regmap_config = {
 	.rd_table = &cs5368_rd_table,
 	.wr_table = &cs5368_wr_table,
 	.volatile_table = &cs5368_volatile_table,
-	.read_flag_mask = 0x80, /* Set INCR bit so batch reads work */
-	.write_flag_mask = 0x80, /* Set INCR bit so batch writes work */
+	.read_flag_mask = 0x80, // Set INCR bit so batch reads work
+	.write_flag_mask = 0x80, // Set INCR bit so batch writes work
 };
 
 static const char *const supply_names[] = {
