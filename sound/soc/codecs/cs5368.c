@@ -307,11 +307,11 @@ static int cs5368_dai_hw_params(struct snd_pcm_substream *substream,
 	int rc = 0;
 
 	if (rate < 54000)
-		lrck_speed = 256;
+		lrck_speed = 256; // Single-speed mode, 2 kHz to 54 kHz
 	else if (rate < 108000)
-		lrck_speed = 128;
+		lrck_speed = 128; // Double-speed mode, 54 kHz to 108 kHz
 	else
-		lrck_speed = 64;
+		lrck_speed = 64; // Quad-speed mode, 108 to 216 kHz
 
 	int mclk_div = priv->mclk_freq / rate / lrck_speed;
 	int mdiv = 0;
