@@ -23,7 +23,7 @@ Allwinner D1/T113 features:
 
 - Thermal sensor enabled
 - PWM support (by Aleksandr Shubin)
-- I2S multiple DIN pins support
+- I2S multiple DIN pins support (see [sound docs](./jookia/docs/sound/))
 - LCD tint or green display fix
 - Watchdog persists after boot (by Regis Dargent)
 
