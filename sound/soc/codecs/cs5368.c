@@ -25,7 +25,7 @@
  * - TDM is a shift register that starts clocking out when LRCK goes low,
  *   but you can keep LRCK low and use the DSP_A format.
  * - You don't have to clock out all bits, clocking out just 2 or 4 slots
- *   out of 8 works well.
+ *   out of 8 works well. You can't use a lower MCLK though.
  * - LRCK doesn't do anything in TDM mode, clocking out 2 slots then toggling
  *   LRCK will not skip slots.
  * - The data sheet says the TDM format is left justified, but it has an
@@ -372,8 +372,8 @@ static int cs5368_dai_set_tdm_slot(struct snd_soc_dai *dai,
 	struct device *dev = dai->dev;
 	struct cs5368_priv *priv = dev_get_drvdata(dev);
 
-	if (slots != 8 && slots != 4 && slots != 2) {
-		dev_err(dev, "codec requires 8, 4 or 2 TDM slots\n");
+	if (slots != 8) {
+		dev_err(dev, "codec requires 8 TDM slots\n");
 		return -EINVAL;
 	}
 
@@ -496,7 +496,7 @@ static int cs5368_set_bias_level(struct snd_soc_component *component,
 struct snd_soc_dai_driver soc_dai_cs5368 = {
 	.capture = {
 		.channels_max = 8,
-		.channels_min = 2,
+		.channels_min = 8,
 		.formats = SNDRV_PCM_FMTBIT_S32_LE,
 		.rate_max = 216000,
 		.rate_min = 2000,
