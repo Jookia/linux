@@ -685,7 +685,7 @@ I2S block to mix these together in to a single stream.
             pinctrl-0 = <&i2s2_pins>, <&i2s2_din_pins>;
             pinctrl-names = "default";
             status = "okay";
-            allwinner,channel-slots = <7 5 3 1 6 4 2 0 1 2 3 4 5 6 7>;
+            allwinner,channel-slots = <7 5 3 1 6 4 2 0 7 5 3 1 6 4 2 0>;
             allwinner,channel-dins = <0 0 0 0 0 0 0 0 2 2 2 2 2 2 2 2>;
             ports {
                     port {
