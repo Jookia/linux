@@ -538,7 +538,7 @@ By making changes like these:
             compatible = "test-cpu";
             test_cpu_port: port {
                 test_cpu_endpoint: endpoint {
-                    mclk-fs = <32>;
+                    mclk-fs = <64>;
                     dai-format = "i2s";
                     dai-tdm-slot-num = <2>;
                     dai-tdm-slot-width = <32>;
