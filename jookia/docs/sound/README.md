@@ -645,8 +645,11 @@ I2S block to mix these together in to a single stream.
             cs5368-1@4c {
                     reg = <0x4c>;
                     compatible = "cirrus,cs5368";
-                    vdd-supply = <&reg_vcc5v>;
-                    vdda-supply = <&reg_3v3>;
+                    vd-supply = <&reg_vcc5v>;
+                    va-supply = <&reg_3v3>;
+                    vls-supply = <&reg_3v3>;
+                    vlc-supply = <&reg_3v3>;
+                    vx-supply = <&reg_vcc5v>;
                     reset-gpios = <&pio 4 11 GPIO_ACTIVE_LOW>; /* PE11 */
                     #sound-dai-cells = <0>;
                     sound-name-prefix = "ADC1";
@@ -664,8 +667,11 @@ I2S block to mix these together in to a single stream.
             cs5368-2@4e {
                     reg = <0x4e>;
                     compatible = "cirrus,cs5368";
-                    vdd-supply = <&reg_vcc5v>;
-                    vdda-supply = <&reg_3v3>;
+                    vd-supply = <&reg_vcc5v>;
+                    va-supply = <&reg_3v3>;
+                    vls-supply = <&reg_3v3>;
+                    vlc-supply = <&reg_3v3>;
+                    vx-supply = <&reg_vcc5v>;
                     reset-gpios = <&pio 4 12 GPIO_ACTIVE_LOW>; /* PE12 */
                     #sound-dai-cells = <0>;
                     sound-name-prefix = "ADC2";
