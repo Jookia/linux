@@ -68,8 +68,8 @@ examples:
         cs5368: codec@4c {
             compatible = "cirrus,cs5368";
             reg = <0x4c>;
-            vd-supply = <&reg_vcc5v>;
-            va-supply = <&reg_3v3>;
+            va-supply = <&reg_vcc5v>;
+            vd-supply = <&reg_3v3>;
             vls-supply = <&reg_3v3>;
             vlc-supply = <&reg_3v3>;
             vx-supply = <&reg_vcc5v>;
