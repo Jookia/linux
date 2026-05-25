@@ -5,6 +5,7 @@
  * Copyright (C) 2006,2008 David Brownell
  * Copyright (C) 2017 Linus Walleij
  */
+#include <linux/delay.h>
 #include <linux/gpio/consumer.h>
 #include <linux/kernel.h>
 #include <linux/mod_devicetable.h>
@@ -107,6 +108,16 @@ static inline int getmiso(const struct spi_device *spi)
 		return !!gpiod_get_value_cansleep(spi_gpio->miso);
 }
 
+#ifdef CONFIG_SPI_GPIO_LIMIT
+
+/*
+ * If requested, limit the GPIO speeds by inserting a delay.
+ * This will likely be slower than the requested speed.
+ */
+#define spidelay(nsecs)	ndelay(nsecs)
+
+#else
+
 /*
  * NOTE:  this clocks "as fast as we can".  It "should" be a function of the
  * requested device clock.  Software overhead means we usually have trouble
@@ -114,6 +125,8 @@ static inline int getmiso(const struct spi_device *spi)
  * we'll just assume we never need additional per-bit slowdowns.
  */
 #define spidelay(nsecs)	do {} while (0)
+
+#endif
 
 #include "spi-bitbang-txrx.h"
 

@@ -462,6 +462,18 @@ config SPI_GPIO
 	  GPIO operations, you should be able to leverage that for better
 	  speed with a custom version of this driver; see the source code.
 
+if SPI_GPIO
+
+config SPI_GPIO_LIMIT
+	bool "Limit GPIO-based bitbanging speeds"
+	help
+	  By default GPIO bitbanging always runs the SPI bus as fast as
+	  possible, past the maximum speeds required by slower peripherals.
+
+	  Say Y here to limit bitbanging to requested speeds.
+
+endif # SPI_GPIO
+
 config SPI_IMG_SPFI
 	tristate "IMG SPFI controller"
 	depends on MIPS || COMPILE_TEST
