@@ -14,6 +14,10 @@ Audio features:
 - CS5368 sound codec support
 - sound-card-test continous rate support
 
+IIO features:
+
+- ADS1216 ADC support
+
 Allwinner features:
 
 - Fractional SDM clock rates (see [clocking docs](./jookia/docs/clocking/))
