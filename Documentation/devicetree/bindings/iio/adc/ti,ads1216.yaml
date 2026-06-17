@@ -1,0 +1,101 @@
+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+%YAML 1.2
+---
+$id: http://devicetree.org/schemas/iio/adc/ti,ads1216.yaml#
+$schema: http://devicetree.org/meta-schemas/core.yaml#
+
+title: Texas Instruments' ADS1216 ADC chip
+
+description: |
+  The ADS1216 is an 8-channel 24-bit analog to digital converter.
+
+maintainers:
+  - John Watts <contact@jookia.org>
+
+properties:
+  compatible:
+    enum:
+      - ti,ads1216
+
+  reg:
+    maxItems: 1
+
+  avdd-supply:
+    description: Analog power supply, voltage up to 5V
+
+  dvdd-supply:
+    description: Digital power supply, voltage up to 5V
+
+  vref-supply:
+    description:
+      Voltage reference supply, voltage up to 2.6V.
+      If using the on chip voltage reference specify same as avdd-supply
+
+  reset-gpios:
+    description: Optional reset GPIO, if not specified SPI reset will be used
+    maxItems: 1
+
+  interrupts:
+    description: DRDY interrupt pin, triggers on falling edge
+    maxItems: 1
+
+  ti,buf-en:
+    $ref: /schemas/types.yaml#/definitions/flag
+    description: Whether the BUFEN pin is set (not whether to enable the buffer)
+
+  ti,vref-en:
+    $ref: /schemas/types.yaml#/definitions/flag
+    description: Whether to output the on-chip voltage reference
+
+  ti,vref-millivolt:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description: The analog voltage reference voltage
+
+  ti,rdac-ohm:
+    $ref: /schemas/types.yaml#/definitions/uint32
+    description: Resistance of the current DAC resistor. Set to 0 if unused
+
+  ti,osc-hz:
+    description: The crystal oscillator speed
+    minimum: 1000000
+    maximum: 5000000
+
+required:
+  - compatible
+  - reg
+  - avdd-supply
+  - dvdd-supply
+  - vref-supply
+  - interrupts
+  - ti,osc-hz
+  - ti,rdac-ohm
+
+allOf:
+  - $ref: /schemas/spi/spi-peripheral-props.yaml#
+
+unevaluatedProperties: false
+
+examples:
+  - |
+    #include <dt-bindings/gpio/gpio.h>
+    #include <dt-bindings/interrupt-controller/irq.h>
+    spi {
+        #address-cells = <1>;
+        #size-cells = <0>;
+
+        adc@1 {
+          compatible = "ti,ads1216";
+          reg = <1>;
+          avdd-supply = <&reg_3v3>;
+          dvdd-supply = <&reg_3v3>;
+          vref-supply = <&reg_3v3>;
+          interrupt-parent = <&pio>;
+          interrupts = <4 10 IRQ_TYPE_EDGE_FALLING>;
+          ti,buf-en;
+          ti,vref-en;
+          ti,vref-millivolt = <1250>;
+          ti,rdac-ohm = <15000>;
+          ti,osc-hz = <4915200>;
+        };
+    };
+...
