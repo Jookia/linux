@@ -5,7 +5,7 @@ SUBLEVEL = 0
 EXTRAVERSION =
 NAME = Baby Opossum Posse
 
-PATCHESVERSION = -jookia20251112
+PATCHESVERSION = -jookia20260627
 
 # *DOCUMENTATION*
 # To see a list of typical targets execute "make help"
